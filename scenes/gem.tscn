@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://dks6r6i2m8cog"]
+
+[ext_resource type="Texture2D" uid="uid://xd2kack4ql8r" path="res://sprites/gem1.png" id="1_bhq7q"]
+[ext_resource type="Script" uid="uid://co8d4w6vu56ig" path="res://scenes/gem.gd" id="2_rj4j3"]
+[ext_resource type="Texture2D" uid="uid://ddlwvmwxinlt1" path="res://sprites/monsters/fish1.png" id="3_dhpy3"]
+[ext_resource type="Texture2D" uid="uid://fxxegh6sbgxn" path="res://sprites/monsters/poop1.png" id="3_rj4j3"]
+[ext_resource type="Texture2D" uid="uid://dj0ux0timjc4q" path="res://sprites/monsters/poop2.png" id="4_dn3vp"]
+[ext_resource type="Texture2D" uid="uid://doddoaocrg31l" path="res://sprites/monsters/fish2.png" id="4_o6gnd"]
+[ext_resource type="Texture2D" uid="uid://cdxf25qfjnq1g" path="res://sprites/monsters/zombie1.png" id="7_35lcq"]
+[ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="8_eaa7k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jyhfs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bhq7q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6xl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dhpy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o6gnd")
+}],
+"loop": true,
+"name": &"fish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rj4j3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dn3vp")
+}],
+"loop": true,
+"name": &"poop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_35lcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_eaa7k")
+}],
+"loop": true,
+"name": &"zombie",
+"speed": 5.0
+}]
+
+[node name="Gem6" type="AnimatedSprite2D"]
+z_index = -4096
+z_as_relative = false
+sprite_frames = SubResource("SpriteFrames_jyhfs")
+script = ExtResource("2_rj4j3")
+
+[node name="monster" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 4096
+position = Vector2(3, -14)
+sprite_frames = SubResource("SpriteFrames_o6xl0")
+animation = &"zombie"
