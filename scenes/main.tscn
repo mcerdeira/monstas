@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dhnbrqouuriai"]
+[gd_scene load_steps=27 format=3 uid="uid://dhnbrqouuriai"]
 
 [ext_resource type="Script" uid="uid://cpmgs25lk35u4" path="res://scenes/artefact.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://ctmbjrbmjlab5" path="res://sprites/lines.png" id="3_jbj1t"]
@@ -35,6 +35,43 @@ shader_parameter/VIEWPORT_SIZE = Vector2(1280, 720)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
 shader = ExtResource("3_muem4")
 shader_parameter/speed = 3.0
+
+[sub_resource type="Animation" id="Animation_muem4"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 0, 0), PackedVector2Array(0, 0, 0, -166), PackedVector2Array(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dp3eg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 0, -166)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ld40"]
+_data = {
+&"RESET": SubResource("Animation_dp3eg"),
+&"new_animation": SubResource("Animation_muem4")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jyhfs"]
 animations = [{
@@ -117,9 +154,15 @@ offset_bottom = 673.0
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_dp3eg")
 position = Vector2(576, 536)
-points = PackedVector2Array(0, 0, 0, -200)
+points = PackedVector2Array(0, 0, 0, -166)
 texture = ExtResource("3_jbj1t")
 texture_mode = 1
+
+[node name="anim" type="AnimationPlayer" parent="shoot_line"]
+libraries = {
+&"": SubResource("AnimationLibrary_0ld40")
+}
+autoplay = "new_animation"
 
 [node name="Artefact" type="Node2D" parent="."]
 position = Vector2(576, 240)
