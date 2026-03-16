@@ -1,9 +1,37 @@
 extends Node
 var FULLSCREEN = false
+var Main = null
+var COINS = 0
+var GOAL = 0
+var LEVEL = 0
+var TURN = 1
+var TOTAL_TURNS = 5
+var MONSTA_ENABLED = []
 
+var monsta_poop = {
+	"id": "poop",
+	"name": "Poop",
+	"description": "I give 1 coin per turn +1 if I'm in a row of poops.",
+	"price": 0,
+}
+
+var monsta_fish = {
+	"id": "fish",
+	"name": "Fish",
+	"description": "I give 2 coins per turns, after 2 turns I'll be gone.",
+	"price": 30,
+}
+
+var monsta_zombie = {
+	"id": "zombie",
+	"name": "Zombie",
+	"description": "I give 2 coins per turns, after 2 turns I'll be gone.",
+	"price": 20,
+}
 
 func init_vars():
-	pass
+	LEVEL = 1
+	MONSTA_ENABLED = [monsta_poop]
 
 func _ready():
 	init_vars()

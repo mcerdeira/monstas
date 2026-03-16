@@ -1,0 +1,29 @@
+extends Area2D
+var monsta = null
+var shooting = false
+var speed = 800
+var original_position = null
+
+func _ready() -> void:
+	visible = false
+	original_position = global_position
+	
+func _physics_process(delta: float) -> void:
+	if shooting:
+		global_position.y -= speed * delta
+	
+func shoot(_monsta):
+	monsta = _monsta
+	shooting = true
+	visible = true
+	
+func return_home():
+	global_position = original_position
+	Global.Main.STATE = Global.Main.STATES.NEXT_TURN
+
+func _on_area_entered(area: Area2D) -> void:
+	if area and area.is_in_group("gem"):
+		shooting = false
+		area.hit(monsta)
+		visible = false
+		return_home()

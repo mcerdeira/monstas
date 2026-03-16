@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://doddoaocrg31l" path="res://sprites/monsters/fish2.png" id="4_o6gnd"]
 [ext_resource type="Texture2D" uid="uid://cdxf25qfjnq1g" path="res://sprites/monsters/zombie1.png" id="7_35lcq"]
 [ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="8_eaa7k"]
+[ext_resource type="Script" uid="uid://b6jpr2hbfuviq" path="res://scenes/clickeable.gd" id="9_eaa7k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jyhfs"]
 animations = [{
@@ -61,6 +62,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35lcq"]
+size = Vector2(43.84063, 43.84063)
+
 [node name="Gem6" type="AnimatedSprite2D" unique_id=1562660899]
 z_index = -4096
 z_as_relative = false
@@ -69,7 +73,19 @@ script = ExtResource("2_rj4j3")
 
 [node name="monster" type="AnimatedSprite2D" parent="." unique_id=1976200337]
 unique_name_in_owner = true
-z_index = 4096
+z_index = 4000
 position = Vector2(3, -14)
 sprite_frames = SubResource("SpriteFrames_o6xl0")
 animation = &"empty"
+
+[node name="clickeable" type="Area2D" parent="." unique_id=442185217]
+script = ExtResource("9_eaa7k")
+
+[node name="collider" type="CollisionShape2D" parent="clickeable" unique_id=361220102]
+position = Vector2(1.847744e-06, 5.9604645e-07)
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_35lcq")
+
+[connection signal="mouse_entered" from="clickeable" to="." method="_on_clickeable_mouse_entered"]
+[connection signal="mouse_exited" from="clickeable" to="." method="_on_clickeable_mouse_exited"]
