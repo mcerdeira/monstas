@@ -340,33 +340,43 @@ texture = ExtResource("5_dp3eg")
 position = Vector2(48, 601)
 
 [node name="Artefact" type="Node2D" parent="." unique_id=1974696450]
+unique_name_in_owner = true
 position = Vector2(576, 240)
 script = ExtResource("1_0wfyh")
 
 [node name="Gem1" parent="Artefact" unique_id=1254166409 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
 position = Vector2(-64, -64)
 
 [node name="Gem2" parent="Artefact" unique_id=1029235991 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
 position = Vector2(0, -64)
 
 [node name="Gem3" parent="Artefact" unique_id=1942863404 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
 position = Vector2(64, -64)
 
 [node name="Gem4" parent="Artefact" unique_id=903981907 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
 position = Vector2(-64, 0)
 
 [node name="Gem5" parent="Artefact" unique_id=599978426 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
 
 [node name="Gem6" parent="Artefact" unique_id=2112870716 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
 position = Vector2(64, 0)
 
 [node name="Gem7" parent="Artefact" unique_id=961925508 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
 position = Vector2(-64, 64)
 
 [node name="Gem8" parent="Artefact" unique_id=1221715857 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
 position = Vector2(0, 64)
 
 [node name="Gem9" parent="Artefact" unique_id=984354057 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
 position = Vector2(64, 64)
 
 [node name="Label" type="Label" parent="Artefact" unique_id=308431551]

@@ -16,6 +16,7 @@ var monsta_poop = {
 	"description": "I give 1 coin per turn +1 if I'm in a row of poops.",
 	"points_individual": 1,
 	"points_special": 1,
+	"special": "rows",
 	"expiration": -1,
 	"price": 0,
 }
@@ -26,6 +27,7 @@ var monsta_fish = {
 	"description": "I give 2 coins per turns, after 2 turns I'll be gone.",
 	"points_individual": 2,
 	"points_special": 0,
+	"special": "none",
 	"expiration": 2,
 	"price": 30,
 }
@@ -36,6 +38,7 @@ var monsta_zombie = {
 	"description": "I give 2 coins per turns, after 2 turns I'll be gone.",
 	"points_individual": 2,
 	"points_special": 0,
+	"special": "none",
 	"expiration": 2,
 	"price": 20,
 }

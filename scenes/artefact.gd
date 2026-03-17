@@ -5,7 +5,7 @@ var configuration = 0
 
 func _physics_process(delta: float) -> void:
 	$Label.rotation_degrees = -rotation_degrees
-	$Label.text = str(configuration)
+	$Label.text = str(rotation_degrees)
 	
 	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
 		if !%shoot_line.visible:
@@ -39,3 +39,5 @@ func set_line_point(v: Vector2):
 
 func _ended():
 	animating = false
+	if configuration == 0:
+		rotation_degrees = 0 #Para seguridad se vuelve a rotación 0
