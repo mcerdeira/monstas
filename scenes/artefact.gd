@@ -13,7 +13,6 @@ func _physics_process(delta: float) -> void:
 			
 		if !animating:
 			if Input.is_action_just_pressed("shoot"):
-				Global.shaker_obj.shake(1.1, 0.5)
 				%Gun.shoot()
 			if Input.is_action_just_pressed("left"):
 				configuration -= 1

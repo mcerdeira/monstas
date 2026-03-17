@@ -11,6 +11,8 @@ func _ready() -> void:
 	$monster/points_in_turn.text = self.name.replace("Gem", "")
 	
 func set_points_turn(points):
+	$Points.play("new_animation")
+	Global.emit(global_position, 5)
 	point_turn += points
 	if point_turn > 0:
 		$monster/points_in_turn.text = "+" + str(point_turn)
@@ -19,7 +21,8 @@ func set_points_turn(points):
 		$monster/points_in_turn.visible = false
 	
 func expire():
-	##TODO poner animacion de explosión o algo
+	$Points.play("new_animation")
+	Global.emit(global_position, 10)
 	set_monsta(null)
 
 func set_monsta_callback():
@@ -48,6 +51,7 @@ func _physics_process(delta: float) -> void:
 func hit(_monsta):
 	if monsta != null:
 		Global.shaker_obj.shake(2.0, 1.1)
+		Global.emit(global_position, 3)
 		%monster_temp.animation = $monster.animation
 		$monster/stars.visible = true
 		temp_monsta = _monsta
@@ -56,6 +60,7 @@ func hit(_monsta):
 		playing_jump_animation = true
 		$AnimationPlayer.play("jump")
 	else:
+		Global.emit(global_position, 3)
 		set_monsta(_monsta)
 	
 func _on_clickeable_mouse_entered() -> void:

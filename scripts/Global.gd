@@ -1,4 +1,5 @@
 extends Node
+var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
 var FULLSCREEN = false
 var Main = null
@@ -50,16 +51,16 @@ func init_vars():
 func _ready():
 	init_vars()
 	
-#func emit(_global_position, count, particle_obj = null, size = 1):
-	#var part = particle
-	#if particle_obj:
-		#part = particle_obj
-	#
-	#for i in range(count):
-		#var p = part.instantiate()
-		#p.global_position = _global_position
-		#p.size = size
-		#add_child(p)
+func emit(_global_position, count, particle_obj = null, size = 1):
+	var part = particle
+	if particle_obj:
+		part = particle_obj
+	
+	for i in range(count):
+		var p = part.instantiate()
+		p.global_position = _global_position
+		p.size = size
+		add_child(p)
 	
 func pick_random(container):
 	if typeof(container) == TYPE_DICTIONARY:
