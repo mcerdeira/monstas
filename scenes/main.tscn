@@ -369,6 +369,12 @@ position = Vector2(0, 64)
 [node name="Gem9" parent="Artefact" unique_id=984354057 instance=ExtResource("6_tefeu")]
 position = Vector2(64, 64)
 
+[node name="Label" type="Label" parent="Artefact" unique_id=308431551]
+offset_left = 55.0
+offset_top = 113.0
+offset_right = 95.0
+offset_bottom = 136.0
+
 [node name="monsta_bullet" type="Area2D" parent="." unique_id=1538656422]
 unique_name_in_owner = true
 position = Vector2(576, 584)
