@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cdxf25qfjnq1g" path="res://sprites/monsters/zombie1.png" id="7_35lcq"]
 [ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="8_eaa7k"]
 [ext_resource type="Script" uid="uid://b6jpr2hbfuviq" path="res://scenes/clickeable.gd" id="9_eaa7k"]
+[ext_resource type="Texture2D" uid="uid://byrutrppf5qm4" path="res://sprites/stars1.png" id="9_xtt15"]
+[ext_resource type="Texture2D" uid="uid://cg8psysyjjnnq" path="res://sprites/stars2.png" id="10_raabq"]
+[ext_resource type="Texture2D" uid="uid://b33bq8vw333gr" path="res://sprites/stars3.png" id="11_hgwl1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jyhfs"]
 animations = [{
@@ -62,8 +65,99 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ultim"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_xtt15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_raabq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hgwl1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35lcq"]
 size = Vector2(43.84063, 43.84063)
+
+[sub_resource type="Animation" id="Animation_eaa7k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("monster:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("monster:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hqa1t"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("monster:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, -14), Vector2(3, -54)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("monster:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_monsta_callback"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qgn10"]
+_data = {
+&"RESET": SubResource("Animation_eaa7k"),
+&"jump": SubResource("Animation_hqa1t")
+}
 
 [node name="Gem6" type="AnimatedSprite2D" unique_id=1562660899]
 z_index = -4096
@@ -71,12 +165,28 @@ z_as_relative = false
 sprite_frames = SubResource("SpriteFrames_jyhfs")
 script = ExtResource("2_rj4j3")
 
+[node name="monster_temp" type="AnimatedSprite2D" parent="." unique_id=434938544]
+unique_name_in_owner = true
+visible = false
+z_index = 4000
+position = Vector2(3, -14)
+sprite_frames = SubResource("SpriteFrames_o6xl0")
+animation = &"empty"
+
 [node name="monster" type="AnimatedSprite2D" parent="." unique_id=1976200337]
 unique_name_in_owner = true
 z_index = 4000
 position = Vector2(3, -14)
 sprite_frames = SubResource("SpriteFrames_o6xl0")
 animation = &"empty"
+
+[node name="stars" type="AnimatedSprite2D" parent="monster" unique_id=1725548142]
+visible = false
+position = Vector2(-2, -12)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ultim")
+autoplay = "default"
+frame_progress = 0.8837472
 
 [node name="clickeable" type="Area2D" parent="." unique_id=442185217]
 script = ExtResource("9_eaa7k")
@@ -86,6 +196,10 @@ position = Vector2(1.847744e-06, 5.9604645e-07)
 rotation = 0.7853982
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_35lcq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=326563092]
+libraries/ = SubResource("AnimationLibrary_qgn10")
+speed_scale = 3.0
 
 [connection signal="mouse_entered" from="clickeable" to="." method="_on_clickeable_mouse_entered"]
 [connection signal="mouse_exited" from="clickeable" to="." method="_on_clickeable_mouse_exited"]

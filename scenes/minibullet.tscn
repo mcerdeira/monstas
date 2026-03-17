@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cl0qf0wan0rq8"]
+
+[ext_resource type="Script" uid="uid://bqw2jnhr17j48" path="res://scenes/minibullet.gd" id="1_4kect"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ce1no"]
+radius = 2.236068
+
+[node name="Minibullet" type="Area2D" unique_id=508224296]
+script = ExtResource("1_4kect")
+
+[node name="collider" type="CollisionShape2D" parent="." unique_id=1057285198]
+shape = SubResource("CircleShape2D_ce1no")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
