@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://gvo7kq3jjnkc" path="res://sprites/gun4.png" id="8_dp3eg"]
 [ext_resource type="Shader" uid="uid://b73jx406demos" path="res://scenes/chrome.gdshader" id="8_tipki"]
 [ext_resource type="Shader" uid="uid://dga0ew8efdc6t" path="res://scenes/stars.gdshader" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://f01jp413eqlk" path="res://scenes/cards.tscn" id="11_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://w45u4wattndj" path="res://scenes/monster_avatar.tscn" id="13_trceg"]
 [ext_resource type="Script" uid="uid://dskvwt7du7f1y" path="res://scenes/monsta_bullet.gd" id="15_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://b3fyul7g6aggk" path="res://sprites/bullet1.png" id="15_muem4"]
@@ -200,8 +201,8 @@ metadata/_edit_lock_ = true
 [node name="lbl_coins" type="Label" parent="UI" unique_id=41916509]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 11.0
-offset_right = 154.0
+offset_left = 13.0
+offset_right = 156.0
 offset_bottom = 63.0
 theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 theme_override_fonts/font = ExtResource("4_0ld40")
@@ -244,6 +245,25 @@ theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 68
 text = "1/5"
+
+[node name="backcollection" type="ColorRect" parent="UI" unique_id=1139384774]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 26.0
+offset_top = 8.0
+offset_right = 1125.0
+offset_bottom = 616.0
+color = Color(0.13725491, 0.1882353, 0.18431373, 1)
+
+[node name="lbl_title" type="Label" parent="UI/backcollection" unique_id=1805687321]
+layout_mode = 0
+offset_right = 1109.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("4_0ld40")
+theme_override_font_sizes/font_size = 96
+text = "Collection"
+horizontal_alignment = 1
 
 [node name="Ballon" type="Node2D" parent="." unique_id=72548092]
 unique_name_in_owner = true
@@ -289,6 +309,9 @@ autoplay = &"new_animation"
 [node name="Arrow" type="Sprite2D" parent="shoot_line" unique_id=332200608]
 position = Vector2(-926, -6)
 texture = ExtResource("5_dp3eg")
+
+[node name="Cards" parent="." unique_id=1398099554 instance=ExtResource("11_pm3ni")]
+position = Vector2(48, 601)
 
 [node name="Artefact" type="Node2D" parent="." unique_id=1974696450]
 position = Vector2(576, 240)
@@ -341,7 +364,7 @@ sprite_frames = SubResource("SpriteFrames_jyhfs")
 autoplay = "default"
 script = ExtResource("6_eb6dy")
 
-[node name="monster_avatar" parent="Gun" unique_id=1749985967 instance=ExtResource("13_trceg")]
+[node name="monster_avatar" parent="Gun" unique_id=1015858540 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
 
 [connection signal="area_entered" from="monsta_bullet" to="monsta_bullet" method="_on_area_entered"]
