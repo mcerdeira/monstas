@@ -3,6 +3,9 @@ var monsta = null
 var origin = null
 var speed = 800
 
+func _ready() -> void:
+	add_to_group("minubullet")
+
 func _physics_process(delta: float) -> void:
 	if monsta:
 		global_position.y -= speed * delta

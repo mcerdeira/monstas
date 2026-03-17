@@ -178,7 +178,13 @@ unique_name_in_owner = true
 z_index = 4000
 position = Vector2(3, -14)
 sprite_frames = SubResource("SpriteFrames_o6xl0")
-animation = &"empty"
+animation = &"fish"
+
+[node name="points_in_turn" type="Label" parent="monster" unique_id=1924556753]
+offset_top = -13.0
+offset_right = 40.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 32
 
 [node name="stars" type="AnimatedSprite2D" parent="monster" unique_id=1725548142]
 visible = false

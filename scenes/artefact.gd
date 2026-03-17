@@ -1,5 +1,5 @@
 extends Node2D
-var animating = false
+var animating = false #flag para saber si está rotando el tablero y bloquear acciones
 var duration = 0.3
 
 func _physics_process(delta: float) -> void:
@@ -9,6 +9,7 @@ func _physics_process(delta: float) -> void:
 			
 		if !animating:
 			if Input.is_action_just_pressed("shoot"):
+				Global.shaker_obj.shake(1.1, 0.5)
 				%Gun.shoot()
 			if Input.is_action_just_pressed("left"):
 				animating = true

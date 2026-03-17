@@ -1,8 +1,10 @@
 extends Node
+var shaker_obj = null
 var FULLSCREEN = false
 var Main = null
 var COINS = 0
 var GOAL = 0
+var THIS_TURN_COINS = 0
 var LEVEL = 0
 var TURN = 1
 var TOTAL_TURNS = 5
@@ -12,6 +14,9 @@ var monsta_poop = {
 	"id": "poop",
 	"name": "Poop",
 	"description": "I give 1 coin per turn +1 if I'm in a row of poops.",
+	"points_individual": 1,
+	"points_special": 1,
+	"expiration": -1,
 	"price": 0,
 }
 
@@ -19,6 +24,9 @@ var monsta_fish = {
 	"id": "fish",
 	"name": "Fish",
 	"description": "I give 2 coins per turns, after 2 turns I'll be gone.",
+	"points_individual": 2,
+	"points_special": 0,
+	"expiration": 2,
 	"price": 30,
 }
 
@@ -26,6 +34,9 @@ var monsta_zombie = {
 	"id": "zombie",
 	"name": "Zombie",
 	"description": "I give 2 coins per turns, after 2 turns I'll be gone.",
+	"points_individual": 2,
+	"points_special": 0,
+	"expiration": 2,
 	"price": 20,
 }
 

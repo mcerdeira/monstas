@@ -7,5 +7,4 @@ func set_text(_monsta, pos):
 		$PanelContainer/MarginContainer/lbl_dialog.text = _monsta.name + ": " + _monsta.description
 
 func hideme():
-	$PanelContainer/MarginContainer/lbl_dialog.text = ""
 	visible = false

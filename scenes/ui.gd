@@ -18,3 +18,8 @@ func _physics_process(delta: float) -> void:
 		if msg_ttl <= 0:
 			%lbl_message.visible = false
 			Global.Main.STATE = goto_state
+
+
+func _on_control_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton && event.is_action_pressed("click"):
+		%backcollection.visible = false
