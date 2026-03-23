@@ -49,9 +49,11 @@ func _ready() -> void:
 	Global.Main = self
 	
 func set_current_goal():
+	$UI/objetive_anim.play("new_animation")
+	Global.TURN = 1
 	Global.THIS_TURN_COINS = 0
 	if Global.LEVEL == 1:
-		Global.GOAL = 10
+		Global.GOAL = 8
 	elif Global.LEVEL == 2:
 		Global.GOAL = 25
 		
@@ -170,6 +172,10 @@ func _physics_process(delta: float) -> void:
 		STATE = STATES.TRANSITION
 		%monster_avatar.new_turn()
 		%UI.show_message("Build Phase", STATES.PLAYER_TURN)
+		var monstaslots = get_tree().get_nodes_in_group("monstaslot")
+		for monstaslot in monstaslots:
+			monstaslot.reset_points_turn((Global.LEVEL > 1))
+		
 	elif STATE == STATES.GAME_OVER:
 		%UI.show_perma_message("Game Over")
 	elif STATE == STATES.NEXT_TURN:
@@ -205,6 +211,7 @@ func _physics_process(delta: float) -> void:
 				count_index += 1
 			else:
 				STATE = STATES.SHOWING_RESULTS
+				$UI/coins_anim.play("new_animation")
 		else:
 			delay_in_count -= 1 * delta
 				
@@ -215,6 +222,7 @@ func _physics_process(delta: float) -> void:
 				Global.COINS += 1
 				Global.THIS_TURN_COINS -= 1
 			else:
+				$UI/coins_anim.stop()
 				if Global.COINS >= Global.GOAL:
 					Global.LEVEL += 1
 					STATE = STATES.INIT

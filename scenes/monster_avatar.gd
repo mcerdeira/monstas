@@ -6,6 +6,10 @@ func reset_turn():
 	%monsta_bullet.visible = false
 	current_monsta = null
 	play("empty")
+	
+func set_monsta(_monsta):
+	current_monsta = _monsta
+	play(current_monsta.id)
 
 func new_turn():
 	visible = true
@@ -15,7 +19,7 @@ func new_turn():
 
 func _on_click_area_mouse_entered() -> void:
 	if current_monsta:
-		%Ballon.set_text(current_monsta, get_parent().global_position)
+		%Ballon.set_text(current_monsta, global_position)
 
 func _on_click_area_mouse_exited() -> void:
 	%Ballon.hideme()

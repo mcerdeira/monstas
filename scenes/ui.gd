@@ -9,6 +9,12 @@ func show_message(message, state):
 	goto_state = state
 	msg_ttl = msg_ttl_total
 	
+func emit_from_coins():
+	Global.emit($lbl_coins_point.global_position, 5)
+	
+func emit_from_objetive():
+	Global.emit($lbl_objetive_point.global_position, 5)
+	
 func show_perma_message(message):
 	%lbl_message.visible = true
 	%lbl_message.text = message
@@ -20,9 +26,6 @@ func _physics_process(delta: float) -> void:
 	if msg_ttl > 0:
 		msg_ttl -= 1 * delta
 		if msg_ttl <= 0:
-			%lbl_message.visible = false
+			if goto_state != Global.Main.STATES.GAME_OVER:
+				%lbl_message.visible = false
 			Global.Main.STATE = goto_state
-
-func _on_control_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton && event.is_action_pressed("click"):
-		%backcollection.visible = false

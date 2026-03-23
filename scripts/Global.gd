@@ -10,6 +10,7 @@ var LEVEL = 0
 var TURN = 1
 var TOTAL_TURNS = 5
 var MONSTA_ENABLED = []
+var ALL_MONSTAS = []
 
 var monsta_poop = {
 	"id": "poop",
@@ -46,7 +47,9 @@ var monsta_zombie = {
 
 func init_vars():
 	LEVEL = 1
+	TURN = 1
 	MONSTA_ENABLED = [monsta_poop]
+	ALL_MONSTAS = [monsta_fish, monsta_zombie]
 
 func _ready():
 	init_vars()

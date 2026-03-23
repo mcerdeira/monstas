@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bqxv3yqwca6o7" path="res://sprites/gun2.png" id="6_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://dks6r6i2m8cog" path="res://scenes/gem.tscn" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://ds7873vf4m1ky" path="res://sprites/gun3.png" id="7_muem4"]
+[ext_resource type="Script" uid="uid://cudo06nd753hp" path="res://scenes/backcollection.gd" id="7_og1vs"]
+[ext_resource type="Script" uid="uid://cv5r2u6fbdthl" path="res://scenes/shop.gd" id="8_2wyq8"]
 [ext_resource type="Texture2D" uid="uid://gvo7kq3jjnkc" path="res://sprites/gun4.png" id="8_dp3eg"]
 [ext_resource type="Shader" uid="uid://b73jx406demos" path="res://scenes/chrome.gdshader" id="8_tipki"]
 [ext_resource type="Shader" uid="uid://dga0ew8efdc6t" path="res://scenes/stars.gdshader" id="9_85g3d"]
@@ -38,6 +40,181 @@ shader_parameter/amount = 0.3
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
 shader = ExtResource("9_85g3d")
 shader_parameter/VIEWPORT_SIZE = Vector2(1280, 720)
+
+[sub_resource type="Animation" id="Animation_y6deb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%lbl_coins:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_og1vs"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%lbl_coins:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.53333336, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.8), Vector2(0.8, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.56666666),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_from_coins"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wyq8"]
+_data = {
+&"RESET": SubResource("Animation_y6deb"),
+&"new_animation": SubResource("Animation_og1vs")
+}
+
+[sub_resource type="Animation" id="Animation_2wyq8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%lbl_objetive:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vxglm"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%lbl_objetive:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.8), Vector2(0.8, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.96666664),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_from_objetive"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2f3dj"]
+_data = {
+&"RESET": SubResource("Animation_2wyq8"),
+&"new_animation": SubResource("Animation_vxglm")
+}
+
+[sub_resource type="Animation" id="Animation_fv21b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 601)]
+}
+
+[sub_resource type="Animation" id="Animation_2f3dj"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(48, 601), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_show"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yq6so"]
+_data = {
+&"RESET": SubResource("Animation_fv21b"),
+&"show": SubResource("Animation_2f3dj")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pm3ni"]
 animations = [{
@@ -205,6 +382,13 @@ mouse_filter = 2
 script = ExtResource("4_gqmmt")
 metadata/_edit_lock_ = true
 
+[node name="coins_anim" type="AnimationPlayer" parent="UI" unique_id=1393623325]
+libraries/ = SubResource("AnimationLibrary_2wyq8")
+speed_scale = 5.0
+
+[node name="lbl_coins_point" type="Marker2D" parent="UI" unique_id=20940325]
+position = Vector2(139, 32)
+
 [node name="lbl_coins" type="Label" parent="UI" unique_id=41916509]
 unique_name_in_owner = true
 layout_mode = 0
@@ -219,13 +403,21 @@ text = "COINS: 10"
 [node name="lbl_objetive" type="Label" parent="UI" unique_id=1335740041]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 1152.0
+offset_left = 457.0
+offset_right = 688.0
 offset_bottom = 63.0
 theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 48
 text = "GOAL: 10"
 horizontal_alignment = 1
+
+[node name="lbl_objetive_point" type="Marker2D" parent="UI" unique_id=1183232805]
+position = Vector2(626, 30)
+
+[node name="objetive_anim" type="AnimationPlayer" parent="UI" unique_id=1468152797]
+libraries/ = SubResource("AnimationLibrary_2f3dj")
+speed_scale = 5.0
 
 [node name="lbl_message" type="Label" parent="UI" unique_id=1741242101]
 unique_name_in_owner = true
@@ -253,17 +445,43 @@ theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 68
 text = "1/5"
 
-[node name="backcollection" type="ColorRect" parent="UI" unique_id=1139384774]
+[node name="backcollection" type="Node2D" parent="UI" unique_id=1094943437]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
+position = Vector2(48, 601)
+scale = Vector2(1e-05, 1e-05)
+script = ExtResource("7_og1vs")
+
+[node name="anim" type="AnimationPlayer" parent="UI/backcollection" unique_id=74178188]
+libraries/ = SubResource("AnimationLibrary_yq6so")
+speed_scale = 5.0
+
+[node name="Shop" type="Node2D" parent="UI/backcollection" unique_id=1801142198 node_paths=PackedStringArray("monsta1", "monsta2", "monsta3")]
+script = ExtResource("8_2wyq8")
+monsta1 = NodePath("monster_avatar")
+monsta2 = NodePath("monster_avatar2")
+monsta3 = NodePath("monster_avatar3")
+
+[node name="monster_avatar" parent="UI/backcollection/Shop" unique_id=1749985967 instance=ExtResource("13_trceg")]
+position = Vector2(202, 251)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar2" parent="UI/backcollection/Shop" unique_id=853346529 instance=ExtResource("13_trceg")]
+position = Vector2(562, 251)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar3" parent="UI/backcollection/Shop" unique_id=1838368187 instance=ExtResource("13_trceg")]
+position = Vector2(954, 251)
+scale = Vector2(2, 2)
+
+[node name="backcollection" type="ColorRect" parent="UI/backcollection" unique_id=1139384774]
 offset_left = 26.0
 offset_top = 8.0
 offset_right = 1125.0
 offset_bottom = 616.0
+mouse_filter = 2
 color = Color(0.13725491, 0.1882353, 0.18431373, 1)
 
-[node name="lbl_title" type="Label" parent="UI/backcollection" unique_id=1805687321]
+[node name="lbl_title" type="Label" parent="UI/backcollection/backcollection" unique_id=1805687321]
 layout_mode = 0
 offset_right = 1109.0
 offset_bottom = 124.0
@@ -273,7 +491,7 @@ theme_override_font_sizes/font_size = 96
 text = "Collection"
 horizontal_alignment = 1
 
-[node name="lbl_close" type="Label" parent="UI/backcollection" unique_id=1605117732]
+[node name="lbl_close" type="Label" parent="UI/backcollection/backcollection" unique_id=1605117732]
 layout_mode = 0
 offset_left = 1046.0
 offset_top = -13.0
@@ -285,7 +503,7 @@ text = "X"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="UI/backcollection" unique_id=1607310509]
+[node name="Control" type="Control" parent="UI/backcollection/backcollection" unique_id=1607310509]
 anchors_preset = 0
 offset_left = 1053.0
 offset_top = 2.0
@@ -411,5 +629,5 @@ script = ExtResource("6_eb6dy")
 [node name="monster_avatar" parent="Gun" unique_id=1015858540 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
 
-[connection signal="gui_input" from="UI/backcollection/Control" to="UI" method="_on_control_gui_input"]
+[connection signal="gui_input" from="UI/backcollection/backcollection/Control" to="UI/backcollection" method="_on_control_gui_input"]
 [connection signal="area_entered" from="monsta_bullet" to="monsta_bullet" method="_on_area_entered"]

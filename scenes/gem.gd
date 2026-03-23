@@ -10,6 +10,13 @@ func _ready() -> void:
 	#$monster/points_in_turn.visible = true
 	#$monster/points_in_turn.text = self.name.replace("Gem", "")
 	
+func reset_points_turn(effects):
+	point_turn = 0
+	$monster/points_in_turn.text = ""
+	$monster/points_in_turn.visible = false
+	if effects:
+		Global.emit(global_position, 5)
+	
 func set_points_turn(points):
 	$Points.play("new_animation")
 	Global.emit(global_position, 5)
