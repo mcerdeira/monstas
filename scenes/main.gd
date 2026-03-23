@@ -30,7 +30,7 @@ var STATE : STATES = STATES.INIT
 func are_equals(monstas, special):
 	var id = null
 	for m in monstas:
-		if m.special != special:
+		if m.monsta == null or  m.monsta.special != special:
 			return false
 			
 		if id == null:
@@ -83,68 +83,68 @@ func search_rows():
 	var retval = false
 	var special = "rows"
 	if %Artefact.configuration == 0:
-		if are_equals([%Ge1, %Ge2, %Gem3], special):
-			bulk_points_turn([%Ge1, %Ge2, %Gem3])
-		if are_equals([%Ge4, %Ge5, %Gem6], special):
-			bulk_points_turn([%Ge4, %Ge5, %Gem6])
-		if are_equals([%Ge7, %Ge8, %Gem9], special):
-			bulk_points_turn([%Ge7, %Ge8, %Gem9])
+		if are_equals([%Gem1, %Gem2, %Gem3], special):
+			bulk_points_turn([%Gem1, %Gem2, %Gem3])
+		if are_equals([%Gem4, %Gem5, %Gem6], special):
+			bulk_points_turn([%Gem4, %Gem5, %Gem6])
+		if are_equals([%Gem7, %Gem8, %Gem9], special):
+			bulk_points_turn([%Gem7, %Gem8, %Gem9])
 			
 	elif %Artefact.configuration == 1:
-		if are_equals([%Ge4, %Ge2], special):
-			bulk_points_turn([%Ge4, %Ge2])
-		if are_equals([%Ge7, %Ge5, %Gem3], special):
-			bulk_points_turn([%Ge7, %Ge5, %Gem3])
-		if are_equals([%Ge8, %Ge6], special):
-			bulk_points_turn([%Ge8, %Ge6])
+		if are_equals([%Gem4, %Gem2], special):
+			bulk_points_turn([%Gem4, %Gem2])
+		if are_equals([%Gem7, %Gem5, %Gem3], special):
+			bulk_points_turn([%Gem7, %Gem5, %Gem3])
+		if are_equals([%Gem8, %Gem6], special):
+			bulk_points_turn([%Gem8, %Gem6])
 		
 	elif %Artefact.configuration == 2:
-		if are_equals([%Ge7, %Ge4, %Gem1], special):
-			bulk_points_turn([%Ge7, %Ge4, %Gem1])
-		if are_equals([%Ge8, %Ge5, %Gem2], special):
-			bulk_points_turn([%Ge8, %Ge5, %Gem2])
-		if are_equals([%Ge9, %Ge6, %Gem3], special):
-			bulk_points_turn([%Ge9, %Ge6, %Gem3])
+		if are_equals([%Gem7, %Gem4, %Gem1], special):
+			bulk_points_turn([%Gem7, %Gem4, %Gem1])
+		if are_equals([%Gem8, %Gem5, %Gem2], special):
+			bulk_points_turn([%Gem8, %Gem5, %Gem2])
+		if are_equals([%Gem9, %Gem6, %Gem3], special):
+			bulk_points_turn([%Gem9, %Gem6, %Gem3])
 		
 	elif %Artefact.configuration == 3:
-		if are_equals([%Ge8, %Ge4], special):
-			bulk_points_turn([%Ge8, %Ge4])
-		if are_equals([%Ge9, %Ge5, %Gem1], special):
-			bulk_points_turn([%Ge9, %Ge5, %Gem1])
-		if are_equals([%Ge6, %Ge2], special):
-			bulk_points_turn([%Ge6, %Ge2])
+		if are_equals([%Gem8, %Gem4], special):
+			bulk_points_turn([%Gem8, %Gem4])
+		if are_equals([%Gem9, %Gem5, %Gem1], special):
+			bulk_points_turn([%Gem9, %Gem5, %Gem1])
+		if are_equals([%Gem6, %Gem2], special):
+			bulk_points_turn([%Gem6, %Gem2])
 		
 	elif %Artefact.configuration == 4:
-		if are_equals([%Ge9, %Ge8, %Gem7], special):
-			bulk_points_turn([%Ge9, %Ge8, %Gem7])
-		if are_equals([%Ge6, %Ge5, %Gem4], special):
-			bulk_points_turn([%Ge6, %Ge5, %Gem4])
-		if are_equals([%Ge3, %Ge2, %Gem1], special):
-			bulk_points_turn([%Ge3, %Ge2, %Gem1])
+		if are_equals([%Gem9, %Gem8, %Gem7], special):
+			bulk_points_turn([%Gem9, %Gem8, %Gem7])
+		if are_equals([%Gem6, %Gem5, %Gem4], special):
+			bulk_points_turn([%Gem6, %Gem5, %Gem4])
+		if are_equals([%Gem3, %Gem2, %Gem1], special):
+			bulk_points_turn([%Gem3, %Gem2, %Gem1])
 		
 	elif %Artefact.configuration == 5:
-		if are_equals([%Ge6, %Ge8], special):
-			bulk_points_turn([%Ge6, %Ge8])
-		if are_equals([%Ge3, %Ge5, %Gem7], special):
-			bulk_points_turn([%Ge3, %Ge5, %Gem7])
-		if are_equals([%Ge2, %Ge4], special):
-			bulk_points_turn([%Ge2, %Ge4])
+		if are_equals([%Gem6, %Gem8], special):
+			bulk_points_turn([%Gem6, %Gem8])
+		if are_equals([%Gem3, %Gem5, %Gem7], special):
+			bulk_points_turn([%Gem3, %Gem5, %Gem7])
+		if are_equals([%Gem2, %Gem4], special):
+			bulk_points_turn([%Gem2, %Gem4])
 		
 	elif %Artefact.configuration == 6:
-		if are_equals([%Ge3, %Ge6, %Gem9], special):
-			bulk_points_turn([%Ge3, %Ge6, %Gem9])
-		if are_equals([%Ge2, %Ge5, %Gem8], special):
-			bulk_points_turn([%Ge2, %Ge5, %Gem8])
-		if are_equals([%Ge1, %Ge4, %Gem7], special):
-			bulk_points_turn([%Ge1, %Ge4, %Gem7])
+		if are_equals([%Gem3, %Gem6, %Gem9], special):
+			bulk_points_turn([%Gem3, %Gem6, %Gem9])
+		if are_equals([%Gem2, %Gem5, %Gem8], special):
+			bulk_points_turn([%Gem2, %Gem5, %Gem8])
+		if are_equals([%Gem1, %Gem4, %Gem7], special):
+			bulk_points_turn([%Gem1, %Gem4, %Gem7])
 		
 	elif %Artefact.configuration == 7:
-		if are_equals([%Ge2, %Ge6], special):
-			bulk_points_turn([%Ge2, %Ge6])
-		if are_equals([%Ge1, %Ge5, %Gem9], special):
-			bulk_points_turn([%Ge1, %Ge5, %Gem9])
-		if are_equals([%Ge4, %Ge8], special):
-			bulk_points_turn([%Ge4, %Ge8])
+		if are_equals([%Gem2, %Gem6], special):
+			bulk_points_turn([%Gem2, %Gem6])
+		if are_equals([%Gem1, %Gem5, %Gem9], special):
+			bulk_points_turn([%Gem1, %Gem5, %Gem9])
+		if are_equals([%Gem4, %Gem8], special):
+			bulk_points_turn([%Gem4, %Gem8])
 		
 	return retval
 	
@@ -170,6 +170,8 @@ func _physics_process(delta: float) -> void:
 		STATE = STATES.TRANSITION
 		%monster_avatar.new_turn()
 		%UI.show_message("Build Phase", STATES.PLAYER_TURN)
+	elif STATE == STATES.GAME_OVER:
+		%UI.show_perma_message("Game Over")
 	elif STATE == STATES.NEXT_TURN:
 		if delay > 0:
 			delay -= 1 * delta
@@ -209,7 +211,7 @@ func _physics_process(delta: float) -> void:
 	elif STATE == STATES.SHOWING_RESULTS:
 		if delay_in_count <= 0:
 			if Global.THIS_TURN_COINS > 0:
-				delay_in_count = 1.3
+				delay_in_count = 0.1
 				Global.COINS += 1
 				Global.THIS_TURN_COINS -= 1
 			else:
@@ -218,6 +220,8 @@ func _physics_process(delta: float) -> void:
 					STATE = STATES.INIT
 					Global.COINS = Global.COINS - Global.GOAL
 				else:
-					STATE = STATES.GAME_OVER
+					STATE = STATES.TRANSITION
+					%monster_avatar.reset_turn()
+					%UI.show_message("Game Over", STATES.GAME_OVER)
 		else:
 			delay_in_count -= 1 * delta

@@ -5,7 +5,7 @@ var configuration = 0
 
 func _physics_process(delta: float) -> void:
 	$Label.rotation_degrees = -rotation_degrees
-	$Label.text = str(rotation_degrees)
+	#$Label.text = str(rotation_degrees)
 	
 	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
 		if !%shoot_line.visible:

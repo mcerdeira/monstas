@@ -7,12 +7,13 @@ var point_turn = 0 #Los puntos a considerar en este "turno"
 
 func _ready() -> void:
 	add_to_group("monstaslot")
-	$monster/points_in_turn.visible = true
-	$monster/points_in_turn.text = self.name.replace("Gem", "")
+	#$monster/points_in_turn.visible = true
+	#$monster/points_in_turn.text = self.name.replace("Gem", "")
 	
 func set_points_turn(points):
 	$Points.play("new_animation")
 	Global.emit(global_position, 5)
+	Global.THIS_TURN_COINS += points
 	point_turn += points
 	if point_turn > 0:
 		$monster/points_in_turn.text = "+" + str(point_turn)

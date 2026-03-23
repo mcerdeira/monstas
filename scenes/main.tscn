@@ -295,6 +295,7 @@ offset_bottom = 49.0
 [node name="Ballon" type="Node2D" parent="." unique_id=72548092]
 unique_name_in_owner = true
 z_index = 4000
+position = Vector2(0, -48)
 script = ExtResource("4_yc10j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ballon" unique_id=1371272186]
@@ -380,6 +381,7 @@ unique_name_in_owner = true
 position = Vector2(64, 64)
 
 [node name="Label" type="Label" parent="Artefact" unique_id=308431551]
+visible = false
 offset_left = 55.0
 offset_top = 113.0
 offset_right = 95.0
