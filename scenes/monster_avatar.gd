@@ -8,13 +8,14 @@ func reset_turn():
 	play("empty")
 	
 func set_monsta(_monsta):
+	$lbl_count.visible = Global.IN_COLLECTION 
 	current_monsta = _monsta
 	play(current_monsta.id)
 
 func new_turn():
 	visible = true
 	%monsta_bullet.visible = false
-	current_monsta = Global.pick_random(Global.MONSTA_ENABLED)
+	current_monsta = Global.MONSTA_POOL.pop_front()
 	play(current_monsta.id)
 
 func _on_click_area_mouse_entered() -> void:

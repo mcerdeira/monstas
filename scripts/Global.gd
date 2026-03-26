@@ -8,9 +8,12 @@ var GOAL = 0
 var THIS_TURN_COINS = 0
 var LEVEL = 0
 var TURN = 1
+var IN_SHOP = false
+var IN_COLLECTION = false
 var TOTAL_TURNS = 5
 var MONSTA_ENABLED = []
 var ALL_MONSTAS = []
+var MONSTA_POOL = []
 
 var monsta_poop = {
 	"id": "poop",
@@ -48,7 +51,7 @@ var monsta_zombie = {
 func init_vars():
 	LEVEL = 1
 	TURN = 1
-	MONSTA_ENABLED = [monsta_poop]
+	MONSTA_ENABLED = [monsta_poop, monsta_poop, monsta_poop, monsta_poop, monsta_poop]
 	ALL_MONSTAS = [monsta_fish, monsta_zombie]
 
 func _ready():

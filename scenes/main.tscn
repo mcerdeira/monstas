@@ -27,6 +27,24 @@
 [ext_resource type="Texture2D" uid="uid://dfbig2ukluq4t" path="res://sprites/bullet2.png" id="16_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://crw4cb63c6f8w" path="res://sprites/bullet3.png" id="17_0ld40"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_pm3ni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jscy8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc10j"]
+bg_color = Color(0.031091863, 0.24162859, 0.2709706, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [sub_resource type="Environment" id="Environment_tipki"]
 background_mode = 3
 glow_enabled = true
@@ -216,24 +234,6 @@ _data = {
 &"show": SubResource("Animation_2f3dj")
 }
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pm3ni"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_jscy8")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc10j"]
-bg_color = Color(0.031091863, 0.24162859, 0.2709706, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
 shader = ExtResource("3_muem4")
 shader_parameter/speed = 3.0
@@ -342,6 +342,35 @@ animations = [{
 [node name="Main" type="Node2D" unique_id=170714964]
 script = ExtResource("1_a8y0u")
 
+[node name="Ballon" type="Node2D" parent="." unique_id=72548092]
+unique_name_in_owner = true
+z_index = 4096
+position = Vector2(0, -48)
+script = ExtResource("4_yc10j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ballon" unique_id=1371272186]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_pm3ni")
+offset = Vector2(32, -1)
+
+[node name="PanelContainer" type="PanelContainer" parent="Ballon" unique_id=1546140498]
+offset_left = 57.0
+offset_top = -97.0
+offset_right = 314.0
+offset_bottom = 3.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yc10j")
+
+[node name="MarginContainer" type="MarginContainer" parent="Ballon/PanelContainer" unique_id=697099648]
+layout_mode = 2
+
+[node name="lbl_dialog" type="Label" parent="Ballon/PanelContainer/MarginContainer" unique_id=321173567]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("4_0ld40")
+theme_override_font_sizes/font_size = 32
+autowrap_mode = 3
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1849294228]
 environment = SubResource("Environment_tipki")
 
@@ -447,6 +476,7 @@ text = "1/5"
 
 [node name="backcollection" type="Node2D" parent="UI" unique_id=1094943437]
 unique_name_in_owner = true
+process_mode = 3
 position = Vector2(48, 601)
 scale = Vector2(1e-05, 1e-05)
 script = ExtResource("7_og1vs")
@@ -454,24 +484,6 @@ script = ExtResource("7_og1vs")
 [node name="anim" type="AnimationPlayer" parent="UI/backcollection" unique_id=74178188]
 libraries/ = SubResource("AnimationLibrary_yq6so")
 speed_scale = 5.0
-
-[node name="Shop" type="Node2D" parent="UI/backcollection" unique_id=1801142198 node_paths=PackedStringArray("monsta1", "monsta2", "monsta3")]
-script = ExtResource("8_2wyq8")
-monsta1 = NodePath("monster_avatar")
-monsta2 = NodePath("monster_avatar2")
-monsta3 = NodePath("monster_avatar3")
-
-[node name="monster_avatar" parent="UI/backcollection/Shop" unique_id=1749985967 instance=ExtResource("13_trceg")]
-position = Vector2(202, 251)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar2" parent="UI/backcollection/Shop" unique_id=853346529 instance=ExtResource("13_trceg")]
-position = Vector2(562, 251)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar3" parent="UI/backcollection/Shop" unique_id=1838368187 instance=ExtResource("13_trceg")]
-position = Vector2(954, 251)
-scale = Vector2(2, 2)
 
 [node name="backcollection" type="ColorRect" parent="UI/backcollection" unique_id=1139384774]
 offset_left = 26.0
@@ -510,34 +522,26 @@ offset_top = 2.0
 offset_right = 1099.0
 offset_bottom = 49.0
 
-[node name="Ballon" type="Node2D" parent="." unique_id=72548092]
-unique_name_in_owner = true
-z_index = 4000
-position = Vector2(0, -48)
-script = ExtResource("4_yc10j")
+[node name="Shop" type="Node2D" parent="UI/backcollection" unique_id=1801142198 node_paths=PackedStringArray("monsta1", "monsta2", "monsta3")]
+script = ExtResource("8_2wyq8")
+monsta1 = NodePath("monster_avatar")
+monsta2 = NodePath("monster_avatar2")
+monsta3 = NodePath("monster_avatar3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ballon" unique_id=1371272186]
-position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_pm3ni")
-offset = Vector2(32, -1)
+[node name="monster_avatar" parent="UI/backcollection/Shop" unique_id=1749985967 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(202, 251)
+scale = Vector2(2, 2)
 
-[node name="PanelContainer" type="PanelContainer" parent="Ballon" unique_id=1546140498]
-offset_left = 57.0
-offset_top = -97.0
-offset_right = 314.0
-offset_bottom = 3.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yc10j")
+[node name="monster_avatar2" parent="UI/backcollection/Shop" unique_id=853346529 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(562, 251)
+scale = Vector2(2, 2)
 
-[node name="MarginContainer" type="MarginContainer" parent="Ballon/PanelContainer" unique_id=697099648]
-layout_mode = 2
-
-[node name="lbl_dialog" type="Label" parent="Ballon/PanelContainer/MarginContainer" unique_id=321173567]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
-theme_override_fonts/font = ExtResource("4_0ld40")
-theme_override_font_sizes/font_size = 32
-autowrap_mode = 3
+[node name="monster_avatar3" parent="UI/backcollection/Shop" unique_id=1838368187 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(954, 251)
+scale = Vector2(2, 2)
 
 [node name="shoot_line" type="Line2D" parent="." unique_id=1404510610]
 unique_name_in_owner = true

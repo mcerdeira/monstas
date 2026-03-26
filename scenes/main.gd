@@ -46,7 +46,16 @@ func bulk_points_turn(monstas):
 		m.set_points_turn(m.monsta.points_special)
 
 func _ready() -> void:
+	randomize()
 	Global.Main = self
+	
+func initialize_pool():
+	var all_copy = [] + Global.MONSTA_ENABLED
+	for i in range(Global.TOTAL_TURNS):
+		randomize()
+		all_copy.shuffle()
+		var mon = all_copy.pop_back()
+		Global.MONSTA_POOL.append(mon)
 	
 func set_current_goal():
 	$UI/objetive_anim.play("new_animation")
@@ -168,6 +177,7 @@ func search_diagonal():
 func _physics_process(delta: float) -> void:
 	if STATE == STATES.INIT:
 		count_index = 0
+		initialize_pool()
 		set_current_goal()
 		STATE = STATES.TRANSITION
 		%monster_avatar.new_turn()
