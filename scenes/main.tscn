@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://gvo7kq3jjnkc" path="res://sprites/gun4.png" id="8_dp3eg"]
 [ext_resource type="Shader" uid="uid://b73jx406demos" path="res://scenes/chrome.gdshader" id="8_tipki"]
 [ext_resource type="Shader" uid="uid://dga0ew8efdc6t" path="res://scenes/stars.gdshader" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://cdldw5myfx53t" path="res://scenes/collection.gd" id="10_vxglm"]
 [ext_resource type="PackedScene" uid="uid://f01jp413eqlk" path="res://scenes/cards.tscn" id="11_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://w45u4wattndj" path="res://scenes/monster_avatar.tscn" id="13_trceg"]
 [ext_resource type="Script" uid="uid://dskvwt7du7f1y" path="res://scenes/monsta_bullet.gd" id="15_dp3eg"]
@@ -522,25 +523,90 @@ offset_top = 2.0
 offset_right = 1099.0
 offset_bottom = 49.0
 
-[node name="Shop" type="Node2D" parent="UI/backcollection" unique_id=1801142198 node_paths=PackedStringArray("monsta1", "monsta2", "monsta3")]
+[node name="Collection" type="Node2D" parent="UI/backcollection" unique_id=752349604]
+position = Vector2(0, -40)
+script = ExtResource("10_vxglm")
+
+[node name="monster_avatar2" parent="UI/backcollection/Collection" unique_id=969762551 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(352, 251)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar3" parent="UI/backcollection/Collection" unique_id=230083342 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(502, 251)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar4" parent="UI/backcollection/Collection" unique_id=1152044759 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(652, 251)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar5" parent="UI/backcollection/Collection" unique_id=1939092076 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(802, 251)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar8" parent="UI/backcollection/Collection" unique_id=1948859 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(352, 401)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar9" parent="UI/backcollection/Collection" unique_id=1013764558 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(502, 401)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar10" parent="UI/backcollection/Collection" unique_id=1388291602 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(652, 401)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar11" parent="UI/backcollection/Collection" unique_id=464595557 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(802, 401)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar14" parent="UI/backcollection/Collection" unique_id=1297765340 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(352, 551)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar15" parent="UI/backcollection/Collection" unique_id=1374208385 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(502, 551)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar16" parent="UI/backcollection/Collection" unique_id=1681564214 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(652, 551)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar17" parent="UI/backcollection/Collection" unique_id=1182818779 instance=ExtResource("13_trceg")]
+z_index = 0
+position = Vector2(802, 551)
+scale = Vector2(2, 2)
+
+[node name="Shop" type="Node2D" parent="UI/backcollection" unique_id=1416325885 node_paths=PackedStringArray("monsta1", "monsta2", "monsta3")]
+visible = false
 script = ExtResource("8_2wyq8")
 monsta1 = NodePath("monster_avatar")
 monsta2 = NodePath("monster_avatar2")
 monsta3 = NodePath("monster_avatar3")
 
-[node name="monster_avatar" parent="UI/backcollection/Shop" unique_id=1749985967 instance=ExtResource("13_trceg")]
+[node name="monster_avatar" parent="UI/backcollection/Shop" unique_id=1852761384 instance=ExtResource("13_trceg")]
 z_index = 0
-position = Vector2(202, 251)
+position = Vector2(338, 251)
 scale = Vector2(2, 2)
 
-[node name="monster_avatar2" parent="UI/backcollection/Shop" unique_id=853346529 instance=ExtResource("13_trceg")]
+[node name="monster_avatar2" parent="UI/backcollection/Shop" unique_id=1845514737 instance=ExtResource("13_trceg")]
 z_index = 0
 position = Vector2(562, 251)
 scale = Vector2(2, 2)
 
-[node name="monster_avatar3" parent="UI/backcollection/Shop" unique_id=1838368187 instance=ExtResource("13_trceg")]
+[node name="monster_avatar3" parent="UI/backcollection/Shop" unique_id=1165887345 instance=ExtResource("13_trceg")]
 z_index = 0
-position = Vector2(954, 251)
+position = Vector2(794, 251)
 scale = Vector2(2, 2)
 
 [node name="shoot_line" type="Line2D" parent="." unique_id=1404510610]

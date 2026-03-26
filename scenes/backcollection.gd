@@ -6,11 +6,14 @@ func _show():
 func show_me(_is_shop = false):
 	Global.IN_SHOP = _is_shop
 	Global.IN_COLLECTION = !_is_shop
+	var title = "Collection"
+	if Global.IN_SHOP:
+		title = "Shop"
+	$backcollection/lbl_title.text = title
+	$Shop._initialize(Global.IN_SHOP)
+	$Collection._initialize(!Global.IN_SHOP)
+	
 	if round(scale.x) == 0:
-		var title = "Collection"
-		if Global.IN_SHOP:
-			title = "Shop"
-		$backcollection/lbl_title.text = title
 		$anim.play("show")
 
 func hide_me():

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dr0nyiyxevi21"]
+
+[ext_resource type="Script" uid="uid://cv5r2u6fbdthl" path="res://scenes/shop.gd" id="1_xfvoa"]
+[ext_resource type="PackedScene" uid="uid://w45u4wattndj" path="res://scenes/monster_avatar.tscn" id="2_1l46r"]
+
+[node name="Shop" type="Node2D" unique_id=1416325885 node_paths=PackedStringArray("monsta1", "monsta2", "monsta3")]
+script = ExtResource("1_xfvoa")
+monsta1 = NodePath("monster_avatar")
+monsta2 = NodePath("monster_avatar2")
+monsta3 = NodePath("monster_avatar3")
+
+[node name="monster_avatar" parent="." unique_id=1749985967 instance=ExtResource("2_1l46r")]
+z_index = 0
+position = Vector2(202, 251)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar2" parent="." unique_id=1845514737 instance=ExtResource("2_1l46r")]
+z_index = 0
+position = Vector2(562, 251)
+scale = Vector2(2, 2)
+
+[node name="monster_avatar3" parent="." unique_id=1165887345 instance=ExtResource("2_1l46r")]
+z_index = 0
+position = Vector2(954, 251)
+scale = Vector2(2, 2)

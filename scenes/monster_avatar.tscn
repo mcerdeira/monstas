@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://w45u4wattndj"]
 
+[ext_resource type="Texture2D" uid="uid://dh8wrmudc3hqm" path="res://sprites/monsters/empty.png" id="1_57iu8"]
 [ext_resource type="Texture2D" uid="uid://ddlwvmwxinlt1" path="res://sprites/monsters/fish1.png" id="1_vumvb"]
 [ext_resource type="Texture2D" uid="uid://doddoaocrg31l" path="res://sprites/monsters/fish2.png" id="2_ej1yt"]
 [ext_resource type="Texture2D" uid="uid://fxxegh6sbgxn" path="res://sprites/monsters/poop1.png" id="3_nskmm"]
@@ -10,7 +11,10 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_muem4"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_57iu8")
+}],
 "loop": true,
 "name": &"empty",
 "speed": 5.0
@@ -55,7 +59,7 @@ size = Vector2(57, 50)
 [node name="monster_avatar" type="AnimatedSprite2D" unique_id=1749985967]
 z_index = 3000
 sprite_frames = SubResource("SpriteFrames_muem4")
-animation = &"poop"
+animation = &"empty"
 script = ExtResource("7_uum37")
 
 [node name="lbl_count" type="Label" parent="." unique_id=1789077770]

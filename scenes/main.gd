@@ -237,6 +237,7 @@ func _physics_process(delta: float) -> void:
 					Global.LEVEL += 1
 					STATE = STATES.INIT
 					Global.COINS = Global.COINS - Global.GOAL
+					%backcollection.show_me(true)
 				else:
 					STATE = STATES.TRANSITION
 					%monster_avatar.reset_turn()

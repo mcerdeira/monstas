@@ -7,10 +7,16 @@ func reset_turn():
 	current_monsta = null
 	play("empty")
 	
-func set_monsta(_monsta):
-	$lbl_count.visible = Global.IN_COLLECTION 
+func set_monsta(_monsta, count = 0):
+	if count > 0:
+		$lbl_count.visible = Global.IN_COLLECTION 
+		$lbl_count.text =  "x" + str(count)
+		
 	current_monsta = _monsta
-	play(current_monsta.id)
+	if !_monsta:
+		play("empty")
+	else:
+		play(current_monsta.id)
 
 func new_turn():
 	visible = true
