@@ -61,6 +61,9 @@ func set_current_goal():
 	$UI/objetive_anim.play("new_animation")
 	Global.TURN = 1
 	Global.THIS_TURN_COINS = 0
+	if Global.LEVEL > 1:
+		Global.PRICE += 5
+	
 	if Global.LEVEL == 1:
 		Global.GOAL = 8
 	elif Global.LEVEL == 2:
@@ -189,6 +192,7 @@ func _physics_process(delta: float) -> void:
 	elif STATE == STATES.GAME_OVER:
 		%UI.show_perma_message("Game Over")
 	elif STATE == STATES.NEXT_TURN:
+		%backcollection.show_me(true) #TODO: quitar
 		if delay > 0:
 			delay -= 1 * delta
 		else:
@@ -237,7 +241,7 @@ func _physics_process(delta: float) -> void:
 					Global.LEVEL += 1
 					STATE = STATES.INIT
 					Global.COINS = Global.COINS - Global.GOAL
-					%backcollection.show_me(true)
+					%backcollection.show_me(true) #Mostrar Shop
 				else:
 					STATE = STATES.TRANSITION
 					%monster_avatar.reset_turn()

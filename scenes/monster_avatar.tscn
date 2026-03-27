@@ -1,16 +1,32 @@
 [gd_scene format=3 uid="uid://w45u4wattndj"]
 
 [ext_resource type="Texture2D" uid="uid://dh8wrmudc3hqm" path="res://sprites/monsters/empty.png" id="1_57iu8"]
+[ext_resource type="Texture2D" uid="uid://cp40c1aqoxetm" path="res://sprites/monsters/cyclops1.png" id="1_dkuvf"]
 [ext_resource type="Texture2D" uid="uid://ddlwvmwxinlt1" path="res://sprites/monsters/fish1.png" id="1_vumvb"]
 [ext_resource type="Texture2D" uid="uid://doddoaocrg31l" path="res://sprites/monsters/fish2.png" id="2_ej1yt"]
+[ext_resource type="Texture2D" uid="uid://dta4ka47giuex" path="res://sprites/monsters/cyclops2.png" id="2_n5ups"]
 [ext_resource type="Texture2D" uid="uid://fxxegh6sbgxn" path="res://sprites/monsters/poop1.png" id="3_nskmm"]
 [ext_resource type="Texture2D" uid="uid://dj0ux0timjc4q" path="res://sprites/monsters/poop2.png" id="4_i3rw2"]
 [ext_resource type="Texture2D" uid="uid://cdxf25qfjnq1g" path="res://sprites/monsters/zombie1.png" id="5_fpqlu"]
+[ext_resource type="Texture2D" uid="uid://byux4dnutm6b4" path="res://sprites/monsters/vampire1.png" id="6_jiip5"]
 [ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="6_y35fc"]
 [ext_resource type="Script" uid="uid://b1seoeoolov14" path="res://scenes/monster_avatar.gd" id="7_uum37"]
+[ext_resource type="Texture2D" uid="uid://dlhvlaqaju3mc" path="res://sprites/monsters/vampire2.png" id="7_vsie3"]
+[ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="9_wk8o1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_muem4"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dkuvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n5ups")
+}],
+"loop": true,
+"name": &"cyclops",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_57iu8")
@@ -43,6 +59,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_jiip5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vsie3")
+}],
+"loop": true,
+"name": &"vampire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("5_fpqlu")
 }, {
 "duration": 1.0,
@@ -56,10 +83,43 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uum37"]
 size = Vector2(57, 50)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57iu8"]
+bg_color = Color(1, 0.30297995, 0.49879265, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.4337947, 0.56525195, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk8o1"]
+bg_color = Color(1, 0.30297995, 0.49879265, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.4337947, 0.56525195, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1cpey"]
+bg_color = Color(1, 0.43529412, 0.5647059, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.4337947, 0.56525195, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 15
+
 [node name="monster_avatar" type="AnimatedSprite2D" unique_id=1749985967]
 z_index = 3000
 sprite_frames = SubResource("SpriteFrames_muem4")
-animation = &"empty"
+animation = &"cyclops"
 script = ExtResource("7_uum37")
 
 [node name="lbl_count" type="Label" parent="." unique_id=1789077770]
@@ -75,5 +135,19 @@ horizontal_alignment = 1
 position = Vector2(-0.5, -4)
 shape = SubResource("RectangleShape2D_uum37")
 
+[node name="btn_buy" type="Button" parent="." unique_id=216562650]
+visible = false
+offset_left = -31.0
+offset_top = 24.0
+offset_right = 30.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("9_wk8o1")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_57iu8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wk8o1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1cpey")
+text = "Buy $00"
+
 [connection signal="mouse_entered" from="click_area" to="." method="_on_click_area_mouse_entered"]
 [connection signal="mouse_exited" from="click_area" to="." method="_on_click_area_mouse_exited"]
+[connection signal="pressed" from="btn_buy" to="." method="_on_btn_buy_pressed"]

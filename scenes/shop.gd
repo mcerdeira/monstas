@@ -11,4 +11,11 @@ func _initialize(value):
 		monsta3.set_monsta(null)
 	else:
 		visible = true
-		#TODO: logica para elegir 3 al azar al shop
+		var all_copy = [] + Global.ALL_MONSTAS
+		randomize()
+		all_copy.shuffle()
+		monsta1.set_monsta(all_copy.pop_front())
+		all_copy.shuffle()
+		monsta2.set_monsta(all_copy.pop_front())
+		all_copy.shuffle()
+		monsta3.set_monsta(all_copy.pop_front())

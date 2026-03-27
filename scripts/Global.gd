@@ -8,6 +8,7 @@ var GOAL = 0
 var THIS_TURN_COINS = 0
 var LEVEL = 0
 var TURN = 1
+var PRICE = 0
 var IN_SHOP = false
 var IN_COLLECTION = false
 var TOTAL_TURNS = 5
@@ -23,7 +24,6 @@ var monsta_poop = {
 	"points_special": 1,
 	"special": "rows",
 	"expiration": -1,
-	"price": 0,
 }
 
 var monsta_fish = {
@@ -34,25 +34,44 @@ var monsta_fish = {
 	"points_special": 0,
 	"special": "none",
 	"expiration": 2,
-	"price": 30,
 }
 
 var monsta_zombie = {
 	"id": "zombie",
 	"name": "Zombie",
-	"description": "I give 2 coins per turns, after 2 turns I'll be gone.",
-	"points_individual": 2,
+	"description": "I give 3 coins per turns, after 1 turns I infect diagonals.",
+	"points_individual": 3,
 	"points_special": 0,
 	"special": "none",
-	"expiration": 2,
-	"price": 20,
+	"expiration": -1,
+}
+
+var monsta_vampire = {
+	"id": "vampire",
+	"name": "Vampire",
+	"description": "I give 0 coins, but if I'm destroyed by a cross I'll give 10 coins.",
+	"points_individual": 0,
+	"points_special": 10,
+	"special": "rows_other",
+	"expiration": -1,
+}
+
+var monsta_cyclops = {
+	"id": "cyclops",
+	"name": "Cyclops",
+	"description": "I give 1 coin per turn +1 if I'm in a column of cyclops.",
+	"points_individual": 1,
+	"points_special": 1,
+	"special": "rows",
+	"expiration": -1,
 }
 
 func init_vars():
+	PRICE = 0
 	LEVEL = 1
 	TURN = 1
 	MONSTA_ENABLED = [monsta_poop, monsta_poop, monsta_poop, monsta_poop, monsta_poop]
-	ALL_MONSTAS = [monsta_fish, monsta_zombie]
+	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops]
 
 func _ready():
 	init_vars()

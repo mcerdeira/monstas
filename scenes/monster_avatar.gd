@@ -12,6 +12,14 @@ func set_monsta(_monsta, count = 0):
 		$lbl_count.visible = Global.IN_COLLECTION 
 		$lbl_count.text =  "x" + str(count)
 		
+	if Global.IN_SHOP:
+		if current_monsta:
+			if Global.PRICE == 0:
+				$btn_buy.text = "Free!"
+			else:
+				$btn_buy.text = "Buy $" + str(Global.PRICE)
+		$btn_buy.visible = true
+		
 	current_monsta = _monsta
 	if !_monsta:
 		play("empty")
@@ -30,3 +38,8 @@ func _on_click_area_mouse_entered() -> void:
 
 func _on_click_area_mouse_exited() -> void:
 	%Ballon.hideme()
+
+func _on_btn_buy_pressed() -> void:
+	if Global.PRICE <= Global.COINS:
+		Global.COINS -= Global.PRICE
+		Global.MONSTA_ENABLED.append(current_monsta)
