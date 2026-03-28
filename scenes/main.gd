@@ -22,7 +22,8 @@ enum STATES
 	PRE_COUNT,
 	COUNTING,
 	SHOWING_RESULTS,
-	GAME_OVER
+	GAME_OVER,
+	SHOP
 }
 
 var STATE : STATES = STATES.INIT
@@ -192,7 +193,6 @@ func _physics_process(delta: float) -> void:
 	elif STATE == STATES.GAME_OVER:
 		%UI.show_perma_message("Game Over")
 	elif STATE == STATES.NEXT_TURN:
-		%backcollection.show_me(true) #TODO: quitar
 		if delay > 0:
 			delay -= 1 * delta
 		else:
@@ -239,9 +239,9 @@ func _physics_process(delta: float) -> void:
 				$UI/coins_anim.stop()
 				if Global.COINS >= Global.GOAL:
 					Global.LEVEL += 1
-					STATE = STATES.INIT
+					STATE = STATES.SHOP
 					Global.COINS = Global.COINS - Global.GOAL
-					%backcollection.show_me(true) #Mostrar Shop
+					%backcollection.show_me(true, STATES.INIT) #Mostrar Shop
 				else:
 					STATE = STATES.TRANSITION
 					%monster_avatar.reset_turn()

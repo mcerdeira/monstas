@@ -8,11 +8,13 @@ func reset_turn():
 	play("empty")
 	
 func set_monsta(_monsta, count = 0):
+	$btn_buy.visible = false
 	if count > 0:
 		$lbl_count.visible = Global.IN_COLLECTION 
 		$lbl_count.text =  "x" + str(count)
 		
 	if Global.IN_SHOP:
+		$btn_buy.disabled = false
 		if current_monsta:
 			if Global.PRICE == 0:
 				$btn_buy.text = "Free!"
@@ -43,3 +45,5 @@ func _on_btn_buy_pressed() -> void:
 	if Global.PRICE <= Global.COINS:
 		Global.COINS -= Global.PRICE
 		Global.MONSTA_ENABLED.append(current_monsta)
+		$btn_buy.text = "OWNED"
+		$btn_buy.disabled = true

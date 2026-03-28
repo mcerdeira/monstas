@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b1seoeoolov14" path="res://scenes/monster_avatar.gd" id="7_uum37"]
 [ext_resource type="Texture2D" uid="uid://dlhvlaqaju3mc" path="res://sprites/monsters/vampire2.png" id="7_vsie3"]
 [ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="9_wk8o1"]
+[ext_resource type="StyleBox" uid="uid://bkci5p3lq6r6i" path="res://styles/new_style_box_flat.tres" id="14_n5ups"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_muem4"]
 animations = [{
@@ -83,17 +84,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uum37"]
 size = Vector2(57, 50)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57iu8"]
-bg_color = Color(1, 0.30297995, 0.49879265, 1)
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.4337947, 0.56525195, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 15
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk8o1"]
 bg_color = Color(1, 0.30297995, 0.49879265, 1)
 border_width_right = 3
@@ -136,16 +126,17 @@ position = Vector2(-0.5, -4)
 shape = SubResource("RectangleShape2D_uum37")
 
 [node name="btn_buy" type="Button" parent="." unique_id=216562650]
-visible = false
 offset_left = -31.0
 offset_top = 24.0
 offset_right = 30.0
 offset_bottom = 61.0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("9_wk8o1")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_57iu8")
+theme_override_styles/normal = ExtResource("14_n5ups")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wk8o1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1cpey")
+disabled = true
 text = "Buy $00"
 
 [connection signal="mouse_entered" from="click_area" to="." method="_on_click_area_mouse_entered"]

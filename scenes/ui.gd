@@ -22,7 +22,10 @@ func show_perma_message(message):
 func _physics_process(delta: float) -> void:
 	%lbl_objetive.text = "GOAL: " + str(Global.GOAL)
 	%lbl_coins.text = "COINS: " + str(Global.COINS)
-	%lbl_turns.text = str(Global.TURN) + "/" + str(Global.TOTAL_TURNS)
+	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN or Global.Main.STATE == Global.Main.STATES.SHOOTING:
+		%lbl_turns.text = str(Global.TURN) + "/" + str(Global.TOTAL_TURNS)
+	else:
+		%lbl_turns.text = "-/-"
 	if msg_ttl > 0:
 		msg_ttl -= 1 * delta
 		if msg_ttl <= 0:
