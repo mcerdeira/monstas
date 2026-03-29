@@ -52,7 +52,7 @@ var monsta_vampire = {
 	"description": "I give 0 coins. If I'm destroyed by a cross (+) I'll give 10 coins.",
 	"points_individual": 0,
 	"points_special": 10,
-	"special": "rows_other",
+	"special": "cross_other",
 	"expiration": -1,
 }
 
@@ -62,7 +62,7 @@ var monsta_cyclops = {
 	"description": "I give 1 coin per turn +1 if I'm in a column of cyclops.",
 	"points_individual": 1,
 	"points_special": 1,
-	"special": "rows",
+	"special": "columns",
 	"expiration": -1,
 }
 
@@ -70,7 +70,7 @@ func init_vars():
 	PRICE = 0
 	LEVEL = 1
 	TURN = 1
-	MONSTA_ENABLED = [monsta_poop, monsta_poop, monsta_poop, monsta_poop, monsta_poop]
+	MONSTA_ENABLED = [monsta_poop]
 	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops]
 
 func _ready():

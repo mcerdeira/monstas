@@ -81,6 +81,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk8o1"]
+bg_color = Color(1, 0.30297995, 0.49879265, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.4337947, 0.56525195, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1cpey"]
+bg_color = Color(1, 0.43529412, 0.5647059, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.4337947, 0.56525195, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 15
+
 [sub_resource type="Animation" id="Animation_vwbgr"]
 length = 0.001
 loop_mode = 2
@@ -122,49 +144,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uum37"]
 size = Vector2(57, 50)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk8o1"]
-bg_color = Color(1, 0.30297995, 0.49879265, 1)
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 0.4337947, 0.56525195, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1cpey"]
-bg_color = Color(1, 0.43529412, 0.5647059, 1)
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.4337947, 0.56525195, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 15
-
-[node name="monster_avatar" type="AnimatedSprite2D" unique_id=1749985967]
-z_index = 3000
-sprite_frames = SubResource("SpriteFrames_muem4")
-animation = &"cyclops"
+[node name="monster_avatar" type="Node2D" unique_id=1330794177]
 script = ExtResource("7_uum37")
 
-[node name="anim" type="AnimationPlayer" parent="." unique_id=1327578716]
-libraries/ = SubResource("AnimationLibrary_vwbgr")
-
-[node name="lbl_count" type="Label" parent="." unique_id=1789077770]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
-text = "x1"
-horizontal_alignment = 1
-
-[node name="click_area" type="Area2D" parent="." unique_id=1660726021]
-
-[node name="collider" type="CollisionShape2D" parent="click_area" unique_id=52561638]
-position = Vector2(-0.5, -4)
-shape = SubResource("RectangleShape2D_uum37")
+[node name="monster_avatar" type="AnimatedSprite2D" parent="." unique_id=1749985967]
+sprite_frames = SubResource("SpriteFrames_muem4")
+animation = &"cyclops"
 
 [node name="btn_buy" type="Button" parent="." unique_id=216562650]
 offset_left = -31.0
@@ -180,6 +165,27 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_1cpey")
 disabled = true
 text = "Buy $00"
 
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1327578716]
+root_node = NodePath("../monster_avatar")
+libraries/ = SubResource("AnimationLibrary_vwbgr")
+
+[node name="lbl_count" type="Label" parent="." unique_id=1789077770]
+visible = false
+offset_left = 3.0
+offset_top = -3.0
+offset_right = 43.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("9_wk8o1")
+theme_override_font_sizes/font_size = 24
+text = "x1"
+horizontal_alignment = 1
+
+[node name="click_area" type="Area2D" parent="." unique_id=1660726021]
+
+[node name="collider" type="CollisionShape2D" parent="click_area" unique_id=52561638]
+position = Vector2(-0.5, -4)
+shape = SubResource("RectangleShape2D_uum37")
+
+[connection signal="pressed" from="btn_buy" to="." method="_on_btn_buy_pressed"]
 [connection signal="mouse_entered" from="click_area" to="." method="_on_click_area_mouse_entered"]
 [connection signal="mouse_exited" from="click_area" to="." method="_on_click_area_mouse_exited"]
-[connection signal="pressed" from="btn_buy" to="." method="_on_btn_buy_pressed"]

@@ -53,10 +53,15 @@ func _ready() -> void:
 func initialize_pool():
 	var all_copy = [] + Global.MONSTA_ENABLED
 	for i in range(Global.TOTAL_TURNS):
+		if all_copy.size() == 0: #Se vacio el "deck", entonces vuelvo a tomar del deck completo
+			all_copy = [] + Global.MONSTA_ENABLED
+			
 		randomize()
 		all_copy.shuffle()
 		var mon = all_copy.pop_back()
 		Global.MONSTA_POOL.append(mon)
+	
+	Global.MONSTA_POOL.shuffle()
 	
 func set_current_goal():
 	$UI/objetive_anim.play("new_animation")
@@ -165,7 +170,71 @@ func search_rows():
 	
 func search_columns():
 	var retval = false
-	#TODO: implementar
+	var special = "columns"
+	if %Artefact.configuration == 0:
+		if are_equals([%Gem1, %Gem4, %Gem7], special):
+			bulk_points_turn([%Gem1, %Gem4, %Gem7])
+		if are_equals([%Gem2, %Gem5, %Gem8], special):
+			bulk_points_turn([%Gem2, %Gem5, %Gem8])
+		if are_equals([%Gem3, %Gem6, %Gem9], special):
+			bulk_points_turn([%Gem3, %Gem6, %Gem9])
+			
+	elif %Artefact.configuration == 1:
+		if are_equals([%Gem4, %Gem8], special):
+			bulk_points_turn([%Gem4, %Gem8])
+		if are_equals([%Gem1, %Gem5, %Gem9], special):
+			bulk_points_turn([%Gem1, %Gem5, %Gem9])
+		if are_equals([%Gem2, %Gem6], special):
+			bulk_points_turn([%Gem2, %Gem6])
+			
+	elif %Artefact.configuration == 2:
+		if are_equals([%Gem7, %Gem8, %Gem9], special):
+			bulk_points_turn([%Gem7, %Gem8, %Gem9])
+		if are_equals([%Gem4, %Gem5, %Gem6], special):
+			bulk_points_turn([%Gem4, %Gem5, %Gem6])
+		if are_equals([%Gem1, %Gem2, %Gem3], special):
+			bulk_points_turn([%Gem1, %Gem2, %Gem3])
+		
+	elif %Artefact.configuration == 3:
+		if are_equals([%Gem8, %Gem6], special):
+			bulk_points_turn([%Gem8, %Gem6])
+		if are_equals([%Gem7, %Gem5, %Gem3], special):
+			bulk_points_turn([%Gem7, %Gem5, %Gem3])
+		if are_equals([%Gem4, %Gem2], special):
+			bulk_points_turn([%Gem4, %Gem2])
+			
+	elif %Artefact.configuration == 4:
+		if are_equals([%Gem9, %Gem6, %Gem3], special):
+			bulk_points_turn([%Gem9, %Gem6, %Gem3])
+		if are_equals([%Gem8, %Gem5, %Gem2], special):
+			bulk_points_turn([%Gem8, %Gem5, %Gem2])
+		if are_equals([%Gem7, %Gem4, %Gem1], special):
+			bulk_points_turn([%Gem7, %Gem4, %Gem1])
+		
+	elif %Artefact.configuration == 5:
+		if are_equals([%Gem6, %Gem2], special):
+			bulk_points_turn([%Gem6, %Gem2])
+		if are_equals([%Gem9, %Gem5, %Gem1], special):
+			bulk_points_turn([%Gem9, %Gem5, %Gem1])
+		if are_equals([%Gem8, %Gem4], special):
+			bulk_points_turn([%Gem8, %Gem4])
+		
+	elif %Artefact.configuration == 6:
+		if are_equals([%Gem3, %Gem2, %Gem1], special):
+			bulk_points_turn([%Gem3, %Gem2, %Gem1])
+		if are_equals([%Gem6, %Gem5, %Gem4], special):
+			bulk_points_turn([%Gem6, %Gem5, %Gem4])
+		if are_equals([%Gem9, %Gem8, %Gem7], special):
+			bulk_points_turn([%Gem9, %Gem8, %Gem7])
+		
+	elif %Artefact.configuration == 7:
+		if are_equals([%Gem2, %Gem4], special):
+			bulk_points_turn([%Gem2, %Gem4])
+		if are_equals([%Gem3, %Gem5, %Gem7], special):
+			bulk_points_turn([%Gem3, %Gem5, %Gem7])
+		if are_equals([%Gem6, %Gem8], special):
+			bulk_points_turn([%Gem6, %Gem8])
+	
 	return retval
 	
 func search_cross():

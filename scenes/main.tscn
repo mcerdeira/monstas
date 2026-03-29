@@ -592,6 +592,22 @@ text = "Player Turn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="lbl_next" type="Label" parent="UI" unique_id=770304714]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 550.0
+offset_right = 512.0
+offset_bottom = 613.0
+theme_override_fonts/font = ExtResource("4_0ld40")
+theme_override_font_sizes/font_size = 48
+text = "Next"
+
+[node name="monsta_next" parent="UI/lbl_next" unique_id=1749985967 instance=ExtResource("13_trceg")]
+unique_name_in_owner = true
+position = Vector2(38, 72)
+scale = Vector2(0.5, 0.5)
+imnext = true
+
 [node name="lbl_turns" type="Label" parent="UI" unique_id=386499291]
 unique_name_in_owner = true
 layout_mode = 0
@@ -658,64 +674,64 @@ position = Vector2(0, -40)
 script = ExtResource("10_vxglm")
 
 [node name="monster_avatar2" parent="UI/backcollection/Collection" unique_id=969762551 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(352, 251)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar3" parent="UI/backcollection/Collection" unique_id=230083342 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(502, 251)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar4" parent="UI/backcollection/Collection" unique_id=1152044759 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(652, 251)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar5" parent="UI/backcollection/Collection" unique_id=1939092076 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(802, 251)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar8" parent="UI/backcollection/Collection" unique_id=1948859 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(352, 401)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar9" parent="UI/backcollection/Collection" unique_id=1013764558 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(502, 401)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar10" parent="UI/backcollection/Collection" unique_id=1388291602 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(652, 401)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar11" parent="UI/backcollection/Collection" unique_id=464595557 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(802, 401)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar14" parent="UI/backcollection/Collection" unique_id=1297765340 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(352, 551)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar15" parent="UI/backcollection/Collection" unique_id=1374208385 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(502, 551)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar16" parent="UI/backcollection/Collection" unique_id=1681564214 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(652, 551)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar17" parent="UI/backcollection/Collection" unique_id=1182818779 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(802, 551)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="Shop" type="Node2D" parent="UI/backcollection" unique_id=1416325885 node_paths=PackedStringArray("monsta1", "monsta2", "monsta3")]
 visible = false
@@ -725,19 +741,19 @@ monsta2 = NodePath("monster_avatar2")
 monsta3 = NodePath("monster_avatar3")
 
 [node name="monster_avatar" parent="UI/backcollection/Shop" unique_id=1852761384 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(338, 251)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar2" parent="UI/backcollection/Shop" unique_id=1845514737 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(562, 251)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="monster_avatar3" parent="UI/backcollection/Shop" unique_id=1165887345 instance=ExtResource("13_trceg")]
-z_index = 0
 position = Vector2(794, 251)
 scale = Vector2(2, 2)
+imnext = false
 
 [node name="shoot_line" type="Line2D" parent="." unique_id=1404510610]
 unique_name_in_owner = true
@@ -832,6 +848,7 @@ speed_scale = 3.0
 
 [node name="monster_avatar" parent="Gun" unique_id=1015858540 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
+imnext = false
 
 [connection signal="pressed" from="UI/backcollection/backcollection/btn_close" to="UI/backcollection" method="_on_btn_close_pressed"]
 [connection signal="area_entered" from="monsta_bullet" to="monsta_bullet" method="_on_area_entered"]

@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://byrutrppf5qm4" path="res://sprites/stars1.png" id="9_xtt15"]
 [ext_resource type="Texture2D" uid="uid://cg8psysyjjnnq" path="res://sprites/stars2.png" id="10_raabq"]
 [ext_resource type="Texture2D" uid="uid://b33bq8vw333gr" path="res://sprites/stars3.png" id="11_hgwl1"]
+[ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="13_qw8v7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jyhfs"]
 animations = [{
@@ -281,9 +282,11 @@ sprite_frames = SubResource("SpriteFrames_o6xl0")
 animation = &"empty"
 
 [node name="points_in_turn" type="Label" parent="monster" unique_id=1924556753]
-offset_top = -13.0
-offset_right = 40.0
-offset_bottom = 32.0
+offset_left = 8.0
+offset_top = -14.0
+offset_right = 48.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("13_qw8v7")
 theme_override_font_sizes/font_size = 32
 
 [node name="stars" type="AnimatedSprite2D" parent="monster" unique_id=1725548142]
