@@ -8,6 +8,7 @@ var counting_functions = [
 	search_rows,
 	search_columns,
 	search_cross,
+	search_corner,
 	search_diagonal,
 	search_individual,
 ]
@@ -235,6 +236,19 @@ func search_columns():
 		if are_equals([%Gem6, %Gem8], special):
 			bulk_points_turn([%Gem6, %Gem8])
 	
+	return retval
+	
+func search_corner():
+	var retval = false
+	var special = "corner"
+	if are_equals([%Gem1], special):
+		bulk_points_turn([%Gem1])
+	if are_equals([%Gem3], special):
+		bulk_points_turn([%Gem3])
+	if are_equals([%Gem7], special):
+		bulk_points_turn([%Gem7])
+	if are_equals([%Gem9], special):
+		bulk_points_turn([%Gem9])
 	return retval
 	
 func search_cross():

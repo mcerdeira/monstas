@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="6_y35fc"]
 [ext_resource type="Script" uid="uid://b1seoeoolov14" path="res://scenes/monster_avatar.gd" id="7_uum37"]
 [ext_resource type="Texture2D" uid="uid://dlhvlaqaju3mc" path="res://sprites/monsters/vampire2.png" id="7_vsie3"]
+[ext_resource type="Texture2D" uid="uid://788cy6gbd5ir" path="res://sprites/monsters/spider1.png" id="9_vgsuj"]
 [ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="9_wk8o1"]
+[ext_resource type="Texture2D" uid="uid://bq0ildmbxt84" path="res://sprites/monsters/spider2.png" id="10_l754j"]
 [ext_resource type="StyleBox" uid="uid://bkci5p3lq6r6i" path="res://styles/new_style_box_flat.tres" id="14_n5ups"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_muem4"]
@@ -56,6 +58,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"poop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_vgsuj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l754j")
+}],
+"loop": true,
+"name": &"spider",
 "speed": 5.0
 }, {
 "frames": [{
@@ -149,7 +162,7 @@ script = ExtResource("7_uum37")
 
 [node name="monster_avatar" type="AnimatedSprite2D" parent="." unique_id=1749985967]
 sprite_frames = SubResource("SpriteFrames_muem4")
-animation = &"cyclops"
+animation = &"spider"
 
 [node name="btn_buy" type="Button" parent="." unique_id=216562650]
 offset_left = -31.0

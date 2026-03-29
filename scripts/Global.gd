@@ -39,7 +39,7 @@ var monsta_fish = {
 var monsta_zombie = {
 	"id": "zombie",
 	"name": "Zombie",
-	"description": "I give 3 coins per turns, after 1 turns I infect diagonals.",
+	"description": "I give 3 coins per turns, after 1 turns I kill diagonals.",
 	"points_individual": 3,
 	"points_special": 0,
 	"special": "none",
@@ -66,12 +66,22 @@ var monsta_cyclops = {
 	"expiration": -1,
 }
 
+var monsta_spider = {
+	"id": "spider",
+	"name": "Spider",
+	"description": "I ONLY give 5 coins if I'm in a corner.",
+	"points_individual": 0,
+	"points_special": 5,
+	"special": "corner",
+	"expiration": -1,
+}
+
 func init_vars():
 	PRICE = 0
 	LEVEL = 1
 	TURN = 1
 	MONSTA_ENABLED = [monsta_poop]
-	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops]
+	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops, monsta_spider]
 
 func _ready():
 	init_vars()

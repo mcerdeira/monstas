@@ -13,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="8_eaa7k"]
 [ext_resource type="Texture2D" uid="uid://dlhvlaqaju3mc" path="res://sprites/monsters/vampire2.png" id="8_ultim"]
 [ext_resource type="Script" uid="uid://b6jpr2hbfuviq" path="res://scenes/clickeable.gd" id="9_eaa7k"]
+[ext_resource type="Texture2D" uid="uid://788cy6gbd5ir" path="res://sprites/monsters/spider1.png" id="9_es26p"]
 [ext_resource type="Texture2D" uid="uid://byrutrppf5qm4" path="res://sprites/stars1.png" id="9_xtt15"]
+[ext_resource type="Texture2D" uid="uid://bq0ildmbxt84" path="res://sprites/monsters/spider2.png" id="10_3m85t"]
 [ext_resource type="Texture2D" uid="uid://cg8psysyjjnnq" path="res://sprites/stars2.png" id="10_raabq"]
 [ext_resource type="Texture2D" uid="uid://b33bq8vw333gr" path="res://sprites/stars3.png" id="11_hgwl1"]
 [ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="13_qw8v7"]
@@ -67,6 +69,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"poop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_es26p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3m85t")
+}],
+"loop": true,
+"name": &"spider",
 "speed": 5.0
 }, {
 "frames": [{
@@ -272,7 +285,7 @@ visible = false
 z_index = 4000
 position = Vector2(3, -14)
 sprite_frames = SubResource("SpriteFrames_o6xl0")
-animation = &"vampire"
+animation = &"spider"
 
 [node name="monster" type="AnimatedSprite2D" parent="." unique_id=1976200337]
 unique_name_in_owner = true
