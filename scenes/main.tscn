@@ -161,6 +161,42 @@ _data = {
 &"new_animation": SubResource("Animation_vxglm")
 }
 
+[sub_resource type="Animation" id="Animation_yq6so"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tel4y"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.8), Vector2(0.9, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkpxi"]
+_data = {
+&"RESET": SubResource("Animation_yq6so"),
+&"new_animation": SubResource("Animation_tel4y")
+}
+
 [sub_resource type="Animation" id="Animation_fv21b"]
 length = 0.001
 tracks/0/type = "value"
@@ -186,6 +222,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(48, 601)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_2f3dj"]
@@ -227,6 +275,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"_show"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.56666666, 0.76666665, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.8674286382411815, 0.5864306286700947, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yq6so"]
@@ -373,6 +433,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_5q0nq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%monster_avatar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qkpxi"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%monster_avatar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.73333335, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 0.4), Vector2(0.8, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5q0nq"]
+_data = {
+&"RESET": SubResource("Animation_5q0nq"),
+&"new_animation": SubResource("Animation_qkpxi")
+}
+
 [node name="Main" type="Node2D" unique_id=170714964]
 script = ExtResource("1_a8y0u")
 
@@ -507,6 +603,13 @@ theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 68
 text = "1/5"
+
+[node name="smoke_mark" type="Marker2D" parent="UI/lbl_turns" unique_id=369202052]
+position = Vector2(25, 45)
+
+[node name="anim" type="AnimationPlayer" parent="UI/lbl_turns" unique_id=464418531]
+libraries/ = SubResource("AnimationLibrary_qkpxi")
+speed_scale = 5.0
 
 [node name="backcollection" type="Node2D" parent="UI" unique_id=1094943437]
 unique_name_in_owner = true
@@ -722,6 +825,10 @@ position = Vector2(576, 584)
 sprite_frames = SubResource("SpriteFrames_jyhfs")
 autoplay = "default"
 script = ExtResource("6_eb6dy")
+
+[node name="shoot" type="AnimationPlayer" parent="Gun" unique_id=1117501277]
+libraries/ = SubResource("AnimationLibrary_5q0nq")
+speed_scale = 3.0
 
 [node name="monster_avatar" parent="Gun" unique_id=1015858540 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true

@@ -8,6 +8,7 @@ func reset_turn():
 	play("empty")
 	
 func set_monsta(_monsta, count = 0):
+	current_monsta = _monsta
 	$btn_buy.visible = false
 	if count > 0:
 		$lbl_count.visible = Global.IN_COLLECTION 
@@ -22,7 +23,6 @@ func set_monsta(_monsta, count = 0):
 				$btn_buy.text = "Buy $" + str(Global.PRICE)
 		$btn_buy.visible = true
 		
-	current_monsta = _monsta
 	if !_monsta:
 		play("empty")
 	else:
@@ -36,9 +36,11 @@ func new_turn():
 
 func _on_click_area_mouse_entered() -> void:
 	if current_monsta:
+		$anim.play("new_animation")
 		%Ballon.set_text(current_monsta, global_position)
 
 func _on_click_area_mouse_exited() -> void:
+	$anim.stop()
 	%Ballon.hideme()
 
 func _on_btn_buy_pressed() -> void:

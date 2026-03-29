@@ -183,6 +183,7 @@ func _physics_process(delta: float) -> void:
 		count_index = 0
 		initialize_pool()
 		set_current_goal()
+		%UI.turn_change()
 		STATE = STATES.TRANSITION
 		%monster_avatar.new_turn()
 		%UI.show_message("Build Phase", STATES.PLAYER_TURN)
@@ -204,6 +205,7 @@ func _physics_process(delta: float) -> void:
 					return
 					
 			Global.TURN += 1
+			%UI.turn_change()
 			if Global.TURN > Global.TOTAL_TURNS:
 				Global.TURN = Global.TOTAL_TURNS
 				STATE = STATES.TRANSITION

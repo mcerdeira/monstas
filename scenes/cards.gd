@@ -7,3 +7,9 @@ func _on_control_gui_input(event: InputEvent) -> void:
 
 func show_shop(shop = false):
 	%backcollection.show_me(shop)
+
+func _on_control_mouse_entered() -> void:
+	$anim.play("new_animation")
+
+func _on_control_mouse_exited() -> void:
+	$anim.stop()

@@ -81,6 +81,44 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_vwbgr"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n5ups"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.53333336, 0.76666665, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.33161255787892263, -0.22689280275926285, 0.4363323129985824, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwbgr"]
+_data = {
+&"RESET": SubResource("Animation_vwbgr"),
+&"new_animation": SubResource("Animation_n5ups")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uum37"]
 size = Vector2(57, 50)
 
@@ -111,6 +149,9 @@ z_index = 3000
 sprite_frames = SubResource("SpriteFrames_muem4")
 animation = &"cyclops"
 script = ExtResource("7_uum37")
+
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1327578716]
+libraries/ = SubResource("AnimationLibrary_vwbgr")
 
 [node name="lbl_count" type="Label" parent="." unique_id=1789077770]
 visible = false

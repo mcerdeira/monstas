@@ -49,7 +49,7 @@ var monsta_zombie = {
 var monsta_vampire = {
 	"id": "vampire",
 	"name": "Vampire",
-	"description": "I give 0 coins, but if I'm destroyed by a cross I'll give 10 coins.",
+	"description": "I give 0 coins. If I'm destroyed by a cross (+) I'll give 10 coins.",
 	"points_individual": 0,
 	"points_special": 10,
 	"special": "rows_other",

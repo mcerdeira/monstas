@@ -9,6 +9,10 @@ func show_message(message, state):
 	goto_state = state
 	msg_ttl = msg_ttl_total
 	
+func turn_change():
+	$lbl_turns/anim.play("new_animation")
+	Global.emit($lbl_turns/smoke_mark.global_position, 10)
+	
 func emit_from_coins():
 	Global.emit($lbl_coins_point.global_position, 5)
 	
@@ -30,5 +34,6 @@ func _physics_process(delta: float) -> void:
 		msg_ttl -= 1 * delta
 		if msg_ttl <= 0:
 			if goto_state != Global.Main.STATES.GAME_OVER:
+				turn_change()
 				%lbl_message.visible = false
 			Global.Main.STATE = goto_state
