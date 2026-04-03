@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://w45u4wattndj" path="res://scenes/monster_avatar.tscn" id="13_trceg"]
 [ext_resource type="Script" uid="uid://dskvwt7du7f1y" path="res://scenes/monsta_bullet.gd" id="15_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://b3fyul7g6aggk" path="res://sprites/bullet1.png" id="15_muem4"]
+[ext_resource type="PackedScene" uid="uid://ch184rfjyregw" path="res://scenes/re_roll.tscn" id="16_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://dfbig2ukluq4t" path="res://sprites/bullet2.png" id="16_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://crw4cb63c6f8w" path="res://sprites/bullet3.png" id="17_0ld40"]
 
@@ -599,8 +600,9 @@ offset_top = 550.0
 offset_right = 512.0
 offset_bottom = 613.0
 theme_override_fonts/font = ExtResource("4_0ld40")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 46
 text = "Next"
+vertical_alignment = 2
 
 [node name="monsta_next" parent="UI/lbl_next" unique_id=1749985967 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
@@ -755,6 +757,10 @@ autoplay = &"new_animation"
 [node name="Arrow" type="Sprite2D" parent="shoot_line" unique_id=332200608]
 position = Vector2(-926, -6)
 texture = ExtResource("5_dp3eg")
+
+[node name="ReRoll" parent="." unique_id=899805370 node_paths=PackedStringArray("Gun") instance=ExtResource("16_2f3dj")]
+position = Vector2(1080, 585)
+Gun = NodePath("../Gun")
 
 [node name="Cards" parent="." unique_id=1398099554 instance=ExtResource("11_pm3ni")]
 position = Vector2(48, 601)

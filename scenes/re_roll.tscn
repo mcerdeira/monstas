@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://ch184rfjyregw"]
+
+[ext_resource type="Script" uid="uid://b32qlyrvtc2oa" path="res://scenes/re_roll.gd" id="1_yrplh"]
+[ext_resource type="Texture2D" uid="uid://dcqd1aksek33o" path="res://sprites/monsters/re-roll1.png" id="2_ioyrm"]
+[ext_resource type="Texture2D" uid="uid://du70yxc82iibn" path="res://sprites/monsters/re-roll2.png" id="3_t2d2f"]
+[ext_resource type="Texture2D" uid="uid://fy22h11eul7n" path="res://sprites/ballon_arrow.png" id="4_75x57"]
+[ext_resource type="Texture2D" uid="uid://d2bkumy3lnmu3" path="res://sprites/monsters/re-roll3.png" id="4_dr1o2"]
+[ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="5_dr1o2"]
+
+[sub_resource type="Animation" id="Animation_mnqni"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_pqter"]
+resource_name = "new_animation"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yrplh"]
+_data = {
+&"RESET": SubResource("Animation_mnqni"),
+&"new_animation": SubResource("Animation_pqter")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_75x57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dr1o2")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ioyrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t2d2f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6g5b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_75x57")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7snx1"]
+bg_color = Color(0.031091863, 0.24162859, 0.2709706, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="ReRoll" type="Node2D" unique_id=899805370]
+script = ExtResource("1_yrplh")
+
+[node name="Control" type="Control" parent="." unique_id=1712058652]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -46.0
+offset_top = -42.0
+offset_right = 51.0
+offset_bottom = 49.0
+
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1448627743]
+libraries/ = SubResource("AnimationLibrary_yrplh")
+speed_scale = 5.0
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1668151315]
+sprite_frames = SubResource("SpriteFrames_75x57")
+animation = &"dead"
+autoplay = "default"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2038939788]
+visible = false
+position = Vector2(-15, 11)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_l6g5b")
+offset = Vector2(32, -1)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1786489237]
+visible = false
+offset_left = -331.0
+offset_top = -84.0
+offset_right = -74.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7snx1")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=81058433]
+layout_mode = 2
+
+[node name="lbl_dialog" type="Label" parent="PanelContainer/MarginContainer" unique_id=416381727]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("5_dr1o2")
+theme_override_font_sizes/font_size = 32
+text = "Dice: Use me to re-roll a monster (1 use)."
+autowrap_mode = 3
+
+[connection signal="gui_input" from="Control" to="." method="_on_control_gui_input"]
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

@@ -3,6 +3,7 @@ var current_monsta = null
 @export var imnext = false
 
 func reset_turn():
+	Global.emit(global_position, 5)
 	visible = true
 	%monsta_bullet.visible = false
 	current_monsta = null
@@ -29,8 +30,18 @@ func set_monsta(_monsta, count = 0):
 		$monster_avatar.play("empty")
 	else:
 		$monster_avatar.play(current_monsta.id)
+		
+func re_roll():
+	Global.emit(global_position, 5)
+	visible = true
+	%monsta_bullet.visible = false
+	var enabled = [] + Global.MONSTA_ENABLED
+	enabled.shuffle()
+	current_monsta = enabled.pop_at(0)
+	$monster_avatar.play(current_monsta.id)
 
 func new_turn():
+	Global.emit(global_position, 5)
 	visible = true
 	%monsta_bullet.visible = false
 	current_monsta = Global.MONSTA_POOL.pop_front()

@@ -1,6 +1,9 @@
 extends AnimatedSprite2D
 var rotate_speed = 1000
 
+func re_roll():
+	%monster_avatar.re_roll()
+
 func shoot():
 	$shoot.play("new_animation")
 	Global.emit(global_position + Vector2(0, -64), 3)
