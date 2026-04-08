@@ -1,4 +1,5 @@
 extends Node
+var player_obj = null
 var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
 var FULLSCREEN = false
