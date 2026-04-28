@@ -15,13 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://bqxv3yqwca6o7" path="res://sprites/gun2.png" id="6_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://dks6r6i2m8cog" path="res://scenes/gem.tscn" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://ds7873vf4m1ky" path="res://sprites/gun3.png" id="7_muem4"]
-[ext_resource type="Script" uid="uid://cudo06nd753hp" path="res://scenes/backcollection.gd" id="7_og1vs"]
-[ext_resource type="Script" uid="uid://cv5r2u6fbdthl" path="res://scenes/shop.gd" id="8_2wyq8"]
 [ext_resource type="Texture2D" uid="uid://gvo7kq3jjnkc" path="res://sprites/gun4.png" id="8_dp3eg"]
 [ext_resource type="Shader" uid="uid://b73jx406demos" path="res://scenes/chrome.gdshader" id="8_tipki"]
 [ext_resource type="Shader" uid="uid://dga0ew8efdc6t" path="res://scenes/stars.gdshader" id="9_85g3d"]
-[ext_resource type="Script" uid="uid://cdldw5myfx53t" path="res://scenes/collection.gd" id="10_vxglm"]
-[ext_resource type="PackedScene" uid="uid://f01jp413eqlk" path="res://scenes/cards.tscn" id="11_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://w45u4wattndj" path="res://scenes/monster_avatar.tscn" id="13_trceg"]
 [ext_resource type="Script" uid="uid://dskvwt7du7f1y" path="res://scenes/monsta_bullet.gd" id="15_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://b3fyul7g6aggk" path="res://sprites/bullet1.png" id="15_muem4"]
@@ -63,41 +59,17 @@ shader_parameter/VIEWPORT_SIZE = Vector2(1280, 720)
 
 [sub_resource type="Animation" id="Animation_y6deb"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%lbl_coins:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_og1vs"]
 resource_name = "new_animation"
 loop_mode = 1
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%lbl_coins:scale")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.53333336, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.1, 0.8), Vector2(0.8, 1.2), Vector2(1, 1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0.56666666),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -161,173 +133,6 @@ _data = {
 &"RESET": SubResource("Animation_2wyq8"),
 &"new_animation": SubResource("Animation_vxglm")
 }
-
-[sub_resource type="Animation" id="Animation_yq6so"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_tel4y"]
-resource_name = "new_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23333333, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.1, 0.8), Vector2(0.9, 1.2), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkpxi"]
-_data = {
-&"RESET": SubResource("Animation_yq6so"),
-&"new_animation": SubResource("Animation_tel4y")
-}
-
-[sub_resource type="Animation" id="Animation_fv21b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(48, 601)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:skew")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_2f3dj"]
-resource_name = "show"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(48, 601), Vector2(0, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_show"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:skew")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.56666666, 0.76666665, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.8674286382411815, 0.5864306286700947, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yq6so"]
-_data = {
-&"RESET": SubResource("Animation_fv21b"),
-&"show": SubResource("Animation_2f3dj")
-}
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxglm"]
-bg_color = Color(0.05622074, 0.08323357, 0.08098703, 1)
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.31756914, 0.40090963, 0.40086213, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f3dj"]
-bg_color = Color(0.05490196, 0.08235294, 0.08235294, 1)
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.31764707, 0.4, 0.4, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yq6so"]
-bg_color = Color(0.31764707, 0.4, 0.4, 1)
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.31764707, 0.4, 0.4, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 15
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
 shader = ExtResource("3_muem4")
@@ -549,17 +354,6 @@ speed_scale = 5.0
 [node name="lbl_coins_point" type="Marker2D" parent="UI" unique_id=20940325]
 position = Vector2(139, 32)
 
-[node name="lbl_coins" type="Label" parent="UI" unique_id=41916509]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 13.0
-offset_right = 156.0
-offset_bottom = 63.0
-theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
-theme_override_fonts/font = ExtResource("4_0ld40")
-theme_override_font_sizes/font_size = 48
-text = "COINS: 10"
-
 [node name="lbl_objetive" type="Label" parent="UI" unique_id=1335740041]
 unique_name_in_owner = true
 layout_mode = 0
@@ -569,7 +363,7 @@ offset_bottom = 63.0
 theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 48
-text = "GOAL: 10"
+text = "SCORE: 10"
 horizontal_alignment = 1
 
 [node name="lbl_objetive_point" type="Marker2D" parent="UI" unique_id=1183232805]
@@ -610,138 +404,6 @@ position = Vector2(38, 72)
 scale = Vector2(0.5, 0.5)
 imnext = true
 
-[node name="lbl_turns" type="Label" parent="UI" unique_id=386499291]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 643.0
-offset_top = 545.0
-offset_right = 704.0
-offset_bottom = 633.0
-theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
-theme_override_fonts/font = ExtResource("4_0ld40")
-theme_override_font_sizes/font_size = 68
-text = "1/5"
-
-[node name="smoke_mark" type="Marker2D" parent="UI/lbl_turns" unique_id=369202052]
-position = Vector2(25, 45)
-
-[node name="anim" type="AnimationPlayer" parent="UI/lbl_turns" unique_id=464418531]
-libraries/ = SubResource("AnimationLibrary_qkpxi")
-speed_scale = 5.0
-
-[node name="backcollection" type="Node2D" parent="UI" unique_id=1094943437]
-unique_name_in_owner = true
-process_mode = 3
-position = Vector2(48, 601)
-scale = Vector2(1e-05, 1e-05)
-script = ExtResource("7_og1vs")
-
-[node name="anim" type="AnimationPlayer" parent="UI/backcollection" unique_id=74178188]
-libraries/ = SubResource("AnimationLibrary_yq6so")
-speed_scale = 5.0
-
-[node name="backcollection" type="ColorRect" parent="UI/backcollection" unique_id=1139384774]
-offset_left = 26.0
-offset_top = 8.0
-offset_right = 1125.0
-offset_bottom = 616.0
-mouse_filter = 2
-color = Color(0.13725491, 0.1882353, 0.18431373, 1)
-
-[node name="lbl_title" type="Label" parent="UI/backcollection/backcollection" unique_id=1805687321]
-layout_mode = 0
-offset_right = 1109.0
-offset_bottom = 124.0
-theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
-theme_override_fonts/font = ExtResource("4_0ld40")
-theme_override_font_sizes/font_size = 96
-text = "Collection"
-horizontal_alignment = 1
-
-[node name="btn_close" type="Button" parent="UI/backcollection/backcollection" unique_id=1831503039]
-layout_mode = 0
-offset_left = 1021.0
-offset_top = 6.0
-offset_right = 1091.0
-offset_bottom = 78.0
-focus_mode = 0
-theme_override_font_sizes/font_size = 46
-theme_override_styles/normal = SubResource("StyleBoxFlat_vxglm")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2f3dj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yq6so")
-text = "X"
-
-[node name="Collection" type="Node2D" parent="UI/backcollection" unique_id=752349604]
-position = Vector2(0, -40)
-script = ExtResource("10_vxglm")
-
-[node name="monster_avatar2" parent="UI/backcollection/Collection" unique_id=969762551 instance=ExtResource("13_trceg")]
-position = Vector2(352, 251)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar3" parent="UI/backcollection/Collection" unique_id=230083342 instance=ExtResource("13_trceg")]
-position = Vector2(502, 251)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar4" parent="UI/backcollection/Collection" unique_id=1152044759 instance=ExtResource("13_trceg")]
-position = Vector2(652, 251)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar5" parent="UI/backcollection/Collection" unique_id=1939092076 instance=ExtResource("13_trceg")]
-position = Vector2(802, 251)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar8" parent="UI/backcollection/Collection" unique_id=1948859 instance=ExtResource("13_trceg")]
-position = Vector2(352, 401)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar9" parent="UI/backcollection/Collection" unique_id=1013764558 instance=ExtResource("13_trceg")]
-position = Vector2(502, 401)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar10" parent="UI/backcollection/Collection" unique_id=1388291602 instance=ExtResource("13_trceg")]
-position = Vector2(652, 401)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar11" parent="UI/backcollection/Collection" unique_id=464595557 instance=ExtResource("13_trceg")]
-position = Vector2(802, 401)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar14" parent="UI/backcollection/Collection" unique_id=1297765340 instance=ExtResource("13_trceg")]
-position = Vector2(352, 551)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar15" parent="UI/backcollection/Collection" unique_id=1374208385 instance=ExtResource("13_trceg")]
-position = Vector2(502, 551)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar16" parent="UI/backcollection/Collection" unique_id=1681564214 instance=ExtResource("13_trceg")]
-position = Vector2(652, 551)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar17" parent="UI/backcollection/Collection" unique_id=1182818779 instance=ExtResource("13_trceg")]
-position = Vector2(802, 551)
-scale = Vector2(2, 2)
-
-[node name="Shop" type="Node2D" parent="UI/backcollection" unique_id=1416325885 node_paths=PackedStringArray("monsta1", "monsta2", "monsta3")]
-visible = false
-script = ExtResource("8_2wyq8")
-monsta1 = NodePath("monster_avatar")
-monsta2 = NodePath("monster_avatar2")
-monsta3 = NodePath("monster_avatar3")
-
-[node name="monster_avatar" parent="UI/backcollection/Shop" unique_id=1852761384 instance=ExtResource("13_trceg")]
-position = Vector2(338, 251)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar2" parent="UI/backcollection/Shop" unique_id=1845514737 instance=ExtResource("13_trceg")]
-position = Vector2(562, 251)
-scale = Vector2(2, 2)
-
-[node name="monster_avatar3" parent="UI/backcollection/Shop" unique_id=1165887345 instance=ExtResource("13_trceg")]
-position = Vector2(794, 251)
-scale = Vector2(2, 2)
-
 [node name="shoot_line" type="Line2D" parent="." unique_id=1404510610]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_dp3eg")
@@ -761,9 +423,6 @@ texture = ExtResource("5_dp3eg")
 [node name="ReRoll" parent="." unique_id=899805370 node_paths=PackedStringArray("Gun") instance=ExtResource("16_2f3dj")]
 position = Vector2(1080, 585)
 Gun = NodePath("../Gun")
-
-[node name="Cards" parent="." unique_id=1398099554 instance=ExtResource("11_pm3ni")]
-position = Vector2(48, 601)
 
 [node name="Artefact" type="Node2D" parent="." unique_id=1974696450]
 unique_name_in_owner = true
@@ -840,5 +499,4 @@ speed_scale = 3.0
 [node name="monster_avatar" parent="Gun" unique_id=1015858540 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="UI/backcollection/backcollection/btn_close" to="UI/backcollection" method="_on_btn_close_pressed"]
 [connection signal="area_entered" from="monsta_bullet" to="monsta_bullet" method="_on_area_entered"]

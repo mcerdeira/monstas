@@ -4,13 +4,10 @@ var delay_in_count = 0.0
 var count_index = 0
 
 var counting_functions = [
-	calc_expiration,
 	search_rows,
 	search_columns,
 	search_cross,
-	search_corner,
 	search_diagonal,
-	search_individual,
 ]
 
 enum STATES 
@@ -50,55 +47,6 @@ func bulk_points_turn(monstas):
 func _ready() -> void:
 	randomize()
 	Global.Main = self
-	
-func initialize_pool():
-	var all_copy = [] + Global.MONSTA_ENABLED
-	for i in range(Global.TOTAL_TURNS):
-		if all_copy.size() == 0: #Se vacio el "deck", entonces vuelvo a tomar del deck completo
-			all_copy = [] + Global.MONSTA_ENABLED
-			
-		randomize()
-		all_copy.shuffle()
-		var mon = all_copy.pop_back()
-		Global.MONSTA_POOL.append(mon)
-	
-	Global.MONSTA_POOL.shuffle()
-	
-func set_current_goal():
-	$UI/objetive_anim.play("new_animation")
-	Global.TURN = 1
-	Global.THIS_TURN_COINS = 0
-	if Global.LEVEL > 1:
-		Global.PRICE += 5
-	
-	if Global.LEVEL == 1:
-		Global.GOAL = 8
-	elif Global.LEVEL == 2:
-		Global.GOAL = 25
-		
-func search_expired():
-	var monstaslots = get_tree().get_nodes_in_group("monstaslot")
-	for monstaslot in monstaslots:
-		if monstaslot.monsta and monstaslot.monsta.expiration == 0:
-			monstaslot.expire()
-			
-func calc_expiration():
-	var monstaslots = get_tree().get_nodes_in_group("monstaslot")
-	for monstaslot in monstaslots:
-		if monstaslot.monsta and monstaslot.monsta.expiration > 0:
-			monstaslot.monsta.expiration -= 1
-	
-	return false
-	
-func search_individual():
-	var retval = false
-	var monstaslots = get_tree().get_nodes_in_group("monstaslot")
-	for monstaslot in monstaslots:
-		if monstaslot.monsta and monstaslot.monsta.points_individual > 0:
-			monstaslot.set_points_turn(monstaslot.monsta.points_individual)
-			retval = true
-			
-	return retval
 	
 func search_rows():
 	var retval = false
@@ -238,19 +186,6 @@ func search_columns():
 	
 	return retval
 	
-func search_corner():
-	var retval = false
-	var special = "corner"
-	if are_equals([%Gem1], special):
-		bulk_points_turn([%Gem1])
-	if are_equals([%Gem3], special):
-		bulk_points_turn([%Gem3])
-	if are_equals([%Gem7], special):
-		bulk_points_turn([%Gem7])
-	if are_equals([%Gem9], special):
-		bulk_points_turn([%Gem9])
-	return retval
-	
 func search_cross():
 	var retval = false
 	#TODO: implementar
@@ -264,12 +199,9 @@ func search_diagonal():
 func _physics_process(delta: float) -> void:
 	if STATE == STATES.INIT:
 		count_index = 0
-		initialize_pool()
-		set_current_goal()
-		%UI.turn_change()
 		STATE = STATES.TRANSITION
 		%monster_avatar.new_turn()
-		%UI.show_message("Build Phase", STATES.PLAYER_TURN)
+		%UI.show_message("Ready?", STATES.PLAYER_TURN)
 		var monstaslots = get_tree().get_nodes_in_group("monstaslot")
 		for monstaslot in monstaslots:
 			monstaslot.reset_points_turn((Global.LEVEL > 1))
@@ -287,17 +219,8 @@ func _physics_process(delta: float) -> void:
 					delay = 1.0
 					return
 					
-			Global.TURN += 1
-			%UI.turn_change()
-			if Global.TURN > Global.TOTAL_TURNS:
-				Global.TURN = Global.TOTAL_TURNS
-				STATE = STATES.TRANSITION
-				%monster_avatar.reset_turn()
-				%UI.show_message("Scoring Phase", STATES.COUNTING)
-			else:
-				%monster_avatar.new_turn()
-				STATE = STATES.PLAYER_TURN
-				search_expired()
+			%monster_avatar.new_turn()
+			STATE = STATES.PLAYER_TURN
 			
 	elif STATE == STATES.COUNTING:
 		if delay_in_count <= 0:

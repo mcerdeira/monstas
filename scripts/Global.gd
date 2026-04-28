@@ -4,18 +4,12 @@ var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
 var FULLSCREEN = false
 var Main = null
-var COINS = 0
-var GOAL = 0
-var THIS_TURN_COINS = 0
+var SCORE = 0
+var THIS_TURN_SCORE = 0
 var LEVEL = 0
-var TURN = 1
-var PRICE = 0
 var IN_SHOP = false
 var IN_COLLECTION = false
-var TOTAL_TURNS = 5
-var MONSTA_ENABLED = []
 var ALL_MONSTAS = []
-var MONSTA_POOL = []
 
 var monsta_poop = {
 	"id": "poop",
@@ -78,10 +72,7 @@ var monsta_spider = {
 }
 
 func init_vars():
-	PRICE = 0
 	LEVEL = 1
-	TURN = 1
-	MONSTA_ENABLED = [monsta_poop]
 	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops, monsta_spider]
 
 func _ready():
