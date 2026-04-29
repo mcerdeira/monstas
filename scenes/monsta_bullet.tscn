@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cm8cmwah61asr"]
+
+[ext_resource type="Script" uid="uid://dskvwt7du7f1y" path="res://scenes/monsta_bullet.gd" id="1_yexdl"]
+[ext_resource type="Texture2D" uid="uid://b3fyul7g6aggk" path="res://sprites/bullet1.png" id="2_drh4w"]
+[ext_resource type="Texture2D" uid="uid://dfbig2ukluq4t" path="res://sprites/bullet2.png" id="3_vae3d"]
+[ext_resource type="Texture2D" uid="uid://crw4cb63c6f8w" path="res://sprites/bullet3.png" id="4_61lel"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gqmmt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_drh4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vae3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_61lel")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gqmmt"]
+radius = 14.142136
+
+[node name="monsta_bullet" type="Area2D" unique_id=1592551716]
+script = ExtResource("1_yexdl")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1986423652]
+sprite_frames = SubResource("SpriteFrames_gqmmt")
+autoplay = "default"
+frame_progress = 0.82552105
+
+[node name="collider" type="CollisionShape2D" parent="." unique_id=1010232334]
+position = Vector2(-1, -11)
+shape = SubResource("CircleShape2D_gqmmt")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

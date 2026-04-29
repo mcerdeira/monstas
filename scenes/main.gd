@@ -201,7 +201,7 @@ func _physics_process(delta: float) -> void:
 		count_index = 0
 		STATE = STATES.TRANSITION
 		%monster_avatar.new_turn()
-		%UI.show_message("Ready?", STATES.PLAYER_TURN)
+		%UI.show_message("Ready?", STATES.PLAYER_TURN, true)
 		var monstaslots = get_tree().get_nodes_in_group("monstaslot")
 		for monstaslot in monstaslots:
 			monstaslot.reset_points_turn((Global.LEVEL > 1))
@@ -239,20 +239,12 @@ func _physics_process(delta: float) -> void:
 				
 	elif STATE == STATES.SHOWING_RESULTS:
 		if delay_in_count <= 0:
-			if Global.THIS_TURN_COINS > 0:
+			if Global.THIS_TURN_SCORE > 0:
 				delay_in_count = 0.1
 				Global.COINS += 1
-				Global.THIS_TURN_COINS -= 1
+				Global.THIS_TURN_SCORE -= 1
 			else:
 				$UI/coins_anim.stop()
-				if Global.COINS >= Global.GOAL:
-					Global.LEVEL += 1
-					STATE = STATES.SHOP
-					Global.COINS = Global.COINS - Global.GOAL
-					%backcollection.show_me(true, STATES.INIT) #Mostrar Shop
-				else:
-					STATE = STATES.TRANSITION
-					%monster_avatar.reset_turn()
-					%UI.show_message("Game Over", STATES.GAME_OVER)
+				STATE = STATES.NEXT_TURN
 		else:
 			delay_in_count -= 1 * delta

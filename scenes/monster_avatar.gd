@@ -44,10 +44,21 @@ func new_turn():
 	Global.emit(global_position, 5)
 	visible = true
 	%monsta_bullet.visible = false
-	var mons = [] + Global.ALL_MONSTAS
-	mons.shuffle()
-	current_monsta = mons.pop_front()
-	%monsta_next.set_monsta(mons[0])
+	var mons = null
+	if Global.MONSTA_NEXT == null:
+		mons = [] + Global.ALL_MONSTAS
+		mons.shuffle()
+		current_monsta = mons.pop_front()
+		%monsta_next.set_monsta(mons[0])
+		Global.MONSTA_NEXT = mons[0]
+	else:
+		current_monsta = Global.MONSTA_NEXT
+		mons = [] + Global.ALL_MONSTAS
+		mons.shuffle()
+		%monsta_next.set_monsta(mons[0])
+		Global.MONSTA_NEXT = mons[0]
+		
+		
 	$monster_avatar.play(current_monsta.id)
 
 func _on_click_area_mouse_entered() -> void:

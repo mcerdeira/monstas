@@ -2,8 +2,10 @@ extends Control
 var goto_state = null
 var msg_ttl_total = 2.1
 var msg_ttl = 0.0
+var start_gun = false
 
-func show_message(message, state):
+func show_message(message, state, _start_gun = false):
+	start_gun = _start_gun
 	%lbl_message.visible = true
 	%lbl_message.text = message
 	goto_state = state
@@ -27,3 +29,6 @@ func _physics_process(delta: float) -> void:
 			if goto_state != Global.Main.STATES.GAME_OVER:
 				%lbl_message.visible = false
 			Global.Main.STATE = goto_state
+			if start_gun:
+				start_gun = false
+				%Gun.start_gun()

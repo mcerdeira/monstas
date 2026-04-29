@@ -19,7 +19,7 @@ func shoot(_monsta):
 	
 func return_home():
 	global_position = original_position
-	Global.Main.STATE = Global.Main.STATES.NEXT_TURN
+	Global.Main.STATE = Global.Main.STATES.COUNTING
 
 func _on_area_entered(area: Area2D) -> void:
 	if area and area.is_in_group("gem"):

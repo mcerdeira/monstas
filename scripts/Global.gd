@@ -5,6 +5,7 @@ var shaker_obj = null
 var FULLSCREEN = false
 var Main = null
 var SCORE = 0
+var MONSTA_NEXT = null
 var THIS_TURN_SCORE = 0
 var LEVEL = 0
 var IN_SHOP = false
@@ -73,6 +74,7 @@ var monsta_spider = {
 
 func init_vars():
 	LEVEL = 1
+	MONSTA_NEXT = null
 	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops, monsta_spider]
 
 func _ready():
