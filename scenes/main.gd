@@ -50,7 +50,7 @@ func _ready() -> void:
 	
 func search_rows():
 	var retval = false
-	var special = "rows"
+	var special = "*"
 	if %Artefact.configuration == 0:
 		if are_equals([%Gem1, %Gem2, %Gem3], special):
 			bulk_points_turn([%Gem1, %Gem2, %Gem3])
@@ -119,7 +119,7 @@ func search_rows():
 	
 func search_columns():
 	var retval = false
-	var special = "columns"
+	var special = "*"
 	if %Artefact.configuration == 0:
 		if are_equals([%Gem1, %Gem4, %Gem7], special):
 			bulk_points_turn([%Gem1, %Gem4, %Gem7])
@@ -204,7 +204,7 @@ func _physics_process(delta: float) -> void:
 		%UI.show_message("Ready?", STATES.PLAYER_TURN, true)
 		var monstaslots = get_tree().get_nodes_in_group("monstaslot")
 		for monstaslot in monstaslots:
-			monstaslot.reset_points_turn((Global.LEVEL > 1))
+			monstaslot.reset_points_turn(false)
 		
 	elif STATE == STATES.GAME_OVER:
 		%UI.show_perma_message("Game Over")
@@ -232,8 +232,12 @@ func _physics_process(delta: float) -> void:
 					delay_in_count = 0
 				count_index += 1
 			else:
+				count_index = 0
 				STATE = STATES.SHOWING_RESULTS
-				$UI/coins_anim.play("new_animation")
+				$UI/objetive_anim.play("new_animation")
+				var monstaslots = get_tree().get_nodes_in_group("monstaslot")
+				for monstaslot in monstaslots:
+					monstaslot.reset_points_turn(false, true)
 		else:
 			delay_in_count -= 1 * delta
 				
@@ -241,10 +245,10 @@ func _physics_process(delta: float) -> void:
 		if delay_in_count <= 0:
 			if Global.THIS_TURN_SCORE > 0:
 				delay_in_count = 0.1
-				Global.COINS += 1
+				Global.SCORE += 1
 				Global.THIS_TURN_SCORE -= 1
 			else:
-				$UI/coins_anim.stop()
+				$UI/objetive_anim.stop()
 				STATE = STATES.NEXT_TURN
 		else:
 			delay_in_count -= 1 * delta

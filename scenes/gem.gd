@@ -8,12 +8,16 @@ var point_turn = 0 #Los puntos a considerar en este "turno"
 func _ready() -> void:
 	add_to_group("monstaslot")
 	
-func reset_points_turn(effects):
-	point_turn = 0
+func reset_points_turn(effects, expire_if = false):
 	$monster/points_in_turn.text = ""
 	$monster/points_in_turn.visible = false
 	if effects:
 		Global.emit(global_position, 5)
+	
+	if expire_if and point_turn > 0:
+		set_monsta(null)
+	
+	point_turn = 0
 	
 func set_points_turn(points):
 	$Points.play("new_animation")
@@ -47,6 +51,7 @@ func set_monsta(_monsta):
 	monsta = _monsta
 	if monsta == null:
 		%monster_temp.animation = "empty"
+		%monster.animation = "empty"
 	else:
 		%monster_temp.animation = monsta.id
 		%monster.play(_monsta.id)

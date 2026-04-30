@@ -54,33 +54,6 @@ shader_parameter/amount = 0.3
 shader = ExtResource("9_85g3d")
 shader_parameter/VIEWPORT_SIZE = Vector2(1280, 720)
 
-[sub_resource type="Animation" id="Animation_y6deb"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_og1vs"]
-resource_name = "new_animation"
-loop_mode = 1
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.56666666),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"emit_from_coins"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wyq8"]
-_data = {
-&"RESET": SubResource("Animation_y6deb"),
-&"new_animation": SubResource("Animation_og1vs")
-}
-
 [sub_resource type="Animation" id="Animation_2wyq8"]
 length = 0.001
 tracks/0/type = "value"
@@ -338,13 +311,6 @@ mouse_filter = 2
 script = ExtResource("4_gqmmt")
 metadata/_edit_lock_ = true
 
-[node name="coins_anim" type="AnimationPlayer" parent="UI" unique_id=1393623325]
-libraries/ = SubResource("AnimationLibrary_2wyq8")
-speed_scale = 5.0
-
-[node name="lbl_coins_point" type="Marker2D" parent="UI" unique_id=20940325]
-position = Vector2(139, 32)
-
 [node name="lbl_objetive" type="Label" parent="UI" unique_id=1335740041]
 unique_name_in_owner = true
 layout_mode = 0
@@ -395,9 +361,8 @@ position = Vector2(38, 72)
 scale = Vector2(0.5, 0.5)
 imnext = true
 
-[node name="ReRoll" parent="." unique_id=899805370 node_paths=PackedStringArray("Gun") instance=ExtResource("16_2f3dj")]
+[node name="ReRoll" parent="." unique_id=899805370 instance=ExtResource("16_2f3dj")]
 position = Vector2(1080, 585)
-Gun = NodePath("")
 
 [node name="Artefact" type="Node2D" parent="." unique_id=1974696450]
 unique_name_in_owner = true

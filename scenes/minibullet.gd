@@ -10,6 +10,8 @@ func _physics_process(delta: float) -> void:
 	if monsta:
 		global_position.y -= speed * delta
 		if global_position.y <= -150:
+			Global.SCORE -= monsta.points_falling
+			Global.UI.lose_coins()
 			queue_free()
 
 func _on_area_entered(area: Area2D) -> void:

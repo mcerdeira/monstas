@@ -3,6 +3,7 @@ var player_obj = null
 var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
 var FULLSCREEN = false
+var UI = null
 var Main = null
 var SCORE = 0
 var MONSTA_NEXT = null
@@ -15,67 +16,61 @@ var ALL_MONSTAS = []
 var monsta_poop = {
 	"id": "poop",
 	"name": "Poop",
-	"description": "I give 1 coin per turn +1 if I'm in a row of poops.",
-	"points_individual": 1,
+	"description": "I give 1 point in combo, -1 on falling",
 	"points_special": 1,
-	"special": "rows",
-	"expiration": -1,
+	"points_falling": 1,
+	"special": "*",
 }
 
 var monsta_fish = {
 	"id": "fish",
 	"name": "Fish",
-	"description": "I give 2 coins per turns, after 2 turns I'll be gone.",
-	"points_individual": 2,
-	"points_special": 0,
-	"special": "none",
-	"expiration": 2,
+	"description": "I give 2 points in combo, -2 on falling",
+	"points_special": 2,
+	"points_falling": 2,
+	"special": "*",
 }
 
 var monsta_zombie = {
 	"id": "zombie",
 	"name": "Zombie",
-	"description": "I give 3 coins per turns, after 1 turns I kill diagonals.",
-	"points_individual": 3,
-	"points_special": 0,
-	"special": "none",
-	"expiration": -1,
+	"description":  "I give 3 points in combo, -5 on falling",
+	"points_special": 3,
+	"points_falling": 5,
+	"special": "*",
 }
 
 var monsta_vampire = {
 	"id": "vampire",
 	"name": "Vampire",
-	"description": "I give 0 coins. If I'm destroyed by a cross (+) I'll give 10 coins.",
-	"points_individual": 0,
-	"points_special": 10,
-	"special": "cross_other",
-	"expiration": -1,
+	"description": "I give 5 points in combo, 0 on falling",
+	"points_special": 5,
+	"points_falling": 0,
+	"special": "cross",
 }
 
 var monsta_cyclops = {
 	"id": "cyclops",
 	"name": "Cyclops",
-	"description": "I give 1 coin per turn +1 if I'm in a column of cyclops.",
-	"points_individual": 1,
-	"points_special": 1,
-	"special": "columns",
-	"expiration": -1,
+	"description":  "I give 2 points in combo, -2 on falling",
+	"points_special": 5,
+	"points_falling": 0,
+	"special": "diagonal",
 }
 
 var monsta_spider = {
 	"id": "spider",
 	"name": "Spider",
-	"description": "I ONLY give 5 coins if I'm in a corner.",
-	"points_individual": 0,
-	"points_special": 5,
-	"special": "corner",
-	"expiration": -1,
+	"description": "I ONLY give 5 points on falling.",
+	"points_special": 0,
+	"points_falling": 5,
+	"special": "*",
 }
 
 func init_vars():
 	LEVEL = 1
 	MONSTA_NEXT = null
-	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops, monsta_spider]
+	ALL_MONSTAS = [monsta_poop, monsta_poop]#, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops, monsta_spider]
 
 func _ready():
 	init_vars()

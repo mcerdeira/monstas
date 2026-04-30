@@ -44,7 +44,10 @@ animations = [{
 "name": &"cyclops",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
 "loop": true,
 "name": &"empty",
 "speed": 5.0
@@ -285,7 +288,7 @@ visible = false
 z_index = 4000
 position = Vector2(3, -14)
 sprite_frames = SubResource("SpriteFrames_o6xl0")
-animation = &"spider"
+animation = &"empty"
 
 [node name="monster" type="AnimatedSprite2D" parent="." unique_id=1976200337]
 unique_name_in_owner = true

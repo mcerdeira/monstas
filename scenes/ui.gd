@@ -4,6 +4,9 @@ var msg_ttl_total = 2.1
 var msg_ttl = 0.0
 var start_gun = false
 
+func _ready() -> void:
+	Global.UI = self
+	
 func show_message(message, state, _start_gun = false):
 	start_gun = _start_gun
 	%lbl_message.visible = true
@@ -11,8 +14,11 @@ func show_message(message, state, _start_gun = false):
 	goto_state = state
 	msg_ttl = msg_ttl_total
 	
+func lose_coins():
+	$UI/objetive_anim.play("new_animation")
+	
 func emit_from_coins():
-	Global.emit($lbl_coins_point.global_position, 5)
+	Global.emit($lbl_objetive_point.global_position, 5)
 	
 func emit_from_objetive():
 	Global.emit($lbl_objetive_point.global_position, 5)
