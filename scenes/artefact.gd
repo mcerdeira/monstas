@@ -1,7 +1,18 @@
 extends Node2D
 var animating = false #flag para saber si está rotando el tablero y bloquear acciones
-var duration = 0.3
+var duration = 0.1
 var configuration = 0
+
+func _ready() -> void:
+	%Gem1.frame = 0
+	%Gem2.frame = 0
+	%Gem3.frame = 0
+	%Gem4.frame = 1
+	%Gem5.frame = 1
+	%Gem6.frame = 1
+	%Gem7.frame = 2
+	%Gem8.frame = 2
+	%Gem9.frame = 2
 
 func _physics_process(delta: float) -> void:
 	$Label.rotation_degrees = -rotation_degrees

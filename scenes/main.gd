@@ -5,7 +5,6 @@ var count_index = 0
 
 var counting_functions = [
 	search_rows,
-	search_columns,
 	search_cross,
 	search_diagonal,
 ]
@@ -50,150 +49,55 @@ func _ready() -> void:
 	
 func search_rows():
 	var retval = false
-	var special = "*"
-	if %Artefact.configuration == 0:
-		if are_equals([%Gem1, %Gem2, %Gem3], special):
-			bulk_points_turn([%Gem1, %Gem2, %Gem3])
-		if are_equals([%Gem4, %Gem5, %Gem6], special):
-			bulk_points_turn([%Gem4, %Gem5, %Gem6])
-		if are_equals([%Gem7, %Gem8, %Gem9], special):
-			bulk_points_turn([%Gem7, %Gem8, %Gem9])
-			
-	elif %Artefact.configuration == 1:
-		if are_equals([%Gem4, %Gem2], special):
-			bulk_points_turn([%Gem4, %Gem2])
-		if are_equals([%Gem7, %Gem5, %Gem3], special):
-			bulk_points_turn([%Gem7, %Gem5, %Gem3])
-		if are_equals([%Gem8, %Gem6], special):
-			bulk_points_turn([%Gem8, %Gem6])
+	var special = "row"
+
+	if are_equals([%Gem1, %Gem2, %Gem3], special):
+		bulk_points_turn([%Gem1, %Gem2, %Gem3])
+	if are_equals([%Gem4, %Gem5, %Gem6], special):
+		bulk_points_turn([%Gem4, %Gem5, %Gem6])
+	if are_equals([%Gem7, %Gem8, %Gem9], special):
+		bulk_points_turn([%Gem7, %Gem8, %Gem9])
 		
-	elif %Artefact.configuration == 2:
-		if are_equals([%Gem7, %Gem4, %Gem1], special):
-			bulk_points_turn([%Gem7, %Gem4, %Gem1])
-		if are_equals([%Gem8, %Gem5, %Gem2], special):
-			bulk_points_turn([%Gem8, %Gem5, %Gem2])
-		if are_equals([%Gem9, %Gem6, %Gem3], special):
-			bulk_points_turn([%Gem9, %Gem6, %Gem3])
+	if are_equals([%Gem7, %Gem4, %Gem1], special):
+		bulk_points_turn([%Gem7, %Gem4, %Gem1])
+	if are_equals([%Gem8, %Gem5, %Gem2], special):
+		bulk_points_turn([%Gem8, %Gem5, %Gem2])
+	if are_equals([%Gem9, %Gem6, %Gem3], special):
+		bulk_points_turn([%Gem9, %Gem6, %Gem3])
+
+	if are_equals([%Gem9, %Gem8, %Gem7], special):
+		bulk_points_turn([%Gem9, %Gem8, %Gem7])
+	if are_equals([%Gem6, %Gem5, %Gem4], special):
+		bulk_points_turn([%Gem6, %Gem5, %Gem4])
+	if are_equals([%Gem3, %Gem2, %Gem1], special):
+		bulk_points_turn([%Gem3, %Gem2, %Gem1])
+
+	if are_equals([%Gem3, %Gem6, %Gem9], special):
+		bulk_points_turn([%Gem3, %Gem6, %Gem9])
+	if are_equals([%Gem2, %Gem5, %Gem8], special):
+		bulk_points_turn([%Gem2, %Gem5, %Gem8])
+	if are_equals([%Gem1, %Gem4, %Gem7], special):
+		bulk_points_turn([%Gem1, %Gem4, %Gem7])
 		
-	elif %Artefact.configuration == 3:
-		if are_equals([%Gem8, %Gem4], special):
-			bulk_points_turn([%Gem8, %Gem4])
-		if are_equals([%Gem9, %Gem5, %Gem1], special):
-			bulk_points_turn([%Gem9, %Gem5, %Gem1])
-		if are_equals([%Gem6, %Gem2], special):
-			bulk_points_turn([%Gem6, %Gem2])
-		
-	elif %Artefact.configuration == 4:
-		if are_equals([%Gem9, %Gem8, %Gem7], special):
-			bulk_points_turn([%Gem9, %Gem8, %Gem7])
-		if are_equals([%Gem6, %Gem5, %Gem4], special):
-			bulk_points_turn([%Gem6, %Gem5, %Gem4])
-		if are_equals([%Gem3, %Gem2, %Gem1], special):
-			bulk_points_turn([%Gem3, %Gem2, %Gem1])
-		
-	elif %Artefact.configuration == 5:
-		if are_equals([%Gem6, %Gem8], special):
-			bulk_points_turn([%Gem6, %Gem8])
-		if are_equals([%Gem3, %Gem5, %Gem7], special):
-			bulk_points_turn([%Gem3, %Gem5, %Gem7])
-		if are_equals([%Gem2, %Gem4], special):
-			bulk_points_turn([%Gem2, %Gem4])
-		
-	elif %Artefact.configuration == 6:
-		if are_equals([%Gem3, %Gem6, %Gem9], special):
-			bulk_points_turn([%Gem3, %Gem6, %Gem9])
-		if are_equals([%Gem2, %Gem5, %Gem8], special):
-			bulk_points_turn([%Gem2, %Gem5, %Gem8])
-		if are_equals([%Gem1, %Gem4, %Gem7], special):
-			bulk_points_turn([%Gem1, %Gem4, %Gem7])
-		
-	elif %Artefact.configuration == 7:
-		if are_equals([%Gem2, %Gem6], special):
-			bulk_points_turn([%Gem2, %Gem6])
-		if are_equals([%Gem1, %Gem5, %Gem9], special):
-			bulk_points_turn([%Gem1, %Gem5, %Gem9])
-		if are_equals([%Gem4, %Gem8], special):
-			bulk_points_turn([%Gem4, %Gem8])
-		
-	return retval
-	
-func search_columns():
-	var retval = false
-	var special = "*"
-	if %Artefact.configuration == 0:
-		if are_equals([%Gem1, %Gem4, %Gem7], special):
-			bulk_points_turn([%Gem1, %Gem4, %Gem7])
-		if are_equals([%Gem2, %Gem5, %Gem8], special):
-			bulk_points_turn([%Gem2, %Gem5, %Gem8])
-		if are_equals([%Gem3, %Gem6, %Gem9], special):
-			bulk_points_turn([%Gem3, %Gem6, %Gem9])
-			
-	elif %Artefact.configuration == 1:
-		if are_equals([%Gem4, %Gem8], special):
-			bulk_points_turn([%Gem4, %Gem8])
-		if are_equals([%Gem1, %Gem5, %Gem9], special):
-			bulk_points_turn([%Gem1, %Gem5, %Gem9])
-		if are_equals([%Gem2, %Gem6], special):
-			bulk_points_turn([%Gem2, %Gem6])
-			
-	elif %Artefact.configuration == 2:
-		if are_equals([%Gem7, %Gem8, %Gem9], special):
-			bulk_points_turn([%Gem7, %Gem8, %Gem9])
-		if are_equals([%Gem4, %Gem5, %Gem6], special):
-			bulk_points_turn([%Gem4, %Gem5, %Gem6])
-		if are_equals([%Gem1, %Gem2, %Gem3], special):
-			bulk_points_turn([%Gem1, %Gem2, %Gem3])
-		
-	elif %Artefact.configuration == 3:
-		if are_equals([%Gem8, %Gem6], special):
-			bulk_points_turn([%Gem8, %Gem6])
-		if are_equals([%Gem7, %Gem5, %Gem3], special):
-			bulk_points_turn([%Gem7, %Gem5, %Gem3])
-		if are_equals([%Gem4, %Gem2], special):
-			bulk_points_turn([%Gem4, %Gem2])
-			
-	elif %Artefact.configuration == 4:
-		if are_equals([%Gem9, %Gem6, %Gem3], special):
-			bulk_points_turn([%Gem9, %Gem6, %Gem3])
-		if are_equals([%Gem8, %Gem5, %Gem2], special):
-			bulk_points_turn([%Gem8, %Gem5, %Gem2])
-		if are_equals([%Gem7, %Gem4, %Gem1], special):
-			bulk_points_turn([%Gem7, %Gem4, %Gem1])
-		
-	elif %Artefact.configuration == 5:
-		if are_equals([%Gem6, %Gem2], special):
-			bulk_points_turn([%Gem6, %Gem2])
-		if are_equals([%Gem9, %Gem5, %Gem1], special):
-			bulk_points_turn([%Gem9, %Gem5, %Gem1])
-		if are_equals([%Gem8, %Gem4], special):
-			bulk_points_turn([%Gem8, %Gem4])
-		
-	elif %Artefact.configuration == 6:
-		if are_equals([%Gem3, %Gem2, %Gem1], special):
-			bulk_points_turn([%Gem3, %Gem2, %Gem1])
-		if are_equals([%Gem6, %Gem5, %Gem4], special):
-			bulk_points_turn([%Gem6, %Gem5, %Gem4])
-		if are_equals([%Gem9, %Gem8, %Gem7], special):
-			bulk_points_turn([%Gem9, %Gem8, %Gem7])
-		
-	elif %Artefact.configuration == 7:
-		if are_equals([%Gem2, %Gem4], special):
-			bulk_points_turn([%Gem2, %Gem4])
-		if are_equals([%Gem3, %Gem5, %Gem7], special):
-			bulk_points_turn([%Gem3, %Gem5, %Gem7])
-		if are_equals([%Gem6, %Gem8], special):
-			bulk_points_turn([%Gem6, %Gem8])
-	
 	return retval
 	
 func search_cross():
 	var retval = false
-	#TODO: implementar
+	var special = "cross"
+	if are_equals([%Gem2, %Gem5, %Gem8, %Gem4, %Gem6], special):
+		bulk_points_turn([%Gem2, %Gem5, %Gem8, %Gem4, %Gem6])
+		
 	return retval
 	
 func search_diagonal():
 	var retval = false
-	#TODO: implementar
+	var special = "diagonal"
+
+	if are_equals([%Gem7, %Gem5, %Gem3], special):
+		bulk_points_turn([%Gem7, %Gem5, %Gem3])
+	if are_equals([%Gem1, %Gem5, %Gem9], special):
+		bulk_points_turn([%Gem1, %Gem5, %Gem9])
+
 	return retval
 	
 func _physics_process(delta: float) -> void:
@@ -209,6 +113,7 @@ func _physics_process(delta: float) -> void:
 	elif STATE == STATES.GAME_OVER:
 		%UI.show_perma_message("Game Over")
 	elif STATE == STATES.NEXT_TURN:
+		delay_in_count = 0.3
 		if delay > 0:
 			delay -= 1 * delta
 		else:

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dks6r6i2m8cog"]
 
 [ext_resource type="Texture2D" uid="uid://xd2kack4ql8r" path="res://sprites/gem1.png" id="1_bhq7q"]
+[ext_resource type="Texture2D" uid="uid://h43n5tpnw4y6" path="res://sprites/gem2.png" id="2_n1vw3"]
 [ext_resource type="Script" uid="uid://co8d4w6vu56ig" path="res://scenes/gem.gd" id="2_rj4j3"]
 [ext_resource type="Texture2D" uid="uid://ddlwvmwxinlt1" path="res://sprites/monsters/fish1.png" id="3_dhpy3"]
+[ext_resource type="Texture2D" uid="uid://iq0s0os87xxs" path="res://sprites/gem3.png" id="3_jm7m5"]
 [ext_resource type="Texture2D" uid="uid://fxxegh6sbgxn" path="res://sprites/monsters/poop1.png" id="3_rj4j3"]
 [ext_resource type="Texture2D" uid="uid://cp40c1aqoxetm" path="res://sprites/monsters/cyclops1.png" id="3_siowa"]
 [ext_resource type="Texture2D" uid="uid://dj0ux0timjc4q" path="res://sprites/monsters/poop2.png" id="4_dn3vp"]
@@ -25,6 +27,12 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_bhq7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n1vw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jm7m5")
 }],
 "loop": true,
 "name": &"default",
@@ -324,7 +332,7 @@ shape = SubResource("RectangleShape2D_35lcq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=326563092]
 libraries/ = SubResource("AnimationLibrary_qgn10")
-speed_scale = 3.0
+speed_scale = 5.0
 
 [node name="Points" type="AnimationPlayer" parent="." unique_id=1343433128]
 libraries/ = SubResource("AnimationLibrary_hgwl1")

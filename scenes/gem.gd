@@ -44,6 +44,7 @@ func set_monsta_callback():
 	$AnimationPlayer.stop()
 	playing_jump_animation = false
 	set_monsta(temp_monsta)
+	%monster_temp.visible = false
 	temp_monsta = null
 	$monster/stars.visible = false
 
@@ -58,6 +59,7 @@ func set_monsta(_monsta):
 
 func _physics_process(delta: float) -> void:
 	rotation_degrees = -get_parent().rotation_degrees
+	
 
 func hit(_monsta):
 	if monsta != null:

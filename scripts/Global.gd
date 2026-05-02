@@ -18,17 +18,17 @@ var monsta_poop = {
 	"name": "Poop",
 	"description": "I give 1 point in combo, -1 on falling",
 	"points_special": 1,
-	"points_falling": 1,
-	"special": "*",
+	"points_falling": -1,
+	"special": "row",
 }
 
 var monsta_fish = {
 	"id": "fish",
 	"name": "Fish",
-	"description": "I give 2 points in combo, -2 on falling",
-	"points_special": 2,
-	"points_falling": 2,
-	"special": "*",
+	"description": "I give 1 points in combo, -1 on falling",
+	"points_special": 1,
+	"points_falling": -1,
+	"special": "row",
 }
 
 var monsta_zombie = {
@@ -36,8 +36,8 @@ var monsta_zombie = {
 	"name": "Zombie",
 	"description":  "I give 3 points in combo, -5 on falling",
 	"points_special": 3,
-	"points_falling": 5,
-	"special": "*",
+	"points_falling": -5,
+	"special": "diagonal",
 }
 
 var monsta_vampire = {
@@ -53,8 +53,8 @@ var monsta_cyclops = {
 	"id": "cyclops",
 	"name": "Cyclops",
 	"description":  "I give 2 points in combo, -2 on falling",
-	"points_special": 5,
-	"points_falling": 0,
+	"points_special": 2,
+	"points_falling": -2,
 	"special": "diagonal",
 }
 
@@ -64,13 +64,13 @@ var monsta_spider = {
 	"description": "I ONLY give 5 points on falling.",
 	"points_special": 0,
 	"points_falling": 5,
-	"special": "*",
+	"special": "fall",
 }
 
 func init_vars():
 	LEVEL = 1
 	MONSTA_NEXT = null
-	ALL_MONSTAS = [monsta_poop, monsta_poop]#, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops, monsta_spider]
+	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops, monsta_spider]
 
 func _ready():
 	init_vars()

@@ -1,7 +1,7 @@
 extends Area2D
 var monsta = null
 var origin = null
-var speed = 800
+var speed = 1500
 
 func _ready() -> void:
 	add_to_group("minubullet")
@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 	if monsta:
 		global_position.y -= speed * delta
 		if global_position.y <= -150:
-			Global.SCORE -= monsta.points_falling
+			Global.SCORE += monsta.points_falling
 			Global.UI.lose_coins()
 			queue_free()
 

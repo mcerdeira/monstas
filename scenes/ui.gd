@@ -15,7 +15,7 @@ func show_message(message, state, _start_gun = false):
 	msg_ttl = msg_ttl_total
 	
 func lose_coins():
-	$UI/objetive_anim.play("new_animation")
+	$objetive_anim.play("new_animation")
 	
 func emit_from_coins():
 	Global.emit($lbl_objetive_point.global_position, 5)
