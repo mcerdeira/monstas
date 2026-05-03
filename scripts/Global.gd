@@ -12,6 +12,7 @@ var LEVEL = 0
 var IN_SHOP = false
 var IN_COLLECTION = false
 var ALL_MONSTAS = []
+var FIRSTS = []
 var delay_in_count = 0.0
 
 var monsta_poop = {
@@ -69,6 +70,20 @@ var monsta_spider = {
 }
 
 func init_vars():
+	randomize()
+	FIRSTS = []
+	var configs = [
+					[monsta_poop, monsta_poop, monsta_fish, monsta_fish],
+					[monsta_zombie, monsta_zombie, monsta_zombie, monsta_vampire],
+					[monsta_vampire, monsta_vampire, monsta_vampire, monsta_vampire],
+					[monsta_cyclops, monsta_cyclops, monsta_spider, monsta_spider],
+					[monsta_vampire, monsta_vampire, monsta_cyclops, monsta_cyclops],
+				  ]
+	var config = Global.pick_random(configs)
+	config.shuffle()
+	for i in range(3):
+		FIRSTS.append(config[i])
+		
 	LEVEL = 1
 	MONSTA_NEXT = null
 	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops, monsta_spider]

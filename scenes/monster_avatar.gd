@@ -45,12 +45,11 @@ func new_turn():
 	visible = true
 	%monsta_bullet.visible = false
 	var mons = null
-	if Global.MONSTA_NEXT == null:
-		mons = [] + Global.ALL_MONSTAS
-		mons.shuffle()
-		current_monsta = mons.pop_front()
-		%monsta_next.set_monsta(mons[0])
-		Global.MONSTA_NEXT = mons[0]
+	if Global.MONSTA_NEXT == null or Global.FIRSTS.size() > 1:
+		Global.FIRSTS.shuffle()
+		current_monsta = Global.FIRSTS.pop_front()
+		%monsta_next.set_monsta(Global.FIRSTS[0])
+		Global.MONSTA_NEXT = Global.FIRSTS[0]
 	else:
 		var board = [
 				[%Gem1.monsta, %Gem2.monsta, %Gem3.monsta],

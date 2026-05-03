@@ -52,7 +52,6 @@ func set_monsta(_monsta):
 
 func _physics_process(delta: float) -> void:
 	rotation_degrees = -get_parent().rotation_degrees
-	
 
 func hit(_monsta):
 	if monsta != null:
