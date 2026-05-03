@@ -19,7 +19,7 @@ var monsta_poop = {
 	"description": "I give 1 point in combo, -1 on falling",
 	"points_special": 1,
 	"points_falling": -1,
-	"special": "row",
+	"special": "*",
 }
 
 var monsta_fish = {
@@ -28,7 +28,7 @@ var monsta_fish = {
 	"description": "I give 1 points in combo, -1 on falling",
 	"points_special": 1,
 	"points_falling": -1,
-	"special": "row",
+	"special": "*",
 }
 
 var monsta_zombie = {
@@ -37,7 +37,7 @@ var monsta_zombie = {
 	"description":  "I give 3 points in combo, -5 on falling",
 	"points_special": 3,
 	"points_falling": -5,
-	"special": "diagonal",
+	"special": "*",
 }
 
 var monsta_vampire = {
@@ -46,7 +46,7 @@ var monsta_vampire = {
 	"description": "I give 5 points in combo, 0 on falling",
 	"points_special": 5,
 	"points_falling": 0,
-	"special": "cross",
+	"special": "*",
 }
 
 var monsta_cyclops = {
@@ -55,7 +55,7 @@ var monsta_cyclops = {
 	"description":  "I give 2 points in combo, -2 on falling",
 	"points_special": 2,
 	"points_falling": -2,
-	"special": "diagonal",
+	"special": "*",
 }
 
 var monsta_spider = {
@@ -64,7 +64,7 @@ var monsta_spider = {
 	"description": "I ONLY give 5 points on falling.",
 	"points_special": 0,
 	"points_falling": 5,
-	"special": "fall",
+	"special": "*",
 }
 
 func init_vars():

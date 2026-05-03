@@ -4,15 +4,15 @@ var duration = 0.1
 var configuration = 0
 
 func _ready() -> void:
-	%Gem1.frame = 0
+	%Gem1.frame = 1
 	%Gem2.frame = 0
-	%Gem3.frame = 0
-	%Gem4.frame = 1
+	%Gem3.frame = 1
+	%Gem4.frame = 0
 	%Gem5.frame = 1
-	%Gem6.frame = 1
-	%Gem7.frame = 2
-	%Gem8.frame = 2
-	%Gem9.frame = 2
+	%Gem6.frame = 0
+	%Gem7.frame = 1
+	%Gem8.frame = 0
+	%Gem9.frame = 1
 
 func _physics_process(delta: float) -> void:
 	$Label.rotation_degrees = -rotation_degrees

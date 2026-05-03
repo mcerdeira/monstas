@@ -49,7 +49,7 @@ func _ready() -> void:
 	
 func search_rows():
 	var retval = false
-	var special = "row"
+	var special = "*"
 
 	if are_equals([%Gem1, %Gem2, %Gem3], special):
 		bulk_points_turn([%Gem1, %Gem2, %Gem3])
@@ -83,7 +83,7 @@ func search_rows():
 	
 func search_cross():
 	var retval = false
-	var special = "cross"
+	var special = "*"
 	if are_equals([%Gem2, %Gem5, %Gem8, %Gem4, %Gem6], special):
 		bulk_points_turn([%Gem2, %Gem5, %Gem8, %Gem4, %Gem6])
 		
@@ -91,7 +91,7 @@ func search_cross():
 	
 func search_diagonal():
 	var retval = false
-	var special = "diagonal"
+	var special = "*"
 
 	if are_equals([%Gem7, %Gem5, %Gem3], special):
 		bulk_points_turn([%Gem7, %Gem5, %Gem3])
