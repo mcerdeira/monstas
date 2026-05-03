@@ -3,32 +3,25 @@ var monsta = null
 var temp_monsta = null #donde guardamos temporalmente el monstruo para el salto
 var minibullet_obj = load("res://scenes/minibullet.tscn") #bala para direccionar el salto
 var playing_jump_animation = false #indica si se está reproduciendo la animación de salto
-var point_turn = 0 #Los puntos a considerar en este "turno"
+var point_turn = null
 
 func _ready() -> void:
 	add_to_group("monstaslot")
 	
 func reset_points_turn(effects, expire_if = false):
-	$monster/points_in_turn.text = ""
-	$monster/points_in_turn.visible = false
 	if effects:
 		Global.emit(global_position, 5)
 	
-	if expire_if and point_turn > 0:
+	if expire_if and point_turn != null:
 		set_monsta(null)
 	
-	point_turn = 0
+	point_turn = null
 	
 func set_points_turn(points):
 	$Points.play("new_animation")
 	Global.emit(global_position, 5)
 	Global.THIS_TURN_SCORE += points
-	point_turn += points
-	if point_turn > 0:
-		$monster/points_in_turn.text = "+" + str(point_turn)
-		$monster/points_in_turn.visible = true
-	else:
-		$monster/points_in_turn.visible = false
+	point_turn = points
 	
 func expire():
 	$Points.play("new_animation")
@@ -63,7 +56,7 @@ func _physics_process(delta: float) -> void:
 
 func hit(_monsta):
 	if monsta != null:
-		Global.delay_in_count = 1.3
+		Global.delay_in_count = 1.1
 		Global.shaker_obj.shake(2.0, 1.1)
 		Global.emit(global_position, 3)
 		%monster_temp.animation = $monster.animation

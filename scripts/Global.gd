@@ -19,43 +19,43 @@ var monsta_poop = {
 	"name": "Poop",
 	"description": "I give 1 point in combo, -1 on falling",
 	"points_special": 1,
-	"points_falling": -1,
+	"points_falling": -(1 * 3),
 	"special": "*",
 }
 
 var monsta_fish = {
 	"id": "fish",
 	"name": "Fish",
-	"description": "I give 1 points in combo, -1 on falling",
-	"points_special": 1,
-	"points_falling": -1,
+	"description": "I give 2 points in combo, -2 on falling",
+	"points_special": 2,
+	"points_falling": -(2 * 3),
 	"special": "*",
 }
 
 var monsta_zombie = {
 	"id": "zombie",
 	"name": "Zombie",
-	"description":  "I give 3 points in combo, -5 on falling",
+	"description":  "I give 3 points in combo, -3 on falling",
 	"points_special": 3,
-	"points_falling": -5,
+	"points_falling": -(3 * 3),
 	"special": "*",
 }
 
 var monsta_vampire = {
 	"id": "vampire",
 	"name": "Vampire",
-	"description": "I give 5 points in combo, 0 on falling",
+	"description": "I give 5 points in combo, -5 on falling",
 	"points_special": 5,
-	"points_falling": 0,
+	"points_falling": -(5 * 3),
 	"special": "*",
 }
 
 var monsta_cyclops = {
 	"id": "cyclops",
 	"name": "Cyclops",
-	"description":  "I give 2 points in combo, -2 on falling",
-	"points_special": 2,
-	"points_falling": -2,
+	"description":  "I give 4 points in combo, -3 on falling",
+	"points_special": 4,
+	"points_falling": -(4 * 3),
 	"special": "*",
 }
 
@@ -63,7 +63,7 @@ var monsta_spider = {
 	"id": "spider",
 	"name": "Spider",
 	"description": "I ONLY give 5 points on falling.",
-	"points_special": 1,
+	"points_special": 0,
 	"points_falling": 5,
 	"special": "*",
 }
