@@ -52,12 +52,15 @@ func new_turn():
 		%monsta_next.set_monsta(mons[0])
 		Global.MONSTA_NEXT = mons[0]
 	else:
+		var board = [
+				[%Gem1.monsta, %Gem2.monsta, %Gem3.monsta],
+	 			[%Gem4.monsta, %Gem5.monsta, %Gem6.monsta],
+				[%Gem7.monsta, %Gem8.monsta, %Gem9.monsta],
+			]
 		current_monsta = Global.MONSTA_NEXT
-		mons = [] + Global.ALL_MONSTAS
-		mons.shuffle()
-		%monsta_next.set_monsta(mons[0])
-		Global.MONSTA_NEXT = mons[0]
-		
+		mons = Global.get_weighted_random_monster(board)
+		%monsta_next.set_monsta(mons)
+		Global.MONSTA_NEXT = mons
 		
 	$monster_avatar.play(current_monsta.id)
 

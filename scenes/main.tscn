@@ -20,7 +20,6 @@
 [ext_resource type="Shader" uid="uid://dga0ew8efdc6t" path="res://scenes/stars.gdshader" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://w45u4wattndj" path="res://scenes/monster_avatar.tscn" id="13_trceg"]
 [ext_resource type="PackedScene" uid="uid://cm8cmwah61asr" path="res://scenes/monsta_bullet.tscn" id="13_yc10j"]
-[ext_resource type="PackedScene" uid="uid://ch184rfjyregw" path="res://scenes/re_roll.tscn" id="16_2f3dj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pm3ni"]
 animations = [{
@@ -360,9 +359,6 @@ unique_name_in_owner = true
 position = Vector2(38, 72)
 scale = Vector2(0.5, 0.5)
 imnext = true
-
-[node name="ReRoll" parent="." unique_id=899805370 instance=ExtResource("16_2f3dj")]
-position = Vector2(1080, 585)
 
 [node name="Artefact" type="Node2D" parent="." unique_id=1974696450]
 unique_name_in_owner = true

@@ -12,6 +12,7 @@ var LEVEL = 0
 var IN_SHOP = false
 var IN_COLLECTION = false
 var ALL_MONSTAS = []
+var delay_in_count = 0.0
 
 var monsta_poop = {
 	"id": "poop",
@@ -62,7 +63,7 @@ var monsta_spider = {
 	"id": "spider",
 	"name": "Spider",
 	"description": "I ONLY give 5 points on falling.",
-	"points_special": 0,
+	"points_special": 1,
 	"points_falling": 5,
 	"special": "*",
 }
@@ -85,6 +86,79 @@ func emit(_global_position, count, particle_obj = null, size = 1):
 		p.global_position = _global_position
 		p.size = size
 		add_child(p)
+		
+func get_weighted_random_monster(board):
+	var weights = {}
+	var monsters = ALL_MONSTAS
+	# 1. pesos base
+	for m in monsters:
+		weights[m] = 1.0
+
+	# 2. analizar tablero y sumar pesos
+	for m in monsters:
+		var score = evaluate_monster_potential(board, m)
+		weights[m] += score
+
+	# 3. elegir weighted random
+	return weighted_pick(weights)
+		
+func evaluate_monster_potential(board, monster) -> float:
+	var score = 0.0
+
+	var lines = get_all_lines(board)
+
+	for line in lines:
+		var count = 0
+		var empty = 0
+
+		for cell in line:
+			if cell == null:
+				empty += 1
+			elif cell.id == monster.id:
+				count += 1
+			
+		# caso fuerte: 2 + 1 vacío → casi combo
+		if count == 2 and empty == 1:
+			score += 3.0
+
+		# caso leve: 1 + 2 vacíos → potencial
+		elif count == 1 and empty == 2:
+			score += 1.0
+
+	return score
+	
+func weighted_pick(weights: Dictionary):
+	var total = 0.0
+
+	for w in weights.values():
+		total += w
+
+	var r = randf() * total
+	var cumulative = 0.0
+
+	for key in weights.keys():
+		cumulative += weights[key]
+		if r <= cumulative:
+			return key
+
+	return weights.keys()[0] # fallback
+		
+func get_all_lines(board):
+	var lines = []
+
+	# filas
+	for y in range(3):
+		lines.append([board[y][0], board[y][1], board[y][2]])
+
+	# columnas
+	for x in range(3):
+		lines.append([board[0][x], board[1][x], board[2][x]])
+
+	# diagonales
+	lines.append([board[0][0], board[1][1], board[2][2]])
+	lines.append([board[0][2], board[1][1], board[2][0]])
+
+	return lines
 	
 func pick_random(container):
 	if typeof(container) == TYPE_DICTIONARY:

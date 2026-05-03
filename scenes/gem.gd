@@ -63,6 +63,7 @@ func _physics_process(delta: float) -> void:
 
 func hit(_monsta):
 	if monsta != null:
+		Global.delay_in_count = 1.3
 		Global.shaker_obj.shake(2.0, 1.1)
 		Global.emit(global_position, 3)
 		%monster_temp.animation = $monster.animation

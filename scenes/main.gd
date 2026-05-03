@@ -1,6 +1,5 @@
 extends Node2D
 var delay = 0.0
-var delay_in_count = 0.0
 var count_index = 0
 
 var counting_functions = [
@@ -113,7 +112,7 @@ func _physics_process(delta: float) -> void:
 	elif STATE == STATES.GAME_OVER:
 		%UI.show_perma_message("Game Over")
 	elif STATE == STATES.NEXT_TURN:
-		delay_in_count = 0.3
+		Global.delay_in_count = 0.0
 		if delay > 0:
 			delay -= 1 * delta
 		else:
@@ -128,13 +127,13 @@ func _physics_process(delta: float) -> void:
 			STATE = STATES.PLAYER_TURN
 			
 	elif STATE == STATES.COUNTING:
-		if delay_in_count <= 0:
+		if Global.delay_in_count <= 0:
 			if count_index < counting_functions.size():
-				delay_in_count = 1.3
+				Global.delay_in_count = 1.3
 				var function = counting_functions[count_index]
 				var result = function.call()
 				if !result:
-					delay_in_count = 0
+					Global.delay_in_count = 0
 				count_index += 1
 			else:
 				count_index = 0
@@ -144,16 +143,18 @@ func _physics_process(delta: float) -> void:
 				for monstaslot in monstaslots:
 					monstaslot.reset_points_turn(false, true)
 		else:
-			delay_in_count -= 1 * delta
+			Global.delay_in_count -= 1 * delta
 				
 	elif STATE == STATES.SHOWING_RESULTS:
-		if delay_in_count <= 0:
+		if Global.delay_in_count <= 0:
 			if Global.THIS_TURN_SCORE > 0:
-				delay_in_count = 0.1
+				Global.delay_in_count = 0.1
 				Global.SCORE += 1
 				Global.THIS_TURN_SCORE -= 1
+				$UI/objetive_anim.play("new_animation")
+				Global.shaker_obj.shake(3.1, 0.2)
 			else:
 				$UI/objetive_anim.stop()
 				STATE = STATES.NEXT_TURN
 		else:
-			delay_in_count -= 1 * delta
+			Global.delay_in_count -= 1 * delta
