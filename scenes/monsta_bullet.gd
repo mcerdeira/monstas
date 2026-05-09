@@ -18,7 +18,7 @@ func shoot(_monsta):
 	visible = true
 	
 func return_home():
-	global_position = original_position
+	global_position = get_parent().global_position
 	Global.Main.STATE = Global.Main.STATES.COUNTING
 
 func _on_area_entered(area: Area2D) -> void:

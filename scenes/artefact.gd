@@ -24,6 +24,11 @@ func _physics_process(delta: float) -> void:
 			%Gun.start_gun()
 			
 		if !animating:
+			if Input.is_action_just_pressed("leftS"):
+				%Gun.move_left()
+			elif Input.is_action_just_pressed("rightS"):
+				%Gun.move_right()
+			
 			if Input.is_action_just_pressed("shoot"):
 				%Gun.shoot()
 			if Input.is_action_just_pressed("left"):
