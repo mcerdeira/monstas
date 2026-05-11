@@ -2,11 +2,9 @@ extends Area2D
 var monsta = null
 var shooting = false
 var speed = 800
-var original_position = null
 
 func _ready() -> void:
 	visible = false
-	original_position = global_position
 	
 func _physics_process(delta: float) -> void:
 	if shooting:

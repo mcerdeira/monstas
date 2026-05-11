@@ -5,5 +5,13 @@ func _physics_process(delta: float) -> void:
 		$sprite.scale.x = Global.death_bar / 100
 		Global.death_bar -= 5 * delta
 		if Global.death_bar <= 0:
-			Global.death_bar = 100
-			Global.SPIDERS += 1
+			reset_bar(true)
+			
+func reset_bar(bad = false):
+	if bad:
+		Global.SPIDERS += 1
+	Global.death_bar = 100
+	Global.emit(global_position, 5)
+	Global.emit($sprite.global_position, 5)
+	Global.emit($spider.global_position, 5)
+	$anim.play("new_animation")

@@ -23,17 +23,18 @@ func _ready() -> void:
 			fr = 0
 
 func _physics_process(delta: float) -> void:
+	if !animating:
+		if Input.is_action_just_pressed("leftS"):
+			%Gun.move_left()
+		elif Input.is_action_just_pressed("rightS"):
+			%Gun.move_right()
+	
 	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
 		if !%shoot_line.visible:
 			%shoot_line.visible = true
 			%Gun.start_gun()
 			
 		if !animating:
-			if Input.is_action_just_pressed("leftS"):
-				%Gun.move_left()
-			elif Input.is_action_just_pressed("rightS"):
-				%Gun.move_right()
-			
 			if Input.is_action_just_pressed("shoot"):
 				%Gun.shoot()
 			if Input.is_action_just_pressed("left"):
