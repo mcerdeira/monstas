@@ -47,6 +47,9 @@ func _ready() -> void:
 	randomize()
 	Global.Main = self
 	
+func add_spider():
+	%monster_avatar.add_spider()
+	
 func search_columns():
 	var special = "*"
 	var last_monsta = null

@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 		global_position.y -= speed * delta
 		if global_position.y <= -150:
 			if monsta.points_falling !=0:
-				Global.add_spiders()
+				Global.Main.add_spider()
 			Global.UI.lose_coins()
 			queue_free()
 

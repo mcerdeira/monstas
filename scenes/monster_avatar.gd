@@ -27,8 +27,10 @@ func set_monsta(_monsta, count = 0):
 			$btn_buy.visible = true
 		
 	if !_monsta:
+		Global.emit(global_position, 5)
 		$monster_avatar.play("empty")
 	else:
+		Global.emit(global_position, 5)
 		$monster_avatar.play(current_monsta.id)
 		
 func re_roll():
@@ -59,17 +61,18 @@ func new_turn():
 				[%Gem21.monsta, %Gem22.monsta, %Gem23.monsta, %Gem24.monsta, %Gem25.monsta],
 			]
 			
-		if Global.SPIDERS > 0:
-			Global.SPIDERS -= 1
-			current_monsta = Global.monsta_spider
-		else:
-			current_monsta = Global.MONSTA_NEXT
+		current_monsta = Global.MONSTA_NEXT
 			
 		mons = Global.get_weighted_random_monster(board)
 		%monsta_next.set_monsta(mons)
 		Global.MONSTA_NEXT = mons
 		
 	$monster_avatar.play(current_monsta.id)
+	
+func add_spider():
+	var mons = Global.monsta_spider
+	%monsta_next.set_monsta(mons)
+	Global.MONSTA_NEXT = mons
 
 func _on_click_area_mouse_entered() -> void:
 	if !imnext:

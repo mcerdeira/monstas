@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 			
 func reset_bar(bad = false):
 	if bad:
-		Global.SPIDERS += 1
+		Global.Main.add_spider()
 	Global.death_bar = 100
 	Global.emit(global_position, 5)
 	Global.emit($sprite.global_position, 5)

@@ -72,9 +72,6 @@ var monsta_spider = {
 	"special": "*",
 }
 
-func add_spiders():
-	SPIDERS += 1
-
 func init_vars():
 	randomize()
 	FIRSTS = []
