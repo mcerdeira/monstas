@@ -3,21 +3,26 @@ var animating = false #flag para saber si está rotando el tablero y bloquear ac
 var duration = 0.1
 var configuration = 0
 
+func init_board():
+	Global.board = []
+	for x in range(5):
+		Global.board.append([])
+		for y in range(5):
+			var index = y * 5 + x + 1
+			var cell = get_node("Gem%d" % index)
+			Global.board[x].append(cell)
+
 func _ready() -> void:
-	%Gem1.frame = 1
-	%Gem2.frame = 0
-	%Gem3.frame = 1
-	%Gem4.frame = 0
-	%Gem5.frame = 1
-	%Gem6.frame = 0
-	%Gem7.frame = 1
-	%Gem8.frame = 0
-	%Gem9.frame = 1
+	var fr = 0
+	var gems = get_children()
+	for g in gems:
+		g.frame = fr
+		if fr == 0:
+			fr = 1
+		else: 
+			fr = 0
 
 func _physics_process(delta: float) -> void:
-	$Label.rotation_degrees = -rotation_degrees
-	#$Label.text = str(rotation_degrees)
-	
 	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
 		if !%shoot_line.visible:
 			%shoot_line.visible = true

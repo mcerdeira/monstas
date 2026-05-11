@@ -14,6 +14,7 @@ var IN_COLLECTION = false
 var ALL_MONSTAS = []
 var FIRSTS = []
 var delay_in_count = 0.0
+var board = []
 
 var monsta_poop = {
 	"id": "poop",
@@ -119,7 +120,6 @@ func get_weighted_random_monster(board):
 		
 func evaluate_monster_potential(board, monster) -> float:
 	var score = 0.0
-
 	var lines = get_all_lines(board)
 
 	for line in lines:

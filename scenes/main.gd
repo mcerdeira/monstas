@@ -4,6 +4,7 @@ var count_index = 0
 
 var counting_functions = [
 	search_rows,
+	search_columns,
 	search_cross,
 	search_diagonal,
 ]
@@ -27,7 +28,7 @@ var STATE : STATES = STATES.INIT
 func are_equals(monstas, special):
 	var id = null
 	for m in monstas:
-		if m.monsta == null or  m.monsta.special != special:
+		if m == null or m.monsta == null or m.monsta.special != special:
 			return false
 			
 		if id == null:
@@ -46,40 +47,48 @@ func _ready() -> void:
 	randomize()
 	Global.Main = self
 	
-func search_rows():
-	var retval = false
+func search_columns():
 	var special = "*"
-
-	if are_equals([%Gem1, %Gem2, %Gem3], special):
-		bulk_points_turn([%Gem1, %Gem2, %Gem3])
-	if are_equals([%Gem4, %Gem5, %Gem6], special):
-		bulk_points_turn([%Gem4, %Gem5, %Gem6])
-	if are_equals([%Gem7, %Gem8, %Gem9], special):
-		bulk_points_turn([%Gem7, %Gem8, %Gem9])
-		
-	if are_equals([%Gem7, %Gem4, %Gem1], special):
-		bulk_points_turn([%Gem7, %Gem4, %Gem1])
-	if are_equals([%Gem8, %Gem5, %Gem2], special):
-		bulk_points_turn([%Gem8, %Gem5, %Gem2])
-	if are_equals([%Gem9, %Gem6, %Gem3], special):
-		bulk_points_turn([%Gem9, %Gem6, %Gem3])
-
-	if are_equals([%Gem9, %Gem8, %Gem7], special):
-		bulk_points_turn([%Gem9, %Gem8, %Gem7])
-	if are_equals([%Gem6, %Gem5, %Gem4], special):
-		bulk_points_turn([%Gem6, %Gem5, %Gem4])
-	if are_equals([%Gem3, %Gem2, %Gem1], special):
-		bulk_points_turn([%Gem3, %Gem2, %Gem1])
-
-	if are_equals([%Gem3, %Gem6, %Gem9], special):
-		bulk_points_turn([%Gem3, %Gem6, %Gem9])
-	if are_equals([%Gem2, %Gem5, %Gem8], special):
-		bulk_points_turn([%Gem2, %Gem5, %Gem8])
-	if are_equals([%Gem1, %Gem4, %Gem7], special):
-		bulk_points_turn([%Gem1, %Gem4, %Gem7])
-		
-	return retval
+	var last_monsta = null
+	var combo = []
+	for x in range(5):
+		eval_combo(combo)
+		combo = []
+		for y in range(5):
+			var monsta = Global.board[x][y]
+			if are_equals([last_monsta, monsta], special):
+				combo.append(monsta)
+			else:
+				eval_combo(combo)
+				combo = []
+				combo.append(monsta)
+			last_monsta = monsta
+			
+	eval_combo(combo)
 	
+func search_rows():
+	var special = "*"
+	var last_monsta = null
+	var combo = []
+	for y in range(5):
+		eval_combo(combo)
+		combo = []
+		for x in range(5):
+			var monsta = Global.board[x][y]
+			if are_equals([last_monsta, monsta], special):
+				combo.append(monsta)
+			else:
+				eval_combo(combo)
+				combo = []
+				combo.append(monsta)
+			last_monsta = monsta
+	
+	eval_combo(combo)
+		
+func eval_combo(combo):
+	if combo.size() > 2:
+		bulk_points_turn(combo)
+			
 func search_cross():
 	var retval = false
 	var special = "*"
@@ -127,13 +136,15 @@ func _physics_process(delta: float) -> void:
 			STATE = STATES.PLAYER_TURN
 			
 	elif STATE == STATES.COUNTING:
+		if Global.board == []:
+			%Artefact.init_board()
+		
 		if Global.delay_in_count <= 0:
 			if count_index < counting_functions.size():
 				Global.delay_in_count = 1.3
 				var function = counting_functions[count_index]
-				var result = function.call()
-				if !result:
-					Global.delay_in_count = 0
+				function.call()
+				Global.delay_in_count = 0
 				count_index += 1
 			else:
 				count_index = 0

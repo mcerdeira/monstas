@@ -28,6 +28,7 @@ Music="*res://scripts/Music.gd"
 
 window/size/viewport_height=640
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 mouse_cursor/custom_image="uid://cga7pcbw414a"
 
 [editor]
@@ -91,4 +92,6 @@ downS={
 
 textures/canvas_textures/default_texture_filter=0
 textures/canvas_textures/default_texture_repeat=1
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

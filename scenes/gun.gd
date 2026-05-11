@@ -1,6 +1,6 @@
 extends Node2D
-var poss_idx = 1
-var poss = [Vector2(576 - 64, 584), Vector2(576, 584), Vector2(576 + 64, 584)]
+var poss_idx = 2
+var poss = [Vector2(576 - 64 - 64, 584), Vector2(576 - 64, 584), Vector2(576, 584), Vector2(576 + 64, 584), Vector2(576 + 64 + 64, 584)]
 var rotate_speed = 1000
 
 func re_roll():
@@ -14,7 +14,7 @@ func move_left():
 	
 func move_right():
 	poss_idx += 1
-	if poss_idx > 2:
+	if poss_idx > poss.size()-1:
 		poss_idx = 0
 	position_me()
 	
