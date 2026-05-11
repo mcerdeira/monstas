@@ -87,7 +87,9 @@ func search_rows():
 		
 func eval_combo(combo):
 	if combo.size() > 2:
+		Global.death_bar = 100
 		bulk_points_turn(combo)
+		%UI.show_message("Combo x" + str(combo.size()), null, false)
 			
 func search_cross():
 	var retval = false

@@ -52,11 +52,19 @@ func new_turn():
 		Global.MONSTA_NEXT = Global.FIRSTS[0]
 	else:
 		var board = [
-				[%Gem1.monsta, %Gem2.monsta, %Gem3.monsta],
-	 			[%Gem4.monsta, %Gem5.monsta, %Gem6.monsta],
-				[%Gem7.monsta, %Gem8.monsta, %Gem9.monsta],
+				[%Gem1.monsta, %Gem2.monsta, %Gem3.monsta, %Gem4.monsta, %Gem5.monsta],
+				[%Gem6.monsta, %Gem7.monsta, %Gem8.monsta, %Gem9.monsta, %Gem10.monsta],
+				[%Gem11.monsta, %Gem12.monsta, %Gem13.monsta, %Gem14.monsta, %Gem15.monsta],
+				[%Gem16.monsta, %Gem17.monsta, %Gem18.monsta, %Gem19.monsta, %Gem20.monsta],
+				[%Gem21.monsta, %Gem22.monsta, %Gem23.monsta, %Gem24.monsta, %Gem25.monsta],
 			]
-		current_monsta = Global.MONSTA_NEXT
+			
+		if Global.SPIDERS > 0:
+			Global.SPIDERS -= 1
+			current_monsta = Global.monsta_spider
+		else:
+			current_monsta = Global.MONSTA_NEXT
+			
 		mons = Global.get_weighted_random_monster(board)
 		%monsta_next.set_monsta(mons)
 		Global.MONSTA_NEXT = mons

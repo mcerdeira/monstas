@@ -34,7 +34,8 @@ func _physics_process(delta: float) -> void:
 		if msg_ttl <= 0:
 			if goto_state != Global.Main.STATES.GAME_OVER:
 				%lbl_message.visible = false
-			Global.Main.STATE = goto_state
+			if goto_state != null:
+				Global.Main.STATE = goto_state
 			if start_gun:
 				start_gun = false
 				%Gun.start_gun()

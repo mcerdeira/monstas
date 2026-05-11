@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 					configuration = 7
 				animating = true
 				var tween = get_tree().create_tween()
-				tween.tween_property(self, "rotation_degrees", rotation_degrees - 45.0, duration)
+				tween.tween_property(self, "rotation_degrees", rotation_degrees - 90.0, duration)
 				tween.tween_callback(_ended)
 			elif Input.is_action_just_pressed("right"):
 				configuration += 1
@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 					configuration = 0
 				animating = true
 				var tween = get_tree().create_tween()
-				tween.tween_property(self, "rotation_degrees", rotation_degrees + 45.0, duration)
+				tween.tween_property(self, "rotation_degrees", rotation_degrees + 90.0, duration)
 				tween.tween_callback(_ended)
 	else:
 		%shoot_line.visible = false

@@ -13,62 +13,67 @@ var IN_SHOP = false
 var IN_COLLECTION = false
 var ALL_MONSTAS = []
 var FIRSTS = []
+var SPIDERS = 0
 var delay_in_count = 0.0
 var board = []
+var death_bar = 100
 
 var monsta_poop = {
 	"id": "poop",
 	"name": "Poop",
-	"description": "I give 1 point in combo, -1 on falling",
+	"description": "FFFFFFFFARRRTTTTT",
 	"points_special": 1,
-	"points_falling": -(1 * 3),
+	"points_falling": -50,
 	"special": "*",
 }
 
 var monsta_fish = {
 	"id": "fish",
 	"name": "Fish",
-	"description": "I give 2 points in combo, -2 on falling",
-	"points_special": 2,
-	"points_falling": -(2 * 3),
+	"description": "GLUBBBB GLULBUBLUBLUB",
+	"points_special": 1,
+	"points_falling": 0,
 	"special": "*",
 }
 
 var monsta_zombie = {
 	"id": "zombie",
 	"name": "Zombie",
-	"description":  "I give 3 points in combo, -3 on falling",
-	"points_special": 3,
-	"points_falling": -(3 * 3),
+	"description":  "BRRRRAAAINNNSSSSSS",
+	"points_special": 1,
+	"points_falling": -50,
 	"special": "*",
 }
 
 var monsta_vampire = {
 	"id": "vampire",
 	"name": "Vampire",
-	"description": "I give 5 points in combo, -5 on falling",
-	"points_special": 5,
-	"points_falling": -(5 * 3),
+	"description": "KII KII KII KII",
+	"points_special": 1,
+	"points_falling": -50,
 	"special": "*",
 }
 
 var monsta_cyclops = {
 	"id": "cyclops",
 	"name": "Cyclops",
-	"description":  "I give 4 points in combo, -3 on falling",
-	"points_special": 4,
-	"points_falling": -(4 * 3),
+	"description":  "SLURPPPPPP",
+	"points_special": 1,
+	"points_falling": -50,
 	"special": "*",
 }
 
 var monsta_spider = {
 	"id": "spider",
 	"name": "Spider",
-	"description": "I ONLY give 5 points on falling.",
+	"description": "WIIIIIII!!!!!",
 	"points_special": 0,
-	"points_falling": 5,
+	"points_falling": 0,
 	"special": "*",
 }
+
+func add_spiders():
+	SPIDERS += 1
 
 func init_vars():
 	randomize()
@@ -77,7 +82,6 @@ func init_vars():
 					[monsta_poop, monsta_poop, monsta_fish, monsta_fish],
 					[monsta_zombie, monsta_zombie, monsta_zombie, monsta_vampire],
 					[monsta_vampire, monsta_vampire, monsta_vampire, monsta_vampire],
-					[monsta_cyclops, monsta_cyclops, monsta_spider, monsta_spider],
 					[monsta_vampire, monsta_vampire, monsta_cyclops, monsta_cyclops],
 				  ]
 	var config = Global.pick_random(configs)
@@ -87,7 +91,7 @@ func init_vars():
 		
 	LEVEL = 1
 	MONSTA_NEXT = null
-	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops, monsta_spider]
+	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops]
 
 func _ready():
 	init_vars()
@@ -162,16 +166,12 @@ func get_all_lines(board):
 	var lines = []
 
 	# filas
-	for y in range(3):
-		lines.append([board[y][0], board[y][1], board[y][2]])
+	for y in range(5):
+		lines.append([board[y][0], board[y][1], board[y][2], board[y][3], board[y][4]])
 
 	# columnas
-	for x in range(3):
-		lines.append([board[0][x], board[1][x], board[2][x]])
-
-	# diagonales
-	lines.append([board[0][0], board[1][1], board[2][2]])
-	lines.append([board[0][2], board[1][1], board[2][0]])
+	for x in range(5):
+		lines.append([board[0][x], board[1][x], board[2][x], board[3][x], board[4][x]])
 
 	return lines
 	
