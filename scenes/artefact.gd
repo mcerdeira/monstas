@@ -3,6 +3,28 @@ var animating = false #flag para saber si está rotando el tablero y bloquear ac
 var duration = 0.1
 var configuration = 0
 
+var poss_idx = 2
+var poss = [Vector2(576 - (64 * 2), 240), 
+			Vector2(576 - 64, 240), 
+			Vector2(576, 240), 
+			Vector2(576 + 64, 240), 
+			Vector2(576 + (64 * 2), 240)]
+			
+func move_left():
+	poss_idx -= 1
+	if poss_idx < 0:
+		poss_idx = poss.size()-1
+	position_me()
+	
+func move_right():
+	poss_idx += 1
+	if poss_idx > poss.size()-1:
+		poss_idx = 0
+	position_me()
+	
+func position_me():
+	global_position = poss[poss_idx]
+
 func init_board():
 	Global.board = []
 	for x in range(5):
@@ -25,9 +47,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if !animating:
 		if Input.is_action_just_pressed("leftS"):
-			%Gun.move_left()
+			move_left()
 		elif Input.is_action_just_pressed("rightS"):
-			%Gun.move_right()
+			move_right()
 	
 	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
 		if !%shoot_line.visible:
