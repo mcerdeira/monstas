@@ -90,7 +90,7 @@ func search_rows():
 		
 func eval_combo(combo):
 	if combo.size() > 2:
-		%DeathBar.reset_bar()
+		%DeathPath.reset_bar(combo.size())
 		bulk_points_turn(combo)
 		%UI.show_message("Combo x" + str(combo.size()), null, false)
 			

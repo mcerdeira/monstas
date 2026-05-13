@@ -3,20 +3,21 @@ var player_obj = null
 var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
 var FULLSCREEN = false
+var DEATH_SPEED = 50
+var GAME_OVER = false
 var UI = null
 var Main = null
 var SCORE = 0
-var MONSTA_NEXT = null
+var MONSTA_NEXT = []
 var THIS_TURN_SCORE = 0
 var LEVEL = 0
 var IN_SHOP = false
 var IN_COLLECTION = false
 var ALL_MONSTAS = []
-var FIRSTS = []
 var SPIDERS = 0
 var delay_in_count = 0.0
 var board = []
-var death_bar = 100
+var death_bar = 80.0
 
 var monsta_poop = {
 	"id": "poop",
@@ -74,7 +75,6 @@ var monsta_spider = {
 
 func init_vars():
 	randomize()
-	FIRSTS = []
 	var configs = [
 					[monsta_poop, monsta_poop, monsta_fish, monsta_fish],
 					[monsta_zombie, monsta_zombie, monsta_zombie, monsta_vampire],
@@ -83,12 +83,12 @@ func init_vars():
 				  ]
 	var config = Global.pick_random(configs)
 	config.shuffle()
-	for i in range(3):
-		FIRSTS.append(config[i])
 		
 	LEVEL = 1
-	MONSTA_NEXT = null
+	MONSTA_NEXT = []
 	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops]
+	for i in range(5):
+		MONSTA_NEXT.append(pick_random(ALL_MONSTAS))
 
 func _ready():
 	init_vars()

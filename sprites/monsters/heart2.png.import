@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gwr155tk4nns"
-path="res://.godot/imported/death_bar.png-28a7d5b1633b5e9b809ced520f3a74ef.ctex"
+uid="uid://bqp40m4207epv"
+path="res://.godot/imported/heart2.png-66dd9d868cd3759b3f6e479470f51df7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/death_bar.png"
-dest_files=["res://.godot/imported/death_bar.png-28a7d5b1633b5e9b809ced520f3a74ef.ctex"]
+source_file="res://sprites/monsters/heart2.png"
+dest_files=["res://.godot/imported/heart2.png-66dd9d868cd3759b3f6e479470f51df7.ctex"]
 
 [params]
 

@@ -14,6 +14,7 @@ func shoot():
 	Global.Main.STATE = Global.Main.STATES.SHOOTING
 	%monsta_bullet.shoot(%monster_avatar.current_monsta)
 	$shoot_line/anim.stop()
+	%monster_avatar.visible = false
 
 func _physics_process(delta: float) -> void:
 	$sprite.rotation_degrees += rotate_speed * delta

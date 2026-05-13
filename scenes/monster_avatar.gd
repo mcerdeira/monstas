@@ -11,21 +11,11 @@ func reset_turn():
 	
 func set_monsta(_monsta, count = 0):
 	current_monsta = _monsta
-	$btn_buy.visible = false
 	if !imnext:
 		if count > 0:
 			$lbl_count.visible = Global.IN_COLLECTION 
 			$lbl_count.text =  "x" + str(count)
 			
-		if Global.IN_SHOP:
-			$btn_buy.disabled = false
-			if current_monsta:
-				if Global.PRICE == 0:
-					$btn_buy.text = "Free!"
-				else:
-					$btn_buy.text = "Buy $" + str(Global.PRICE)
-			$btn_buy.visible = true
-		
 	if !_monsta:
 		Global.emit(global_position, 5)
 		$monster_avatar.play("empty")
@@ -46,33 +36,25 @@ func new_turn():
 	Global.emit(global_position, 5)
 	visible = true
 	%monsta_bullet.visible = false
-	var mons = null
-	if Global.MONSTA_NEXT == null or Global.FIRSTS.size() > 1:
-		Global.FIRSTS.shuffle()
-		current_monsta = Global.FIRSTS.pop_front()
-		%monsta_next.set_monsta(Global.FIRSTS[0])
-		Global.MONSTA_NEXT = Global.FIRSTS[0]
-	else:
-		var board = [
-				[%Gem1.monsta, %Gem2.monsta, %Gem3.monsta, %Gem4.monsta, %Gem5.monsta],
-				[%Gem6.monsta, %Gem7.monsta, %Gem8.monsta, %Gem9.monsta, %Gem10.monsta],
-				[%Gem11.monsta, %Gem12.monsta, %Gem13.monsta, %Gem14.monsta, %Gem15.monsta],
-				[%Gem16.monsta, %Gem17.monsta, %Gem18.monsta, %Gem19.monsta, %Gem20.monsta],
-				[%Gem21.monsta, %Gem22.monsta, %Gem23.monsta, %Gem24.monsta, %Gem25.monsta],
-			]
-			
-		current_monsta = Global.MONSTA_NEXT
-			
-		mons = Global.get_weighted_random_monster(board)
-		%monsta_next.set_monsta(mons)
-		Global.MONSTA_NEXT = mons
-		
+	current_monsta = Global.MONSTA_NEXT.pop_front()
+	
+	Global.MONSTA_NEXT.append(Global.pick_random(Global.ALL_MONSTAS))
+	
+	%monsta_next1.set_monsta(Global.MONSTA_NEXT[0])
+	%monsta_next2.set_monsta(Global.MONSTA_NEXT[1])
+	%monsta_next3.set_monsta(Global.MONSTA_NEXT[2])
+	%monsta_next4.set_monsta(Global.MONSTA_NEXT[3])
+	%monsta_next5.set_monsta(Global.MONSTA_NEXT[4])
+	
 	$monster_avatar.play(current_monsta.id)
 	
 func add_spider():
-	var mons = Global.monsta_spider
-	%monsta_next.set_monsta(mons)
-	Global.MONSTA_NEXT = mons
+	for i in range(5, 0, -1):
+		if Global.MONSTA_NEXT[i - 1] != Global.monsta_spider:
+			Global.MONSTA_NEXT[i - 1] = Global.monsta_spider
+			var node = get_node("%monsta_next" + str(i))
+			node.set_monsta(Global.monsta_spider)
+			return  
 
 func _on_click_area_mouse_entered() -> void:
 	if !imnext:
