@@ -1,6 +1,8 @@
 extends AnimatedSprite2D
 var monsta = null
 var temp_monsta = null #donde guardamos temporalmente el monstruo para el salto
+var follower_bullet_obj = load("res://scenes/follower_bullet.tscn")
+var monstaeffect_obj = load("res://scenes/monta_effect.tscn")
 var minibullet_obj = load("res://scenes/minibullet.tscn") #bala para direccionar el salto
 var playing_jump_animation = false #indica si se está reproduciendo la animación de salto
 var point_turn = null
@@ -18,6 +20,15 @@ func reset_points_turn(effects, expire_if = false):
 	point_turn = null
 	
 func set_points_turn(points):
+	var follower_bullet = follower_bullet_obj.instantiate()
+	follower_bullet.global_position = global_position
+	get_parent().get_parent().add_child(follower_bullet)
+	
+	var monstaeffect = monstaeffect_obj.instantiate()
+	monstaeffect.global_position = global_position
+	monstaeffect.set_sprite(%monster.animation)
+	get_parent().get_parent().add_child(monstaeffect)
+	
 	$Points.play("new_animation")
 	Global.emit(global_position, 5)
 	Global.THIS_TURN_SCORE += points

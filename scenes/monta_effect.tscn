@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dfljyooa74y7a"]
+
+[ext_resource type="Texture2D" uid="uid://cp40c1aqoxetm" path="res://sprites/monsters/cyclops1.png" id="1_jhs8s"]
+[ext_resource type="Script" uid="uid://30s2sscd27ov" path="res://scenes/monta_effect.gd" id="1_o5of4"]
+[ext_resource type="Texture2D" uid="uid://dta4ka47giuex" path="res://sprites/monsters/cyclops2.png" id="2_o5of4"]
+[ext_resource type="Texture2D" uid="uid://ddlwvmwxinlt1" path="res://sprites/monsters/fish1.png" id="3_nad1w"]
+[ext_resource type="Texture2D" uid="uid://doddoaocrg31l" path="res://sprites/monsters/fish2.png" id="4_et83r"]
+[ext_resource type="Texture2D" uid="uid://fxxegh6sbgxn" path="res://sprites/monsters/poop1.png" id="5_shsdm"]
+[ext_resource type="Texture2D" uid="uid://dj0ux0timjc4q" path="res://sprites/monsters/poop2.png" id="6_04ya6"]
+[ext_resource type="Texture2D" uid="uid://788cy6gbd5ir" path="res://sprites/monsters/spider1.png" id="7_mms6f"]
+[ext_resource type="Texture2D" uid="uid://bq0ildmbxt84" path="res://sprites/monsters/spider2.png" id="8_d5jtt"]
+[ext_resource type="Texture2D" uid="uid://byux4dnutm6b4" path="res://sprites/monsters/vampire1.png" id="9_tbo86"]
+[ext_resource type="Texture2D" uid="uid://dlhvlaqaju3mc" path="res://sprites/monsters/vampire2.png" id="10_85fq5"]
+[ext_resource type="Texture2D" uid="uid://cdxf25qfjnq1g" path="res://sprites/monsters/zombie1.png" id="11_lvwp8"]
+[ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="12_83irb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5s5ng"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jhs8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o5of4")
+}],
+"loop": true,
+"name": &"cyclops",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nad1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_et83r")
+}],
+"loop": true,
+"name": &"fish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_shsdm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_04ya6")
+}],
+"loop": true,
+"name": &"poop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_mms6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_d5jtt")
+}],
+"loop": true,
+"name": &"spider",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_tbo86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_85fq5")
+}],
+"loop": true,
+"name": &"vampire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_lvwp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_83irb")
+}],
+"loop": true,
+"name": &"zombie",
+"speed": 5.0
+}]
+
+[node name="MontaEffect" type="Node2D" unique_id=863911443]
+script = ExtResource("1_o5of4")
+
+[node name="monster" type="AnimatedSprite2D" parent="." unique_id=847417688]
+z_index = 4000
+position = Vector2(3, -14)
+sprite_frames = SubResource("SpriteFrames_5s5ng")
+animation = &"cyclops"

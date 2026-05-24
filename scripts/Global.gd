@@ -27,6 +27,7 @@ var SPIDERS = 0
 var delay_in_count = 0.0
 var board = []
 var death_bar = 80.0
+var spider_follower = null
 
 var monsta_poop = {
 	"id": "poop",

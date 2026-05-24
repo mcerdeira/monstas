@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d4k7tn2j5sl7y" path="res://scenes/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://b02thgtx0kr63" path="res://scenes/shaker.tscn" id="2_y6deb"]
 [ext_resource type="Script" uid="uid://c21gih6loplro" path="res://scenes/death_path.gd" id="2_yc10j"]
+[ext_resource type="Script" uid="uid://c7xgj53v6tgpj" path="res://scenes/follower.gd" id="3_2wyq8"]
 [ext_resource type="Texture2D" uid="uid://ctmbjrbmjlab5" path="res://sprites/lines.png" id="3_jbj1t"]
 [ext_resource type="Shader" uid="uid://d1rg3syqc685g" path="res://scenes/linefx.gdshader" id="3_muem4"]
 [ext_resource type="Texture2D" uid="uid://788cy6gbd5ir" path="res://sprites/monsters/spider1.png" id="3_pm3ni"]
@@ -302,6 +303,7 @@ position = Vector2(-54, -77)
 rotation = 1.5974567
 rotates = false
 loop = false
+script = ExtResource("3_2wyq8")
 
 [node name="spider" type="AnimatedSprite2D" parent="DeathPath/Path/follower" unique_id=502411607]
 rotation = -1.5707964
