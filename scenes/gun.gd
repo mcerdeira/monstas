@@ -8,6 +8,7 @@ func start_gun():
 	$shoot_line/anim.play("new_animation")
 
 func shoot():
+	Global.play_sound(Global.ShootSFX)
 	$shoot.play("new_animation")
 	Global.emit(global_position + Vector2(0, -64), 3)
 	Global.shaker_obj.shake(1.1, 0.2)

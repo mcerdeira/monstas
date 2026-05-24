@@ -47,8 +47,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if !animating:
 		if Input.is_action_just_pressed("leftS"):
+			Global.play_sound(Global.GunMoveSFX)
 			move_left()
 		elif Input.is_action_just_pressed("rightS"):
+			Global.play_sound(Global.GunMoveSFX)
 			move_right()
 	
 	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
@@ -60,6 +62,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("shoot"):
 				%Gun.shoot()
 			if Input.is_action_just_pressed("left"):
+				Global.play_sound(Global.GunMoveSFX)
 				configuration -= 1
 				if configuration == -1:
 					configuration = 7
@@ -68,6 +71,7 @@ func _physics_process(delta: float) -> void:
 				tween.tween_property(self, "rotation_degrees", rotation_degrees - 90.0, duration)
 				tween.tween_callback(_ended)
 			elif Input.is_action_just_pressed("right"):
+				Global.play_sound(Global.GunMoveSFX)
 				configuration += 1
 				if configuration == 8:
 					configuration = 0

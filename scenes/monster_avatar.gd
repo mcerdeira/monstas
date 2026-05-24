@@ -49,6 +49,7 @@ func new_turn():
 	$monster_avatar.play(current_monsta.id)
 	
 func add_spider():
+	Global.play_sound(Global.SpiderAddedSFX)
 	for i in range(5, 0, -1):
 		if Global.MONSTA_NEXT[i - 1] != Global.monsta_spider:
 			Global.MONSTA_NEXT[i - 1] = Global.monsta_spider

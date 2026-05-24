@@ -1,4 +1,10 @@
 extends Node
+var SpiderAddedSFX = null
+var GunMoveSFX = null
+var MonstaJumpSFX = null
+var ShootSFX = null
+var ComboSFX = null
+var MainTheme = null
 var player_obj = null
 var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
@@ -6,6 +12,9 @@ var FULLSCREEN = false
 var DEATH_SPEED = 50
 var GAME_OVER = false
 var UI = null
+var pitch_max = 1.2
+var pitch_min = 0.4
+var pitch = pitch_min
 var Main = null
 var SCORE = 0
 var MONSTA_NEXT = []
@@ -90,8 +99,27 @@ func init_vars():
 	for i in range(5):
 		MONSTA_NEXT.append(pick_random(ALL_MONSTAS))
 
+func get_pitch():
+	var prev = pitch
+	pitch += 0.1
+	if pitch > pitch_max:
+		pitch = pitch_min
+
+	return prev
+
+func init_music():
+	MainTheme = load("res://music/Kevin MacLeod - 8bit Dungeon Level  NO COPYRIGHT 8-bit Music.mp3")
+	SpiderAddedSFX = load("res://sfx/Kefka Laugh Sound Effect.mp3")
+	GunMoveSFX = load("res://sfx/click9.mp3")
+	MonstaJumpSFX = load("res://sfx/Deep Gulp Sound Effect.mp3")
+	ShootSFX = load("res://sfx/spring.mp3")
+	ComboSFX = load("res://sfx/cococombo.mp3")
+	if !Music.is_playing():
+		Music.play(MainTheme)
+
 func _ready():
 	init_vars()
+	init_music()
 	
 func emit(_global_position, count, particle_obj = null, size = 1):
 	var part = particle

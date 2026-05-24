@@ -54,6 +54,8 @@ func _physics_process(delta: float) -> void:
 	rotation_degrees = -get_parent().rotation_degrees
 
 func hit(_monsta):
+	var options = {"pitch_scale": Global.get_pitch()}
+	Global.play_sound(Global.MonstaJumpSFX, options)
 	if monsta != null:
 		Global.delay_in_count = 1.1
 		Global.shaker_obj.shake(2.0, 1.1)
