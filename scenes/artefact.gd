@@ -54,9 +54,10 @@ func _physics_process(delta: float) -> void:
 			move_right()
 	
 	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
-		if !%shoot_line.visible:
-			%shoot_line.visible = true
-			%Gun.start_gun()
+		if Global.Main.STATE != Global.Main.STATES.GAME_OVER:
+			if !%shoot_line.visible:
+				%shoot_line.visible = true
+				%Gun.start_gun()
 			
 		if !animating:
 			if Input.is_action_just_pressed("shoot"):

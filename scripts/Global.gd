@@ -43,7 +43,7 @@ var monsta_fish = {
 	"name": "Fish",
 	"description": "GLUBBBB GLULBUBLUBLUB",
 	"points_special": 1,
-	"points_falling": 0,
+	"points_falling": -50,
 	"special": "*",
 }
 
