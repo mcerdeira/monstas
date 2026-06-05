@@ -683,6 +683,3 @@ speed_scale = 0.7
 [node name="Arrow" type="Sprite2D" parent="Gun/shoot_line" unique_id=332200608]
 position = Vector2(-926, -6)
 texture = ExtResource("5_dp3eg")
-
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1820653265]
-position = Vector2(975.50714, 163.76099)

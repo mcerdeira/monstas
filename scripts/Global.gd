@@ -9,6 +9,7 @@ var player_obj = null
 var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
 var FULLSCREEN = false
+var PENALTY = 1
 var DEATH_SPEED = 50
 var GAME_OVER = false
 var UI = null
@@ -33,7 +34,7 @@ var monsta_poop = {
 	"id": "poop",
 	"name": "Poop",
 	"description": "FFFFFFFFARRRTTTTT",
-	"points_special": 1,
+	"points_special": 100,
 	"points_falling": -50,
 	"special": "*",
 }
@@ -42,7 +43,7 @@ var monsta_fish = {
 	"id": "fish",
 	"name": "Fish",
 	"description": "GLUBBBB GLULBUBLUBLUB",
-	"points_special": 1,
+	"points_special": 100,
 	"points_falling": -50,
 	"special": "*",
 }
@@ -51,7 +52,7 @@ var monsta_zombie = {
 	"id": "zombie",
 	"name": "Zombie",
 	"description":  "BRRRRAAAINNNSSSSSS",
-	"points_special": 1,
+	"points_special": 100,
 	"points_falling": -50,
 	"special": "*",
 }
@@ -60,7 +61,7 @@ var monsta_vampire = {
 	"id": "vampire",
 	"name": "Vampire",
 	"description": "KII KII KII KII",
-	"points_special": 1,
+	"points_special": 100,
 	"points_falling": -50,
 	"special": "*",
 }
@@ -69,7 +70,7 @@ var monsta_cyclops = {
 	"id": "cyclops",
 	"name": "Cyclops",
 	"description":  "SLURPPPPPP",
-	"points_special": 1,
+	"points_special": 100,
 	"points_falling": -50,
 	"special": "*",
 }
@@ -85,15 +86,6 @@ var monsta_spider = {
 
 func init_vars():
 	randomize()
-	var configs = [
-					[monsta_poop, monsta_poop, monsta_fish, monsta_fish],
-					[monsta_zombie, monsta_zombie, monsta_zombie, monsta_vampire],
-					[monsta_vampire, monsta_vampire, monsta_vampire, monsta_vampire],
-					[monsta_vampire, monsta_vampire, monsta_cyclops, monsta_cyclops],
-				  ]
-	var config = Global.pick_random(configs)
-	config.shuffle()
-		
 	LEVEL = 1
 	MONSTA_NEXT = []
 	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops]
