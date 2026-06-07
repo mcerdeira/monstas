@@ -44,6 +44,7 @@ func bulk_points_turn(monstas):
 func _ready() -> void:
 	randomize()
 	Global.Main = self
+	Music.play(Global.MainTheme)
 	
 func add_spider():
 	%monster_avatar.add_spider()
@@ -149,6 +150,10 @@ func level_calc_monstas():
 		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
 			
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("quit"):
+		Global.play_sound(Global.MonstaJumpSFX)
+		get_tree().change_scene_to_file("res://scenes/Title.tscn")
+	
 	if STATE == STATES.INIT:
 		count_index = 0
 		STATE = STATES.TRANSITION

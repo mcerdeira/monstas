@@ -25,11 +25,19 @@ func _ready():
 
 func set_sprite(anim):
 	$monster.animation = anim
+	
+func set_sprite_random():
+	$monster.animation = Global.pick_random(["cyclops", "fish", "poop", "spider", "vampire", "zombie"])
+
+func _on_tween_finished():
+	queue_free()
 
 func do_jump():
 	# Tween principal
 	var tween = create_tween()
 	tween.set_parallel(true)
+	
+	tween.finished.connect(_on_tween_finished)
 
 	# POP hacia cámara
 	tween.tween_property(

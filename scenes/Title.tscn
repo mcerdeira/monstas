@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://b6cwwf5y21ahp"]
+
+[ext_resource type="Script" uid="uid://cqk5hg1vstba5" path="res://scenes/title.gd" id="1_ascc0"]
+[ext_resource type="Shader" uid="uid://b73jx406demos" path="res://scenes/chrome.gdshader" id="2_2sdm5"]
+[ext_resource type="Shader" uid="uid://dga0ew8efdc6t" path="res://scenes/stars.gdshader" id="3_iyajp"]
+[ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="4_iyajp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aa56r"]
+shader = ExtResource("2_2sdm5")
+shader_parameter/amount = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_agd63"]
+shader = ExtResource("3_iyajp")
+shader_parameter/VIEWPORT_SIZE = Vector2(1280, 720)
+
+[sub_resource type="Environment" id="Environment_2sdm5"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 3.0
+glow_strength = 1.5
+
+[sub_resource type="Animation" id="Animation_iyajp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sub:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_aa56r"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sub:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_agd63"]
+_data = {
+&"RESET": SubResource("Animation_iyajp"),
+&"new_animation": SubResource("Animation_aa56r")
+}
+
+[node name="Title" type="Node2D" unique_id=1062830616]
+script = ExtResource("1_ascc0")
+
+[node name="chromeFX" type="ColorRect" parent="." unique_id=358654309]
+z_index = 4096
+material = SubResource("ShaderMaterial_aa56r")
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 1168.0
+offset_bottom = 658.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="starfield" type="ColorRect" parent="." unique_id=1274690185]
+z_index = -4096
+material = SubResource("ShaderMaterial_agd63")
+offset_left = -26.0
+offset_top = -31.0
+offset_right = 1189.0
+offset_bottom = 683.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1776763842]
+environment = SubResource("Environment_2sdm5")
+
+[node name="MainCamera" type="Camera2D" parent="." unique_id=894676192]
+anchor_mode = 0
+
+[node name="lbl_title" type="Label" parent="." unique_id=99202614]
+offset_top = 62.0
+offset_right = 1152.0
+offset_bottom = 301.0
+theme_override_colors/font_color = Color(0.89059, 0.89059, 0.8905901, 1)
+theme_override_fonts/font = ExtResource("4_iyajp")
+theme_override_font_sizes/font_size = 298
+text = "MONSTAS!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sub" type="Label" parent="lbl_title" unique_id=1806538441]
+layout_mode = 0
+offset_top = 387.0
+offset_right = 1153.0
+offset_bottom = 535.0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("4_iyajp")
+theme_override_font_sizes/font_size = 96
+text = "press start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lbl_title" unique_id=1921174331]
+libraries/ = SubResource("AnimationLibrary_agd63")
+autoplay = &"new_animation"

@@ -4,6 +4,7 @@ var GunMoveSFX = null
 var MonstaJumpSFX = null
 var ShootSFX = null
 var ComboSFX = null
+var TitleTheme = null
 var MainTheme = null
 var player_obj = null
 var particle = preload("res://scenes/particle2.tscn")
@@ -21,8 +22,6 @@ var SCORE = 0
 var MONSTA_NEXT = []
 var THIS_TURN_SCORE = 0
 var LEVEL = 0
-var IN_SHOP = false
-var IN_COLLECTION = false
 var FULL_MONSTAS = []
 var ALL_MONSTAS = []
 var SPIDERS = 0
@@ -87,6 +86,13 @@ var monsta_spider = {
 
 func init_vars():
 	randomize()
+	delay_in_count = 0.0
+	death_bar = 80.0
+	board = []
+	pitch = pitch_min
+	SPIDERS = 0
+	SCORE = 0
+	THIS_TURN_SCORE = 0
 	LEVEL = 1
 	MONSTA_NEXT = []
 	FULL_MONSTAS = [monsta_vampire, monsta_cyclops]
@@ -103,14 +109,13 @@ func get_pitch():
 	return prev
 
 func init_music():
-	MainTheme = load("res://music/Kevin MacLeod - 8bit Dungeon Level  NO COPYRIGHT 8-bit Music.mp3")
+	TitleTheme = load("res://music/slow.mp3")
+	MainTheme = load("res://music/fast.mp3")
 	SpiderAddedSFX = load("res://sfx/Kefka Laugh Sound Effect.mp3")
 	GunMoveSFX = load("res://sfx/click9.mp3")
 	MonstaJumpSFX = load("res://sfx/Deep Gulp Sound Effect.mp3")
 	ShootSFX = load("res://sfx/spring.mp3")
 	ComboSFX = load("res://sfx/cococombo.mp3")
-	if !Music.is_playing():
-		Music.play(MainTheme)
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
