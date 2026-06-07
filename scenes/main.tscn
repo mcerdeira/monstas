@@ -29,6 +29,7 @@
 [ext_resource type="Shader" uid="uid://dga0ew8efdc6t" path="res://scenes/stars.gdshader" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://w45u4wattndj" path="res://scenes/monster_avatar.tscn" id="13_trceg"]
 [ext_resource type="PackedScene" uid="uid://cm8cmwah61asr" path="res://scenes/monsta_bullet.tscn" id="13_yc10j"]
+[ext_resource type="Script" uid="uid://dnru1f7js7x73" path="res://scenes/shoot_line.gd" id="29_fv21b"]
 
 [sub_resource type="Curve2D" id="Curve2D_yc10j"]
 bake_interval = 16.0
@@ -36,6 +37,20 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -54, -77, 0, 0, 0, 0, -22, 0, 0, 0, 0, 0, 87, 86, 0, 0, 0, 0, -90, 95, 0, 0, 0, 0, 81, 170, 0, 0, 0, 0, -57, 220, 0, 0, 0, 0, 54, 308, 0, 0, 0, 0, -60, 342, 0, 0, 0, 0, 20, 441, 0, 0, 0, 0, -133, 474, 0, 0, 0, 0, -9, 501, 0, 0, 0, 0, -20, 552)
 }
 point_count = 12
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vxglm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_og1vs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2wyq8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_yq6so"]
 length = 0.001
@@ -123,20 +138,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_tel4y")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vxglm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_og1vs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_2wyq8")
 }],
 "loop": true,
 "name": &"default",
@@ -379,6 +380,12 @@ joint_mode = 2
 curve = SubResource("Curve2D_yc10j")
 metadata/_edit_lock_ = true
 
+[node name="heart" type="AnimatedSprite2D" parent="DeathPath/Path" unique_id=1344209475]
+position = Vector2(-16, 558)
+sprite_frames = SubResource("SpriteFrames_vxglm")
+autoplay = "default"
+frame_progress = 0.6258055
+
 [node name="follower" type="PathFollow2D" parent="DeathPath/Path" unique_id=695335917]
 position = Vector2(-54, -77)
 rotation = 1.5974567
@@ -400,12 +407,6 @@ position = Vector2(-2, -12)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qkpxi")
 autoplay = "default"
-
-[node name="heart" type="AnimatedSprite2D" parent="DeathPath" unique_id=1344209475]
-position = Vector2(-16, 558)
-sprite_frames = SubResource("SpriteFrames_vxglm")
-autoplay = "default"
-frame_progress = 0.6258055
 
 [node name="Ballon" type="Node2D" parent="." unique_id=72548092]
 unique_name_in_owner = true
@@ -476,11 +477,23 @@ mouse_filter = 2
 script = ExtResource("4_gqmmt")
 metadata/_edit_lock_ = true
 
+[node name="lbl_level" type="Label" parent="UI" unique_id=1800243636]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 254.0
+offset_right = 485.0
+offset_bottom = 63.0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("4_0ld40")
+theme_override_font_sizes/font_size = 48
+text = "LEVEL: 001"
+horizontal_alignment = 1
+
 [node name="lbl_objetive" type="Label" parent="UI" unique_id=1335740041]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 457.0
-offset_right = 688.0
+offset_left = 648.0
+offset_right = 879.0
 offset_bottom = 63.0
 theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 theme_override_fonts/font = ExtResource("4_0ld40")
@@ -489,7 +502,7 @@ text = "SCORE: 10"
 horizontal_alignment = 1
 
 [node name="lbl_objetive_point" type="Marker2D" parent="UI" unique_id=1183232805]
-position = Vector2(626, 30)
+position = Vector2(719, 30)
 
 [node name="objetive_anim" type="AnimationPlayer" parent="UI" unique_id=1468152797]
 libraries/ = SubResource("AnimationLibrary_2f3dj")
@@ -675,10 +688,11 @@ position = Vector2(0, -48)
 points = PackedVector2Array(0, 0, 0, -166)
 texture = ExtResource("3_jbj1t")
 texture_mode = 1
+script = ExtResource("29_fv21b")
 
 [node name="anim" type="AnimationPlayer" parent="Gun/shoot_line" unique_id=1749964206]
 libraries/ = SubResource("AnimationLibrary_0ld40")
-speed_scale = 0.7
+speed_scale = 0.2
 
 [node name="Arrow" type="Sprite2D" parent="Gun/shoot_line" unique_id=332200608]
 position = Vector2(-926, -6)

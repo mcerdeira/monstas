@@ -29,6 +29,7 @@ func show_perma_message(message):
 
 func _physics_process(delta: float) -> void:
 	%lbl_objetive.text = "SCORE: " + str(Global.SCORE)
+	%lbl_level.text = "LEVEL: " + str("%03d" % Global.LEVEL)
 	if msg_ttl > 0:
 		msg_ttl -= 1 * delta
 		if msg_ttl <= 0:

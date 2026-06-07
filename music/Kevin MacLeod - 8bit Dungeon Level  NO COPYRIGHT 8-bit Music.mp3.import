@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Kevin MacLeod - 8bit Dungeon Level  NO COPYRI
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

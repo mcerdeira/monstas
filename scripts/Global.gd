@@ -10,7 +10,7 @@ var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
 var FULLSCREEN = false
 var PENALTY = 1
-var DEATH_SPEED = 50
+var DEATH_SPEED = 5
 var GAME_OVER = false
 var UI = null
 var pitch_max = 1.2
@@ -23,6 +23,7 @@ var THIS_TURN_SCORE = 0
 var LEVEL = 0
 var IN_SHOP = false
 var IN_COLLECTION = false
+var FULL_MONSTAS = []
 var ALL_MONSTAS = []
 var SPIDERS = 0
 var delay_in_count = 0.0
@@ -88,7 +89,8 @@ func init_vars():
 	randomize()
 	LEVEL = 1
 	MONSTA_NEXT = []
-	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie, monsta_vampire, monsta_cyclops]
+	FULL_MONSTAS = [monsta_vampire, monsta_cyclops]
+	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie]
 	for i in range(5):
 		MONSTA_NEXT.append(pick_random(ALL_MONSTAS))
 

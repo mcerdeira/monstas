@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 		$Path/follower.progress = Global.death_bar 
 		if $Path/follower.progress_ratio >= 1.0:
 			Global.Main.STATE = Global.Main.STATES.GAME_OVER
+			Global.play_sound(Global.SpiderAddedSFX)
 	else:
 		if sleep > 0:
 			sleep -= 1 * delta

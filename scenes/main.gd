@@ -1,6 +1,7 @@
 extends Node2D
 var delay = 0.0
 var count_index = 0
+var TOTAL_COMBOS = []
 
 var counting_functions = [
 	search_rows,
@@ -89,10 +90,62 @@ func search_rows():
 		
 func eval_combo(combo):
 	if combo.size() > 2:
-		Global.play_sound(Global.ComboSFX)
-		%DeathPath.reset_bar(combo.size())
-		bulk_points_turn(combo)
-		%UI.show_message("Combo x" + str(combo.size()), null, false)
+		TOTAL_COMBOS.append(combo)
+		
+func eval_params():
+	if Global.LEVEL == 2:
+		Global.DEATH_SPEED = 10
+		%shoot_line.set_shoot_speed(0.3)
+	elif Global.LEVEL == 3:
+		Global.DEATH_SPEED = 20
+		%shoot_line.set_shoot_speed(0.5)
+	elif Global.LEVEL == 4:
+		Global.DEATH_SPEED = 30
+		%shoot_line.set_shoot_speed(0.7)
+	elif Global.LEVEL == 5:
+		Global.PENALTY = 2
+		Global.DEATH_SPEED = 40
+		%shoot_line.set_shoot_speed(0.7)
+	elif Global.LEVEL == 6:
+		Global.PENALTY = 2
+		Global.DEATH_SPEED = 40
+		%shoot_line.set_shoot_speed(0.8)
+	elif Global.LEVEL == 7:
+		Global.PENALTY = 2
+		Global.DEATH_SPEED = 50
+		%shoot_line.set_shoot_speed(1.0)
+	elif Global.LEVEL == 8:
+		Global.PENALTY = 2
+		Global.DEATH_SPEED = 60
+		%shoot_line.set_shoot_speed(1.1)
+		
+func eval_level():
+	if Global.LEVEL > 8:
+		Global.LEVEL = int(Global.SCORE / 8900 * 10)
+	elif Global.LEVEL == 8 and Global.SCORE >= 8900:
+		Global.LEVEL = 9
+	elif Global.LEVEL == 7 and Global.SCORE >= 6900:
+		Global.LEVEL = 8
+	elif Global.LEVEL == 6 and Global.SCORE >= 5900:
+		Global.LEVEL = 7
+	elif Global.LEVEL == 5 and Global.SCORE >= 4900:
+		Global.LEVEL = 6
+		level_calc_monstas()
+	elif Global.LEVEL == 4 and Global.SCORE >= 3900:
+		Global.LEVEL = 5
+	elif Global.LEVEL == 3 and Global.SCORE >= 2900:
+		Global.LEVEL = 4
+	elif Global.LEVEL == 2 and Global.SCORE >= 1900:
+		Global.LEVEL = 3
+		level_calc_monstas()
+	elif Global.LEVEL == 1 and Global.SCORE >= 900:
+		Global.LEVEL = 2
+	
+func level_calc_monstas():
+	if Global.LEVEL == 3:
+		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
+	if Global.LEVEL == 6:
+		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
 			
 func search_cross():
 	var retval = false
@@ -152,25 +205,36 @@ func _physics_process(delta: float) -> void:
 				Global.delay_in_count = 0
 				count_index += 1
 			else:
+				if TOTAL_COMBOS.size() > 0:
+					var sizes = 0
+					Global.play_sound(Global.ComboSFX)
+					for combo in TOTAL_COMBOS:
+						sizes += combo.size()
+						bulk_points_turn(combo)
+	
+					%DeathPath.reset_bar(sizes)
+					%UI.show_message("Combo x" + str(sizes), null, false)
+					eval_level()
+					eval_params()
+					
 				count_index = 0
 				STATE = STATES.SHOWING_RESULTS
 				$UI/objetive_anim.play("new_animation")
 				var monstaslots = get_tree().get_nodes_in_group("monstaslot")
 				for monstaslot in monstaslots:
 					monstaslot.reset_points_turn(false, true)
+					
+				TOTAL_COMBOS = []
 		else:
 			Global.delay_in_count -= 1 * delta
 				
 	elif STATE == STATES.SHOWING_RESULTS:
-		if Global.delay_in_count <= 0:
-			if Global.THIS_TURN_SCORE > 0:
-				Global.delay_in_count = 0.1
-				Global.SCORE += 1
-				Global.THIS_TURN_SCORE -= 1
-				$UI/objetive_anim.play("new_animation")
-				Global.shaker_obj.shake(3.1, 0.2)
-			else:
-				$UI/objetive_anim.stop()
-				STATE = STATES.NEXT_TURN
+		if Global.THIS_TURN_SCORE > 0:
+			$UI/objetive_anim.play("new_animation")
+			Global.SCORE += 10
+			Global.THIS_TURN_SCORE -= 10
+			Global.shaker_obj.shake(3.1, 0.2)
 		else:
-			Global.delay_in_count -= 1 * delta
+			$UI/objetive_anim.play("new_animation")
+			$UI/objetive_anim.stop()
+			STATE = STATES.NEXT_TURN
