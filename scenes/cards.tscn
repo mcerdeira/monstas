@@ -1,8 +1,25 @@
 [gd_scene format=3 uid="uid://f01jp413eqlk"]
 
 [ext_resource type="Texture2D" uid="uid://crcabfpltwo4n" path="res://sprites/cards.png" id="1_cqxa1"]
-[ext_resource type="Script" uid="uid://d22ryvi8jdn41" path="res://scenes/cards.gd" id="1_mnqni"]
 [ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="2_02cqd"]
+
+[sub_resource type="GDScript" id="GDScript_02cqd"]
+script/source = "extends Node2D
+
+func _on_control_gui_input(event: InputEvent) -> void:
+	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
+		if event is InputEventMouseButton && event.is_action_pressed(\"click\"):
+			show_shop(false)
+
+func show_shop(shop = false):
+	%backcollection.show_me(shop)
+
+func _on_control_mouse_entered() -> void:
+	$anim.play(\"new_animation\")
+
+func _on_control_mouse_exited() -> void:
+	$anim.stop()
+"
 
 [sub_resource type="Animation" id="Animation_mnqni"]
 length = 0.001
@@ -66,7 +83,7 @@ _data = {
 }
 
 [node name="Cards" type="Node2D" unique_id=383904065]
-script = ExtResource("1_mnqni")
+script = SubResource("GDScript_02cqd")
 
 [node name="Control" type="Control" parent="." unique_id=1885007850]
 layout_mode = 3

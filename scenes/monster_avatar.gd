@@ -60,14 +60,3 @@ func add_spider():
 			count -= 1
 			if count <= 0:
 				return  
-
-func _on_click_area_mouse_entered() -> void:
-	if !imnext:
-		if current_monsta:
-			$anim.play("new_animation")
-			%Ballon.set_text(current_monsta, global_position)
-
-func _on_click_area_mouse_exited() -> void:
-	if !imnext:
-		$anim.stop()
-		%Ballon.hideme()

@@ -11,10 +11,8 @@
 [ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="4_0ld40"]
 [ext_resource type="Script" uid="uid://doj13p11bwj46" path="res://scenes/ui.gd" id="4_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://bq0ildmbxt84" path="res://sprites/monsters/spider2.png" id="4_y6deb"]
-[ext_resource type="Script" uid="uid://d3gbwwi63pd72" path="res://scenes/ballon.gd" id="4_yc10j"]
 [ext_resource type="Texture2D" uid="uid://dsct07s08ewnb" path="res://sprites/arrow.png" id="5_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://g4ifpuboctfl" path="res://sprites/gun1.png" id="5_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://fy22h11eul7n" path="res://sprites/ballon_arrow.png" id="5_jscy8"]
 [ext_resource type="Texture2D" uid="uid://ca4q3pcdd6cnd" path="res://sprites/monsters/heart1.png" id="5_og1vs"]
 [ext_resource type="Texture2D" uid="uid://bqp40m4207epv" path="res://sprites/monsters/heart2.png" id="6_2wyq8"]
 [ext_resource type="Script" uid="uid://bgou5ky333a1m" path="res://scenes/gun.gd" id="6_eb6dy"]
@@ -143,24 +141,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pm3ni"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_jscy8")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc10j"]
-bg_color = Color(0.031091863, 0.24162859, 0.2709706, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
 
 [sub_resource type="Environment" id="Environment_tipki"]
 background_mode = 3
@@ -408,35 +388,6 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qkpxi")
 autoplay = "default"
 
-[node name="Ballon" type="Node2D" parent="." unique_id=72548092]
-unique_name_in_owner = true
-z_index = 4096
-position = Vector2(0, -48)
-script = ExtResource("4_yc10j")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ballon" unique_id=1371272186]
-position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_pm3ni")
-offset = Vector2(32, -1)
-
-[node name="PanelContainer" type="PanelContainer" parent="Ballon" unique_id=1546140498]
-offset_left = 57.0
-offset_top = -97.0
-offset_right = 314.0
-offset_bottom = 3.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yc10j")
-
-[node name="MarginContainer" type="MarginContainer" parent="Ballon/PanelContainer" unique_id=697099648]
-layout_mode = 2
-
-[node name="lbl_dialog" type="Label" parent="Ballon/PanelContainer/MarginContainer" unique_id=321173567]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
-theme_override_fonts/font = ExtResource("4_0ld40")
-theme_override_font_sizes/font_size = 32
-autowrap_mode = 3
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1849294228]
 environment = SubResource("Environment_tipki")
 
@@ -480,26 +431,25 @@ metadata/_edit_lock_ = true
 [node name="lbl_level" type="Label" parent="UI" unique_id=1800243636]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 254.0
-offset_right = 485.0
+offset_left = 304.0
+offset_right = 535.0
 offset_bottom = 63.0
 theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 48
 text = "LEVEL: 001"
-horizontal_alignment = 1
+horizontal_alignment = 2
 
 [node name="lbl_objetive" type="Label" parent="UI" unique_id=1335740041]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 648.0
-offset_right = 879.0
+offset_left = 614.0
+offset_right = 845.0
 offset_bottom = 63.0
 theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 48
 text = "SCORE: 10"
-horizontal_alignment = 1
 
 [node name="lbl_objetive_point" type="Marker2D" parent="UI" unique_id=1183232805]
 position = Vector2(719, 30)
@@ -519,6 +469,17 @@ theme_override_colors/font_color = Color(0.89059, 0.89059, 0.8905901, 1)
 theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 148
 text = "Player Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sub" type="Label" parent="UI/lbl_message" unique_id=988069195]
+layout_mode = 0
+offset_top = 179.0
+offset_right = 1153.0
+offset_bottom = 327.0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("4_0ld40")
+theme_override_font_sizes/font_size = 96
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -692,7 +653,7 @@ script = ExtResource("29_fv21b")
 
 [node name="anim" type="AnimationPlayer" parent="Gun/shoot_line" unique_id=1749964206]
 libraries/ = SubResource("AnimationLibrary_0ld40")
-speed_scale = 0.2
+speed_scale = 0.1
 
 [node name="Arrow" type="Sprite2D" parent="Gun/shoot_line" unique_id=332200608]
 position = Vector2(-926, -6)

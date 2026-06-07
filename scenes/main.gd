@@ -6,8 +6,6 @@ var TOTAL_COMBOS = []
 var counting_functions = [
 	search_rows,
 	search_columns,
-	search_cross,
-	search_diagonal,
 ]
 
 enum STATES 
@@ -94,48 +92,51 @@ func eval_combo(combo):
 		
 func eval_params():
 	if Global.LEVEL == 2:
+		Global.PENALTY = 0
 		Global.DEATH_SPEED = 10
-		%shoot_line.set_shoot_speed(0.3)
+		%shoot_line.set_shoot_speed(0.2)
 	elif Global.LEVEL == 3:
+		Global.PENALTY = 0
 		Global.DEATH_SPEED = 20
-		%shoot_line.set_shoot_speed(0.5)
+		%shoot_line.set_shoot_speed(0.3)
 	elif Global.LEVEL == 4:
+		Global.PENALTY = 1
 		Global.DEATH_SPEED = 30
-		%shoot_line.set_shoot_speed(0.7)
+		%shoot_line.set_shoot_speed(0.4)
 	elif Global.LEVEL == 5:
-		Global.PENALTY = 2
+		Global.PENALTY = 1
 		Global.DEATH_SPEED = 40
-		%shoot_line.set_shoot_speed(0.7)
+		%shoot_line.set_shoot_speed(0.5)
 	elif Global.LEVEL == 6:
-		Global.PENALTY = 2
+		Global.PENALTY = 1
 		Global.DEATH_SPEED = 40
-		%shoot_line.set_shoot_speed(0.8)
+		%shoot_line.set_shoot_speed(0.6)
 	elif Global.LEVEL == 7:
-		Global.PENALTY = 2
+		Global.PENALTY = 1
 		Global.DEATH_SPEED = 50
-		%shoot_line.set_shoot_speed(1.0)
+		%shoot_line.set_shoot_speed(0.7)
 	elif Global.LEVEL == 8:
 		Global.PENALTY = 2
-		Global.DEATH_SPEED = 60
-		%shoot_line.set_shoot_speed(1.1)
+		Global.DEATH_SPEED = 50
+		%shoot_line.set_shoot_speed(0.8)
 		
 func eval_level():
 	if Global.LEVEL > 8:
-		Global.LEVEL = int(Global.SCORE / 8900 * 10)
-	elif Global.LEVEL == 8 and Global.SCORE >= 8900:
+		Global.LEVEL = int(Global.SCORE / 9900 * 10)
+	elif Global.LEVEL == 8 and Global.SCORE >= 9900:
 		Global.LEVEL = 9
-	elif Global.LEVEL == 7 and Global.SCORE >= 6900:
+	elif Global.LEVEL == 7 and Global.SCORE >= 7900:
 		Global.LEVEL = 8
-	elif Global.LEVEL == 6 and Global.SCORE >= 5900:
+	elif Global.LEVEL == 6 and Global.SCORE >= 6900:
 		Global.LEVEL = 7
-	elif Global.LEVEL == 5 and Global.SCORE >= 4900:
+	elif Global.LEVEL == 5 and Global.SCORE >= 5900:
 		Global.LEVEL = 6
 		level_calc_monstas()
-	elif Global.LEVEL == 4 and Global.SCORE >= 3900:
+	elif Global.LEVEL == 4 and Global.SCORE >= 4900:
 		Global.LEVEL = 5
-	elif Global.LEVEL == 3 and Global.SCORE >= 2900:
+	elif Global.LEVEL == 3 and Global.SCORE >= 3900:
 		Global.LEVEL = 4
-	elif Global.LEVEL == 2 and Global.SCORE >= 1900:
+	elif Global.LEVEL == 2 and Global.SCORE >= 2900:
 		Global.LEVEL = 3
 		level_calc_monstas()
 	elif Global.LEVEL == 1 and Global.SCORE >= 900:
@@ -147,25 +148,6 @@ func level_calc_monstas():
 	if Global.LEVEL == 6:
 		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
 			
-func search_cross():
-	var retval = false
-	var special = "*"
-	if are_equals([%Gem2, %Gem5, %Gem8, %Gem4, %Gem6], special):
-		bulk_points_turn([%Gem2, %Gem5, %Gem8, %Gem4, %Gem6])
-		
-	return retval
-	
-func search_diagonal():
-	var retval = false
-	var special = "*"
-
-	if are_equals([%Gem7, %Gem5, %Gem3], special):
-		bulk_points_turn([%Gem7, %Gem5, %Gem3])
-	if are_equals([%Gem1, %Gem5, %Gem9], special):
-		bulk_points_turn([%Gem1, %Gem5, %Gem9])
-
-	return retval
-	
 func _physics_process(delta: float) -> void:
 	if STATE == STATES.INIT:
 		count_index = 0
@@ -207,13 +189,14 @@ func _physics_process(delta: float) -> void:
 			else:
 				if TOTAL_COMBOS.size() > 0:
 					var sizes = 0
+					var points = 0
 					Global.play_sound(Global.ComboSFX)
 					for combo in TOTAL_COMBOS:
 						sizes += combo.size()
 						bulk_points_turn(combo)
 	
 					%DeathPath.reset_bar(sizes)
-					%UI.show_message("Combo x" + str(sizes), null, false)
+					%UI.show_message("Combo x" + str(sizes), null, false, "(" + str(Global.THIS_TURN_SCORE) + " pts)")
 					eval_level()
 					eval_params()
 					

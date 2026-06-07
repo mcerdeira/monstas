@@ -9,7 +9,7 @@ var player_obj = null
 var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
 var FULLSCREEN = false
-var PENALTY = 1
+var PENALTY = 0
 var DEATH_SPEED = 5
 var GAME_OVER = false
 var UI = null
@@ -36,7 +36,7 @@ var monsta_poop = {
 	"name": "Poop",
 	"description": "FFFFFFFFARRRTTTTT",
 	"points_special": 100,
-	"points_falling": -50,
+	"points_falling": -100,
 	"special": "*",
 }
 
@@ -45,7 +45,7 @@ var monsta_fish = {
 	"name": "Fish",
 	"description": "GLUBBBB GLULBUBLUBLUB",
 	"points_special": 100,
-	"points_falling": -50,
+	"points_falling": -100,
 	"special": "*",
 }
 
@@ -54,7 +54,7 @@ var monsta_zombie = {
 	"name": "Zombie",
 	"description":  "BRRRRAAAINNNSSSSSS",
 	"points_special": 100,
-	"points_falling": -50,
+	"points_falling": -100,
 	"special": "*",
 }
 
@@ -63,7 +63,7 @@ var monsta_vampire = {
 	"name": "Vampire",
 	"description": "KII KII KII KII",
 	"points_special": 100,
-	"points_falling": -50,
+	"points_falling": -100,
 	"special": "*",
 }
 
@@ -72,7 +72,7 @@ var monsta_cyclops = {
 	"name": "Cyclops",
 	"description":  "SLURPPPPPP",
 	"points_special": 100,
-	"points_falling": -50,
+	"points_falling": -100,
 	"special": "*",
 }
 
@@ -113,6 +113,7 @@ func init_music():
 		Music.play(MainTheme)
 
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	init_vars()
 	init_music()
 	

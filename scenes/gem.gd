@@ -82,11 +82,3 @@ func hit(_monsta):
 		Global.emit(global_position, 3)
 		set_monsta(_monsta)
 	
-func _on_clickeable_mouse_entered() -> void:
-	if monsta:
-		$anim.play("new_animation")
-		%Ballon.set_text(monsta, %monster.global_position)
-
-func _on_clickeable_mouse_exited() -> void:
-	$anim.stop()
-	%Ballon.hideme()

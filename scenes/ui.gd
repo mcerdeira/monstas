@@ -7,14 +7,18 @@ var start_gun = false
 func _ready() -> void:
 	Global.UI = self
 	
-func show_message(message, state, _start_gun = false):
+func show_message(message, state, _start_gun = false, sub_message = ""):
 	start_gun = _start_gun
 	%lbl_message.visible = true
 	%lbl_message.text = message
+	$lbl_message/sub.text = sub_message
 	goto_state = state
 	msg_ttl = msg_ttl_total
 	
-func lose_coins():
+func lose_coins(points):
+	Global.SCORE -= points
+	if Global.SCORE <= 0:
+		Global.SCORE = 0
 	$objetive_anim.play("new_animation")
 	
 func emit_from_coins():
@@ -26,6 +30,7 @@ func emit_from_objetive():
 func show_perma_message(message):
 	%lbl_message.visible = true
 	%lbl_message.text = message
+	$lbl_message/sub.text = ""
 
 func _physics_process(delta: float) -> void:
 	%lbl_objetive.text = "SCORE: " + str(Global.SCORE)
