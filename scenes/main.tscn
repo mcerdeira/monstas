@@ -368,8 +368,8 @@ frame_progress = 0.6258055
 
 [node name="follower" type="PathFollow2D" parent="DeathPath/Path" unique_id=695335917]
 position = Vector2(-54, -77)
-rotation = 1.5974567
-rotates = false
+rotation = 1.1769277
+scale = Vector2(1.5, 1.5)
 loop = false
 script = ExtResource("3_2wyq8")
 
@@ -380,6 +380,7 @@ speed_scale = 3.0
 [node name="spider" type="AnimatedSprite2D" parent="DeathPath/Path/follower" unique_id=502411607]
 rotation = -1.5707964
 sprite_frames = SubResource("SpriteFrames_y6deb")
+autoplay = "default"
 
 [node name="stars" type="AnimatedSprite2D" parent="DeathPath/Path/follower/spider" unique_id=171973671]
 visible = false

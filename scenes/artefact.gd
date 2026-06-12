@@ -13,13 +13,13 @@ var poss = [Vector2(576 - (64 * 2), 240),
 func move_left():
 	poss_idx -= 1
 	if poss_idx < 0:
-		poss_idx = poss.size()-1
+		poss_idx = 0
 	position_me()
 	
 func move_right():
 	poss_idx += 1
 	if poss_idx > poss.size()-1:
-		poss_idx = 0
+		poss_idx = poss.size()-1
 	position_me()
 	
 func position_me():
@@ -48,10 +48,10 @@ func _physics_process(delta: float) -> void:
 	if !animating:
 		if Input.is_action_just_pressed("leftS"):
 			Global.play_sound(Global.GunMoveSFX)
-			move_left()
+			move_right()
 		elif Input.is_action_just_pressed("rightS"):
 			Global.play_sound(Global.GunMoveSFX)
-			move_right()
+			move_left()
 	
 	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
 		if Global.Main.STATE != Global.Main.STATES.GAME_OVER:

@@ -6,6 +6,8 @@ var TOTAL_COMBOS = []
 var counting_functions = [
 	search_rows,
 	search_columns,
+	search_diagonal_down_right,
+	search_diagonal_down_left,
 ]
 
 enum STATES 
@@ -37,6 +39,87 @@ func are_equals(monstas, special):
 			
 	return true
 	
+func search_diagonal_down_right():
+	var special = "*"
+	for start_x in range(5):
+		var combo = []
+		var last_monsta = null
+		var x = start_x
+		var y = 0
+		while x < 5 and y < 5:
+			var monsta = Global.board[x][y]
+			if are_equals([last_monsta, monsta], special):
+				combo.append(monsta)
+			else:
+				eval_combo(combo)
+				combo = [monsta]
+			last_monsta = monsta
+			x += 1
+			y += 1
+
+		eval_combo(combo)
+
+	for start_y in range(1, 5):
+		var combo = []
+		var last_monsta = null
+		var x = 0
+		var y = start_y
+
+		while x < 5 and y < 5:
+			var monsta = Global.board[x][y]
+			if are_equals([last_monsta, monsta], special):
+				combo.append(monsta)
+			else:
+				eval_combo(combo)
+				combo = [monsta]
+			last_monsta = monsta
+			x += 1
+			y += 1
+			
+		eval_combo(combo)
+	
+func search_diagonal_down_left():
+	var special = "*"
+	for start_x in range(5):
+		var combo = []
+		var last_monsta = null
+		var x = start_x
+		var y = 0
+
+		while x >= 0 and y < 5:
+			var monsta = Global.board[x][y]
+			if are_equals([last_monsta, monsta], special):
+				combo.append(monsta)
+			else:
+				eval_combo(combo)
+				combo = [monsta]
+
+			last_monsta = monsta
+			x -= 1
+			y += 1
+			
+		eval_combo(combo)
+
+	for start_y in range(1, 5):
+		var combo = []
+		var last_monsta = null
+		var x = 4
+		var y = start_y
+
+		while x >= 0 and y < 5:
+			var monsta = Global.board[x][y]
+			if are_equals([last_monsta, monsta], special):
+				combo.append(monsta)
+			else:
+				eval_combo(combo)
+				combo = [monsta]
+
+			last_monsta = monsta
+			x -= 1
+			y += 1
+
+		eval_combo(combo)
+	
 func bulk_points_turn(monstas):
 	for m in monstas:
 		m.set_points_turn(m.monsta.points_special)
@@ -48,6 +131,10 @@ func _ready() -> void:
 	
 func add_spider():
 	%monster_avatar.add_spider()
+	
+	
+func search_diagonals():
+	pass
 	
 func search_columns():
 	var special = "*"
@@ -94,31 +181,31 @@ func eval_combo(combo):
 func eval_params():
 	if Global.LEVEL == 2:
 		Global.PENALTY = 0
-		Global.DEATH_SPEED = 10
+		Global.DEATH_SPEED += 10
 		%shoot_line.set_shoot_speed(0.2)
 	elif Global.LEVEL == 3:
 		Global.PENALTY = 0
-		Global.DEATH_SPEED = 20
+		Global.DEATH_SPEED += 10
 		%shoot_line.set_shoot_speed(0.3)
 	elif Global.LEVEL == 4:
 		Global.PENALTY = 1
-		Global.DEATH_SPEED = 30
+		Global.DEATH_SPEED += 10
 		%shoot_line.set_shoot_speed(0.4)
 	elif Global.LEVEL == 5:
 		Global.PENALTY = 1
-		Global.DEATH_SPEED = 40
+		Global.DEATH_SPEED += 10
 		%shoot_line.set_shoot_speed(0.5)
 	elif Global.LEVEL == 6:
 		Global.PENALTY = 1
-		Global.DEATH_SPEED = 40
+		Global.DEATH_SPEED += 10
 		%shoot_line.set_shoot_speed(0.6)
 	elif Global.LEVEL == 7:
 		Global.PENALTY = 1
-		Global.DEATH_SPEED = 50
+		Global.DEATH_SPEED += 10
 		%shoot_line.set_shoot_speed(0.7)
 	elif Global.LEVEL == 8:
 		Global.PENALTY = 2
-		Global.DEATH_SPEED = 50
+		Global.DEATH_SPEED += 10
 		%shoot_line.set_shoot_speed(0.8)
 		
 func eval_level():
