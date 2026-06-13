@@ -28,7 +28,7 @@ var STATE : STATES = STATES.INIT
 func are_equals(monstas, special):
 	var id = null
 	for m in monstas:
-		if m == null or m.monsta == null or m.monsta.special != special:
+		if m == null or m.monsta == null or m.monsta.points_special == 0 or m.monsta.special != special:
 			return false
 			
 		if id == null:
@@ -180,60 +180,61 @@ func eval_combo(combo):
 		
 func eval_params():
 	if Global.LEVEL == 2:
-		Global.PENALTY = 0
-		Global.DEATH_SPEED += 10
+		Global.DEATH_SPEED += 3
 		%shoot_line.set_shoot_speed(0.2)
 	elif Global.LEVEL == 3:
-		Global.PENALTY = 0
-		Global.DEATH_SPEED += 10
-		%shoot_line.set_shoot_speed(0.3)
+		Global.DEATH_SPEED += 3
+		%shoot_line.set_shoot_speed(0.2)
 	elif Global.LEVEL == 4:
-		Global.PENALTY = 1
-		Global.DEATH_SPEED += 10
-		%shoot_line.set_shoot_speed(0.4)
+		Global.DEATH_SPEED += 3
+		%shoot_line.set_shoot_speed(0.3)
 	elif Global.LEVEL == 5:
-		Global.PENALTY = 1
-		Global.DEATH_SPEED += 10
-		%shoot_line.set_shoot_speed(0.5)
+		Global.DEATH_SPEED += 3
+		%shoot_line.set_shoot_speed(0.3)
 	elif Global.LEVEL == 6:
-		Global.PENALTY = 1
-		Global.DEATH_SPEED += 10
-		%shoot_line.set_shoot_speed(0.6)
+		Global.DEATH_SPEED += 3
+		%shoot_line.set_shoot_speed(0.4)
 	elif Global.LEVEL == 7:
-		Global.PENALTY = 1
-		Global.DEATH_SPEED += 10
-		%shoot_line.set_shoot_speed(0.7)
+		Global.DEATH_SPEED += 3
+		%shoot_line.set_shoot_speed(0.5)
 	elif Global.LEVEL == 8:
-		Global.PENALTY = 2
-		Global.DEATH_SPEED += 10
-		%shoot_line.set_shoot_speed(0.8)
+		Global.DEATH_SPEED += 3
+		%shoot_line.set_shoot_speed(0.7)
 		
 func eval_level():
 	if Global.LEVEL > 8:
 		Global.LEVEL = int(Global.SCORE / 9900 * 10)
 	elif Global.LEVEL == 8 and Global.SCORE >= 9900:
 		Global.LEVEL = 9
+		level_calc_monstas()
 	elif Global.LEVEL == 7 and Global.SCORE >= 7900:
 		Global.LEVEL = 8
+		level_calc_monstas()
 	elif Global.LEVEL == 6 and Global.SCORE >= 6900:
 		Global.LEVEL = 7
+		level_calc_monstas()
 	elif Global.LEVEL == 5 and Global.SCORE >= 5900:
 		Global.LEVEL = 6
 		level_calc_monstas()
 	elif Global.LEVEL == 4 and Global.SCORE >= 4900:
 		Global.LEVEL = 5
+		level_calc_monstas()
 	elif Global.LEVEL == 3 and Global.SCORE >= 3900:
 		Global.LEVEL = 4
+		level_calc_monstas()
 	elif Global.LEVEL == 2 and Global.SCORE >= 2900:
 		Global.LEVEL = 3
 		level_calc_monstas()
 	elif Global.LEVEL == 1 and Global.SCORE >= 900:
 		Global.LEVEL = 2
+		level_calc_monstas()
 	
 func level_calc_monstas():
-	if Global.LEVEL == 3:
+	if Global.LEVEL == 2:
 		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
-	if Global.LEVEL == 6:
+		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
+	if Global.LEVEL == 4:
+		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
 		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
 			
 func _physics_process(delta: float) -> void:
@@ -288,9 +289,10 @@ func _physics_process(delta: float) -> void:
 						bulk_points_turn(combo)
 	
 					%DeathPath.reset_bar(sizes)
-					%UI.show_message("Combo x" + str(sizes), null, false, "(" + str(Global.THIS_TURN_SCORE) + " pts)")
+					
 					eval_level()
 					eval_params()
+					%UI.show_message("Combo x" + str(sizes), null, false, "(" + str(Global.THIS_TURN_SCORE) + " pts)")
 					
 				count_index = 0
 				STATE = STATES.SHOWING_RESULTS

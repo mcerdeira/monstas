@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://b33bq8vw333gr" path="res://sprites/stars3.png" id="8_tel4y"]
 [ext_resource type="Shader" uid="uid://b73jx406demos" path="res://scenes/chrome.gdshader" id="8_tipki"]
 [ext_resource type="Shader" uid="uid://dga0ew8efdc6t" path="res://scenes/stars.gdshader" id="9_85g3d"]
+[ext_resource type="Shader" uid="uid://ht5415rkau8m" path="res://scenes/blood.gdshader" id="11_yq6so"]
 [ext_resource type="PackedScene" uid="uid://w45u4wattndj" path="res://scenes/monster_avatar.tscn" id="13_trceg"]
 [ext_resource type="PackedScene" uid="uid://cm8cmwah61asr" path="res://scenes/monsta_bullet.tscn" id="13_yc10j"]
 [ext_resource type="Script" uid="uid://dnru1f7js7x73" path="res://scenes/shoot_line.gd" id="29_fv21b"]
@@ -141,6 +142,11 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fv21b"]
+shader = ExtResource("11_yq6so")
+shader_parameter/reveal = 0.0
+shader_parameter/origin = Vector2(1, 1)
 
 [sub_resource type="Environment" id="Environment_tipki"]
 background_mode = 3
@@ -367,9 +373,10 @@ autoplay = "default"
 frame_progress = 0.6258055
 
 [node name="follower" type="PathFollow2D" parent="DeathPath/Path" unique_id=695335917]
-position = Vector2(-54, -77)
+position = Vector2(-34.76131, -30.706907)
 rotation = 1.1769277
 scale = Vector2(1.5, 1.5)
+progress = 50.0
 loop = false
 script = ExtResource("3_2wyq8")
 
@@ -388,6 +395,13 @@ position = Vector2(-2, -12)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qkpxi")
 autoplay = "default"
+
+[node name="ColorRect" type="ColorRect" parent="DeathPath/Path" unique_id=71351623]
+material = SubResource("ShaderMaterial_fv21b")
+offset_left = -191.0
+offset_top = 330.0
+offset_right = 134.0
+offset_bottom = 623.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1849294228]
 environment = SubResource("Environment_tipki")
@@ -487,37 +501,37 @@ vertical_alignment = 1
 [node name="lbl_next" type="Label" parent="UI" unique_id=770304714]
 layout_mode = 0
 offset_left = 155.0
-offset_top = 86.0
+offset_top = 334.0
 offset_right = 228.0
-offset_bottom = 149.0
+offset_bottom = 397.0
 theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 46
 text = "Next"
 vertical_alignment = 2
 
-[node name="monsta_next1" parent="UI/lbl_next" unique_id=1749985967 instance=ExtResource("13_trceg")]
+[node name="monsta_next5" parent="UI/lbl_next" unique_id=1749985967 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
-position = Vector2(37, 101)
+position = Vector2(37, -219)
 imnext = true
 
-[node name="monsta_next2" parent="UI/lbl_next" unique_id=1330794177 instance=ExtResource("13_trceg")]
+[node name="monsta_next4" parent="UI/lbl_next" unique_id=1330794177 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
-position = Vector2(37, 152)
+position = Vector2(37, -168)
 imnext = true
 
 [node name="monsta_next3" parent="UI/lbl_next" unique_id=1390590956 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
-position = Vector2(37, 203)
+position = Vector2(37, -117)
 imnext = true
 
-[node name="monsta_next4" parent="UI/lbl_next" unique_id=321437676 instance=ExtResource("13_trceg")]
+[node name="monsta_next2" parent="UI/lbl_next" unique_id=321437676 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
-position = Vector2(37, 254)
+position = Vector2(37, -66)
 imnext = true
 
-[node name="monsta_next5" parent="UI/lbl_next" unique_id=801541562 instance=ExtResource("13_trceg")]
+[node name="monsta_next1" parent="UI/lbl_next" unique_id=801541562 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
-position = Vector2(37, 305)
+position = Vector2(37, -15)
 imnext = true
 
 [node name="Artefact" type="Node2D" parent="." unique_id=1974696450]

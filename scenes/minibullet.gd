@@ -8,6 +8,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if monsta:
+		#if Input.is_action_just_pressed("leftS"):
+			#move_right()
+		#elif Input.is_action_just_pressed("rightS"):
+			#move_left()
+		
 		global_position.y -= speed * delta
 		if global_position.y <= -150:
 			if monsta.points_falling !=0:

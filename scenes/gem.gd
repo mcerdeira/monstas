@@ -43,8 +43,8 @@ func set_monsta_callback():
 	var minibullet = minibullet_obj.instantiate()
 	minibullet.monsta = monsta
 	minibullet.origin = $clickeable
-	minibullet.global_position = global_position
-	get_parent().get_parent().add_child(minibullet)
+	minibullet.position = position
+	get_parent().add_child(minibullet)
 	$AnimationPlayer.stop()
 	playing_jump_animation = false
 	set_monsta(temp_monsta)

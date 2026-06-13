@@ -35,6 +35,7 @@ func init_board():
 			Global.board[x].append(cell)
 
 func _ready() -> void:
+	%shoot_line.visible = false
 	var fr = 0
 	var gems = get_children()
 	for g in gems:
@@ -45,15 +46,16 @@ func _ready() -> void:
 			fr = 0
 
 func _physics_process(delta: float) -> void:
-	if !animating:
-		if Input.is_action_just_pressed("leftS"):
-			Global.play_sound(Global.GunMoveSFX)
-			move_right()
-		elif Input.is_action_just_pressed("rightS"):
-			Global.play_sound(Global.GunMoveSFX)
-			move_left()
+	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN or Global.Main.STATE == Global.Main.STATES.SHOWING_RESULTS:
+		if !animating:
+			if Input.is_action_just_pressed("leftS"):
+				Global.play_sound(Global.GunMoveSFX)
+				move_right()
+			elif Input.is_action_just_pressed("rightS"):
+				Global.play_sound(Global.GunMoveSFX)
+				move_left()
 	
-	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN:
+	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN or Global.Main.STATE == Global.Main.STATES.SHOWING_RESULTS:
 		if Global.Main.STATE != Global.Main.STATES.GAME_OVER:
 			if !%shoot_line.visible:
 				%shoot_line.visible = true

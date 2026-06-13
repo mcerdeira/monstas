@@ -1,4 +1,6 @@
 extends Node
+var SpiderHaul = null
+var Chew = null
 var SpiderAddedSFX = null
 var GunMoveSFX = null
 var MonstaJumpSFX = null
@@ -11,7 +13,7 @@ var particle = preload("res://scenes/particle2.tscn")
 var shaker_obj = null
 var FULLSCREEN = false
 var PENALTY = 0
-var DEATH_SPEED = 20
+var DEATH_SPEED = 0
 var GAME_OVER = false
 var UI = null
 var pitch_max = 1.2
@@ -57,6 +59,15 @@ var monsta_zombie = {
 	"special": "*",
 }
 
+var monsta_tentacles = {
+	"id": "tentacles",
+	"name": "Tentacles",
+	"description": "BORRRRRRRRRR",
+	"points_special": 100,
+	"points_falling": -100,
+	"special": "*",
+}
+
 var monsta_vampire = {
 	"id": "vampire",
 	"name": "Vampire",
@@ -75,6 +86,15 @@ var monsta_cyclops = {
 	"special": "*",
 }
 
+var monsta_slime = {
+	"id": "slime",
+	"name": "Slime",
+	"description":  "NORRRPO",
+	"points_special": 100,
+	"points_falling": -100,
+	"special": "*",
+}
+
 var monsta_spider = {
 	"id": "spider",
 	"name": "Spider",
@@ -86,6 +106,8 @@ var monsta_spider = {
 
 func init_vars():
 	randomize()
+	PENALTY = 1
+	GAME_OVER = false
 	delay_in_count = 0.0
 	death_bar = 80.0
 	board = []
@@ -94,8 +116,9 @@ func init_vars():
 	SCORE = 0
 	THIS_TURN_SCORE = 0
 	LEVEL = 1
+	DEATH_SPEED = 10
 	MONSTA_NEXT = []
-	FULL_MONSTAS = [monsta_vampire, monsta_cyclops]
+	FULL_MONSTAS = [monsta_vampire, monsta_cyclops, monsta_tentacles, monsta_slime]
 	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie]
 	for i in range(5):
 		MONSTA_NEXT.append(pick_random(ALL_MONSTAS))
@@ -116,11 +139,24 @@ func init_music():
 	MonstaJumpSFX = load("res://sfx/Deep Gulp Sound Effect.mp3")
 	ShootSFX = load("res://sfx/spring.mp3")
 	ComboSFX = load("res://sfx/cococombo.mp3")
+	SpiderHaul = load("res://sfx/SpiderHaul.wav")
+	Chew = load("res://sfx/chewing.wav")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	init_vars()
 	init_music()
+	
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("fullscreen"):
+		Global.FULLSCREEN = !Global.FULLSCREEN
+		apply_fullscreen()
+	
+func apply_fullscreen():
+	if Global.FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	
 func emit(_global_position, count, particle_obj = null, size = 1):
 	var part = particle
