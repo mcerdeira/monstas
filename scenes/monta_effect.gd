@@ -11,6 +11,7 @@ var start_pos: Vector2
 var target_pos: Vector2
 
 func _ready():
+	
 	randomize()
 	Global.emit(global_position, 10)
 
@@ -27,7 +28,7 @@ func set_sprite(anim):
 	$monster.animation = anim
 	
 func set_sprite_random():
-	$monster.animation = Global.pick_random(["cyclops", "fish", "poop", "spider", "vampire", "zombie"])
+	$monster.animation = Global.pick_random(["cyclops", "fish", "poop", "slime", "yeti", "spider", "vampire", "zombie"])
 
 func _on_tween_finished():
 	queue_free()

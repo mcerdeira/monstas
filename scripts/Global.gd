@@ -59,10 +59,10 @@ var monsta_zombie = {
 	"special": "*",
 }
 
-var monsta_tentacles = {
-	"id": "tentacles",
-	"name": "Tentacles",
-	"description": "BORRRRRRRRRR",
+var monsta_yeti = {
+	"id": "yeti",
+	"name": "Yeti",
+	"description": "BRRRRRRRRRR",
 	"points_special": 100,
 	"points_falling": -100,
 	"special": "*",
@@ -118,7 +118,7 @@ func init_vars():
 	LEVEL = 1
 	DEATH_SPEED = 10
 	MONSTA_NEXT = []
-	FULL_MONSTAS = [monsta_vampire, monsta_cyclops, monsta_tentacles, monsta_slime]
+	FULL_MONSTAS = [monsta_vampire, monsta_cyclops, monsta_yeti, monsta_slime]
 	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie]
 	for i in range(5):
 		MONSTA_NEXT.append(pick_random(ALL_MONSTAS))

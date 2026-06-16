@@ -1,6 +1,7 @@
 extends Node2D
 var delay = 0.0
 var count_index = 0
+var COMBO_COUNT = 0
 var TOTAL_COMBOS = []
 
 var counting_functions = [
@@ -125,16 +126,13 @@ func bulk_points_turn(monstas):
 		m.set_points_turn(m.monsta.points_special)
 
 func _ready() -> void:
+	COMBO_COUNT = 0
 	randomize()
 	Global.Main = self
 	Music.play(Global.MainTheme)
 	
 func add_spider():
 	%monster_avatar.add_spider()
-	
-	
-func search_diagonals():
-	pass
 	
 func search_columns():
 	var special = "*"
@@ -180,61 +178,42 @@ func eval_combo(combo):
 		
 func eval_params():
 	if Global.LEVEL == 2:
-		Global.DEATH_SPEED += 3
-		%shoot_line.set_shoot_speed(0.2)
+		Global.DEATH_SPEED += 2
 	elif Global.LEVEL == 3:
-		Global.DEATH_SPEED += 3
-		%shoot_line.set_shoot_speed(0.2)
+		Global.DEATH_SPEED += 2
 	elif Global.LEVEL == 4:
-		Global.DEATH_SPEED += 3
-		%shoot_line.set_shoot_speed(0.3)
+		Global.DEATH_SPEED += 2
 	elif Global.LEVEL == 5:
-		Global.DEATH_SPEED += 3
-		%shoot_line.set_shoot_speed(0.3)
+		Global.DEATH_SPEED += 2
 	elif Global.LEVEL == 6:
-		Global.DEATH_SPEED += 3
-		%shoot_line.set_shoot_speed(0.4)
+		Global.DEATH_SPEED += 2
 	elif Global.LEVEL == 7:
-		Global.DEATH_SPEED += 3
-		%shoot_line.set_shoot_speed(0.5)
+		Global.DEATH_SPEED += 2
 	elif Global.LEVEL == 8:
-		Global.DEATH_SPEED += 3
-		%shoot_line.set_shoot_speed(0.7)
+		Global.DEATH_SPEED += 2
 		
 func eval_level():
 	if Global.LEVEL > 8:
 		Global.LEVEL = int(Global.SCORE / 9900 * 10)
 	elif Global.LEVEL == 8 and Global.SCORE >= 9900:
 		Global.LEVEL = 9
-		level_calc_monstas()
 	elif Global.LEVEL == 7 and Global.SCORE >= 7900:
 		Global.LEVEL = 8
-		level_calc_monstas()
 	elif Global.LEVEL == 6 and Global.SCORE >= 6900:
 		Global.LEVEL = 7
-		level_calc_monstas()
 	elif Global.LEVEL == 5 and Global.SCORE >= 5900:
 		Global.LEVEL = 6
-		level_calc_monstas()
 	elif Global.LEVEL == 4 and Global.SCORE >= 4900:
 		Global.LEVEL = 5
-		level_calc_monstas()
 	elif Global.LEVEL == 3 and Global.SCORE >= 3900:
 		Global.LEVEL = 4
-		level_calc_monstas()
 	elif Global.LEVEL == 2 and Global.SCORE >= 2900:
 		Global.LEVEL = 3
-		level_calc_monstas()
 	elif Global.LEVEL == 1 and Global.SCORE >= 900:
 		Global.LEVEL = 2
-		level_calc_monstas()
-	
-func level_calc_monstas():
-	if Global.LEVEL == 2:
-		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
-		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
-	if Global.LEVEL == 4:
-		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
+		
+func add_monstas():
+	if Global.FULL_MONSTAS.size() > 0:
 		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
 			
 func _physics_process(delta: float) -> void:
@@ -281,12 +260,25 @@ func _physics_process(delta: float) -> void:
 				count_index += 1
 			else:
 				if TOTAL_COMBOS.size() > 0:
+					COMBO_COUNT += 1
+					add_monstas()
+
+					
 					var sizes = 0
 					var points = 0
 					Global.play_sound(Global.ComboSFX)
 					for combo in TOTAL_COMBOS:
 						sizes += combo.size()
 						bulk_points_turn(combo)
+						
+					#Si no es un combo mayor a 3
+					if COMBO_COUNT > 2 and sizes <= 3:
+						var chance = 6
+						if Global.LEVEL > 4:
+							chance = 3
+							
+						if randi() % chance == 0:
+							add_spider()
 	
 					%DeathPath.reset_bar(sizes)
 					

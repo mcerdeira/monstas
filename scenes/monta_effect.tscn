@@ -9,10 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://dj0ux0timjc4q" path="res://sprites/monsters/poop2.png" id="6_04ya6"]
 [ext_resource type="Texture2D" uid="uid://788cy6gbd5ir" path="res://sprites/monsters/spider1.png" id="7_mms6f"]
 [ext_resource type="Texture2D" uid="uid://bq0ildmbxt84" path="res://sprites/monsters/spider2.png" id="8_d5jtt"]
+[ext_resource type="Texture2D" uid="uid://sbjcsn7v27nk" path="res://sprites/monsters/slime1.png" id="8_et83r"]
+[ext_resource type="Texture2D" uid="uid://brxeu64ma2xxf" path="res://sprites/monsters/slime2.png" id="9_shsdm"]
 [ext_resource type="Texture2D" uid="uid://byux4dnutm6b4" path="res://sprites/monsters/vampire1.png" id="9_tbo86"]
 [ext_resource type="Texture2D" uid="uid://dlhvlaqaju3mc" path="res://sprites/monsters/vampire2.png" id="10_85fq5"]
 [ext_resource type="Texture2D" uid="uid://cdxf25qfjnq1g" path="res://sprites/monsters/zombie1.png" id="11_lvwp8"]
 [ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="12_83irb"]
+[ext_resource type="Texture2D" uid="uid://digb3vqr2jq1y" path="res://sprites/monsters/yeti1.png" id="14_04ya6"]
+[ext_resource type="Texture2D" uid="uid://rvvwh0yxu22y" path="res://sprites/monsters/yeti2.png" id="15_mms6f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5s5ng"]
 animations = [{
@@ -59,6 +63,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("8_et83r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_shsdm")
+}],
+"loop": true,
+"name": &"slime",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("7_mms6f")
 }, {
 "duration": 1.0,
@@ -81,6 +96,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("14_04ya6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_mms6f")
+}],
+"loop": true,
+"name": &"yeti",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("11_lvwp8")
 }, {
 "duration": 1.0,
@@ -98,4 +124,4 @@ script = ExtResource("1_o5of4")
 z_index = 4000
 position = Vector2(3, -14)
 sprite_frames = SubResource("SpriteFrames_5s5ng")
-animation = &"cyclops"
+animation = &"empty"

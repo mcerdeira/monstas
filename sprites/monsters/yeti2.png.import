@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://digb3vqr2jq1y"
-path="res://.godot/imported/tentacles1.png-63c58d91a31336118f24c237fb413064.ctex"
+uid="uid://rvvwh0yxu22y"
+path="res://.godot/imported/yeti2.png-a034174bff5395c403cc8e4defb76644.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/monsters/tentacles1.png"
-dest_files=["res://.godot/imported/tentacles1.png-63c58d91a31336118f24c237fb413064.ctex"]
+source_file="res://sprites/monsters/yeti2.png"
+dest_files=["res://.godot/imported/yeti2.png-a034174bff5395c403cc8e4defb76644.ctex"]
 
 [params]
 

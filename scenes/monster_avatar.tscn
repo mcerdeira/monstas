@@ -17,8 +17,8 @@
 [ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="9_wk8o1"]
 [ext_resource type="Texture2D" uid="uid://brxeu64ma2xxf" path="res://sprites/monsters/slime2.png" id="10_2duer"]
 [ext_resource type="Texture2D" uid="uid://bq0ildmbxt84" path="res://sprites/monsters/spider2.png" id="10_l754j"]
-[ext_resource type="Texture2D" uid="uid://digb3vqr2jq1y" path="res://sprites/monsters/tentacles1.png" id="11_l754j"]
-[ext_resource type="Texture2D" uid="uid://rvvwh0yxu22y" path="res://sprites/monsters/tentacles2.png" id="12_o45dm"]
+[ext_resource type="Texture2D" uid="uid://digb3vqr2jq1y" path="res://sprites/monsters/yeti1.png" id="11_l754j"]
+[ext_resource type="Texture2D" uid="uid://rvvwh0yxu22y" path="res://sprites/monsters/yeti2.png" id="12_o45dm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_muem4"]
 animations = [{
@@ -87,17 +87,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_l754j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_o45dm")
-}],
-"loop": true,
-"name": &"tentacles",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("6_jiip5")
 }, {
 "duration": 1.0,
@@ -105,6 +94,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"vampire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_l754j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_o45dm")
+}],
+"loop": true,
+"name": &"yeti",
 "speed": 5.0
 }, {
 "frames": [{
@@ -165,7 +165,7 @@ script = ExtResource("7_uum37")
 
 [node name="monster_avatar" type="AnimatedSprite2D" parent="." unique_id=1749985967]
 sprite_frames = SubResource("SpriteFrames_muem4")
-animation = &"empty"
+animation = &"yeti"
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=1327578716]
 root_node = NodePath("../monster_avatar")
