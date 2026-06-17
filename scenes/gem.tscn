@@ -357,6 +357,3 @@ speed_scale = 3.0
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=931215238]
 libraries/ = SubResource("AnimationLibrary_u5me5")
-
-[connection signal="mouse_entered" from="clickeable" to="." method="_on_clickeable_mouse_entered"]
-[connection signal="mouse_exited" from="clickeable" to="." method="_on_clickeable_mouse_exited"]

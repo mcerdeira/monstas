@@ -262,14 +262,13 @@ func _physics_process(delta: float) -> void:
 				if TOTAL_COMBOS.size() > 0:
 					COMBO_COUNT += 1
 					add_monstas()
-
-					
 					var sizes = 0
 					var points = 0
 					Global.play_sound(Global.ComboSFX)
 					for combo in TOTAL_COMBOS:
 						sizes += combo.size()
 						bulk_points_turn(combo)
+						
 						
 					#Si no es un combo mayor a 3
 					if COMBO_COUNT > 2 and sizes <= 3:

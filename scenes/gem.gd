@@ -5,6 +5,7 @@ var follower_bullet_obj = load("res://scenes/follower_bullet.tscn")
 var monstaeffect_obj = load("res://scenes/monta_effect.tscn")
 var minibullet_obj = load("res://scenes/minibullet.tscn") #bala para direccionar el salto
 var playing_jump_animation = false #indica si se está reproduciendo la animación de salto
+var boundary_obj = load("res://scenes/boundary.tscn")
 var point_turn = null
 
 func _ready() -> void:
@@ -18,6 +19,17 @@ func reset_points_turn(effects, expire_if = false):
 		set_monsta(null)
 	
 	point_turn = null
+	
+func kill_spider():
+	Global.emit(global_position, 5)
+	set_monsta(null)
+	point_turn = null
+	var monstaeffect = monstaeffect_obj.instantiate()
+	monstaeffect.global_position = global_position
+	monstaeffect.set_sprite(%monster.animation)
+	get_parent().get_parent().add_child(monstaeffect)
+	
+	$Points.play("new_animation")
 	
 func set_points_turn(points):
 	var follower_bullet = follower_bullet_obj.instantiate()
@@ -33,6 +45,16 @@ func set_points_turn(points):
 	Global.emit(global_position, 5)
 	Global.THIS_TURN_SCORE += points
 	point_turn = points
+	
+	add_boundary(Vector2(62, 0))
+	add_boundary(Vector2(-62, 0))
+	add_boundary(Vector2(0, 62))
+	add_boundary(Vector2(0, -62))
+
+func add_boundary(pos):
+	var boundary = boundary_obj.instantiate()
+	boundary.position = pos
+	add_child(boundary)
 	
 func expire():
 	$Points.play("new_animation")
@@ -51,6 +73,7 @@ func set_monsta_callback():
 	%monster_temp.visible = false
 	temp_monsta = null
 	$monster/stars.visible = false
+	
 
 func set_monsta(_monsta):
 	monsta = _monsta

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://da4iiytd8lwqc"]
+
+[ext_resource type="Script" uid="uid://dg5jyh3qs5yc8" path="res://scenes/boundary.gd" id="1_6flaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35lcq"]
+size = Vector2(43.84063, 43.84063)
+
+[node name="boundary" type="Area2D" unique_id=2046131428]
+script = ExtResource("1_6flaw")
+
+[node name="collider" type="CollisionShape2D" parent="." unique_id=337071010]
+position = Vector2(1.847744e-06, 5.9604645e-07)
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_35lcq")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
