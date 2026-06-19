@@ -46,6 +46,9 @@ func _ready() -> void:
 			fr = 0
 
 func _physics_process(delta: float) -> void:
+	if Engine.time_scale < 1.0:
+		return
+	
 	if Global.Main.STATE == Global.Main.STATES.PLAYER_TURN or Global.Main.STATE == Global.Main.STATES.SHOWING_RESULTS:
 		if !animating:
 			if Input.is_action_just_pressed("leftS"):

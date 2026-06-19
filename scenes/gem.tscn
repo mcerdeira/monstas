@@ -321,7 +321,7 @@ visible = false
 z_index = 4000
 position = Vector2(3, -14)
 sprite_frames = SubResource("SpriteFrames_o6xl0")
-animation = &"yeti"
+animation = &"empty"
 
 [node name="monster" type="AnimatedSprite2D" parent="." unique_id=1976200337]
 unique_name_in_owner = true

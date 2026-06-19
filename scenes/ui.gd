@@ -7,11 +7,16 @@ var start_gun = false
 func _ready() -> void:
 	Global.UI = self
 	
+func slow_motion():
+	Engine.time_scale = 0.07
+	await get_tree().create_timer(1.0, true, true, true).timeout
+	Engine.time_scale = 1.0
+	
 func show_message(message, state, _start_gun = false, sub_message = ""):
 	start_gun = _start_gun
 	%lbl_message.visible = true
 	%lbl_message.text = message
-	$lbl_message/sub.text = sub_message
+	$lbl_message/sub.text = sub_message  
 	goto_state = state
 	msg_ttl = msg_ttl_total
 	

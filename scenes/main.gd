@@ -269,7 +269,6 @@ func _physics_process(delta: float) -> void:
 						sizes += combo.size()
 						bulk_points_turn(combo)
 						
-						
 					#Si no es un combo mayor a 3
 					if COMBO_COUNT > 2 and sizes <= 3:
 						var chance = 6
@@ -281,8 +280,11 @@ func _physics_process(delta: float) -> void:
 	
 					%DeathPath.reset_bar(sizes)
 					
+					%UI.slow_motion()
+					
 					eval_level()
 					eval_params()
+				
 					%UI.show_message("Combo x" + str(sizes), null, false, "(" + str(Global.THIS_TURN_SCORE) + " pts)")
 					
 				count_index = 0
@@ -301,7 +303,7 @@ func _physics_process(delta: float) -> void:
 			$UI/objetive_anim.play("new_animation")
 			Global.SCORE += 10
 			Global.THIS_TURN_SCORE -= 10
-			Global.shaker_obj.shake(3.1, 0.2)
+			Global.shaker_obj.shake(10.1, 0.2)
 		else:
 			$UI/objetive_anim.play("new_animation")
 			$UI/objetive_anim.stop()

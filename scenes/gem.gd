@@ -22,14 +22,12 @@ func reset_points_turn(effects, expire_if = false):
 	
 func kill_spider():
 	Global.emit(global_position, 5)
-	set_monsta(null)
 	point_turn = null
 	var monstaeffect = monstaeffect_obj.instantiate()
 	monstaeffect.global_position = global_position
 	monstaeffect.set_sprite(%monster.animation)
 	get_parent().get_parent().add_child(monstaeffect)
-	
-	$Points.play("new_animation")
+	set_monsta(null)
 	
 func set_points_turn(points):
 	var follower_bullet = follower_bullet_obj.instantiate()
