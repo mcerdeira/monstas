@@ -1,7 +1,7 @@
 extends Node2D
 var delay = 0.0
 var count_index = 0
-var COMBO_COUNT = 0
+var SHOOT_COUNT = 0
 var TOTAL_COMBOS = []
 
 var counting_functions = [
@@ -126,13 +126,10 @@ func bulk_points_turn(monstas):
 		m.set_points_turn(m.monsta.points_special)
 
 func _ready() -> void:
-	COMBO_COUNT = 0
+	SHOOT_COUNT = 0
 	randomize()
 	Global.Main = self
 	Music.play(Global.MainTheme)
-	
-func add_spider():
-	%monster_avatar.add_spider()
 	
 func search_columns():
 	var special = "*"
@@ -248,7 +245,7 @@ func _physics_process(delta: float) -> void:
 			STATE = STATES.PLAYER_TURN
 			
 	elif STATE == STATES.COUNTING:
-		if Global.board == []:
+		if Global.board == []: 
 			%Artefact.init_board()
 		
 		if Global.delay_in_count <= 0:
@@ -260,24 +257,15 @@ func _physics_process(delta: float) -> void:
 				count_index += 1
 			else:
 				if TOTAL_COMBOS.size() > 0:
-					COMBO_COUNT += 1
 					add_monstas()
 					var sizes = 0
 					var points = 0
-					Global.play_sound(Global.ComboSFX)
+					var options = {"pitch_scale": Global.pick_random([1.0, 1.1, 1.2, 1.3])}
+					Global.play_sound(Global.ComboSFX, options)
 					for combo in TOTAL_COMBOS:
 						sizes += combo.size()
 						bulk_points_turn(combo)
 						
-					#Si no es un combo mayor a 3
-					if COMBO_COUNT > 2 and sizes <= 3:
-						var chance = 6
-						if Global.LEVEL > 4:
-							chance = 3
-							
-						if randi() % chance == 0:
-							add_spider()
-	
 					%DeathPath.reset_bar(sizes)
 					
 					%UI.slow_motion()
@@ -308,3 +296,7 @@ func _physics_process(delta: float) -> void:
 			$UI/objetive_anim.play("new_animation")
 			$UI/objetive_anim.stop()
 			STATE = STATES.NEXT_TURN
+			SHOOT_COUNT += 1
+			if SHOOT_COUNT == 5:
+				Global.ADD_SPIDER = true
+				SHOOT_COUNT = 0

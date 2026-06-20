@@ -72,7 +72,6 @@ func set_monsta_callback():
 	temp_monsta = null
 	$monster/stars.visible = false
 	
-
 func set_monsta(_monsta):
 	monsta = _monsta
 	if monsta == null:

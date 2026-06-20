@@ -39,8 +39,14 @@ func new_turn():
 	current_monsta = Global.MONSTA_NEXT.pop_front()
 	
 	randomize()
-	Global.MONSTA_NEXT.append(Global.pick_random(Global.ALL_MONSTAS))
 	
+	if Global.ADD_SPIDER:
+		Global.play_sound(Global.SpiderAddedSFX)
+		Global.MONSTA_NEXT.append(Global.monsta_spider)
+	else:
+		Global.MONSTA_NEXT.append(Global.pick_random(Global.ALL_MONSTAS))
+	
+	Global.ADD_SPIDER = false
 	%monsta_next1.set_monsta(Global.MONSTA_NEXT[0])
 	%monsta_next2.set_monsta(Global.MONSTA_NEXT[1])
 	%monsta_next3.set_monsta(Global.MONSTA_NEXT[2])
@@ -48,15 +54,3 @@ func new_turn():
 	%monsta_next5.set_monsta(Global.MONSTA_NEXT[4])
 	
 	$monster_avatar.play(current_monsta.id)
-	
-func add_spider():
-	var count = Global.PENALTY
-	for i in range(5, 0, -1):
-		if Global.MONSTA_NEXT[i - 1] != Global.monsta_spider:
-			Global.play_sound(Global.SpiderAddedSFX)
-			Global.MONSTA_NEXT[i - 1] = Global.monsta_spider
-			var node = get_node("%monsta_next" + str(i))
-			node.set_monsta(Global.monsta_spider)
-			count -= 1
-			if count <= 0:
-				return  

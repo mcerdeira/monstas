@@ -1,4 +1,5 @@
 extends Node
+var ADD_SPIDER = false
 var SpiderHaul = null
 var Chew = null
 var SpiderAddedSFX = null
@@ -106,6 +107,7 @@ var monsta_spider = {
 
 func init_vars():
 	randomize()
+	ADD_SPIDER = false
 	PENALTY = 1
 	GAME_OVER = false
 	delay_in_count = 0.0
