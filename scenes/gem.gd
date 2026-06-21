@@ -8,6 +8,8 @@ var playing_jump_animation = false #indica si se estÃ¡ reproduciendo la animaciÃ
 var boundary_obj = load("res://scenes/boundary.tscn")
 var rainbow_obj = load("res://scenes/rainbow.tscn")
 var point_turn = null
+var vertical = false
+var horizontal = false
 
 func _ready() -> void:
 	add_to_group("monstaslot")
@@ -51,13 +53,18 @@ func set_points_turn(points, extra = false):
 	add_boundary(Vector2(0, -62))
 	
 	if extra:
-		add_rainbow(1)
-		add_rainbow(-1)
+		if horizontal:
+			add_rainbow(1, 0)
+			add_rainbow(-1, 0)
+		if vertical:
+			add_rainbow(1, 90)
+			add_rainbow(-1, 90)
 		
-func add_rainbow(dir):
+func add_rainbow(dir, rot):
 	var rainbow = rainbow_obj.instantiate()
 	rainbow.position = position
 	rainbow.direction = dir
+	rainbow.rotation_degrees = rot
 	add_child(rainbow)
 
 func add_boundary(pos):

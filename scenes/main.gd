@@ -3,6 +3,7 @@ var delay = 0.0
 var count_index = 0
 var SHOOT_COUNT = 0
 var TOTAL_COMBOS = []
+var shoots_no_rainbow = 0
 
 var counting_functions = [
 	search_rows,
@@ -52,13 +53,13 @@ func search_diagonal_down_right():
 			if are_equals([last_monsta, monsta], special):
 				combo.append(monsta)
 			else:
-				eval_combo(combo)
+				eval_combo(combo, true, false)
 				combo = [monsta]
 			last_monsta = monsta
 			x += 1
 			y += 1
 
-		eval_combo(combo)
+		eval_combo(combo, true, false)
 
 	for start_y in range(1, 5):
 		var combo = []
@@ -71,13 +72,13 @@ func search_diagonal_down_right():
 			if are_equals([last_monsta, monsta], special):
 				combo.append(monsta)
 			else:
-				eval_combo(combo)
+				eval_combo(combo, true, false)
 				combo = [monsta]
 			last_monsta = monsta
 			x += 1
 			y += 1
 			
-		eval_combo(combo)
+		eval_combo(combo, true, false)
 	
 func search_diagonal_down_left():
 	var special = "*"
@@ -92,14 +93,14 @@ func search_diagonal_down_left():
 			if are_equals([last_monsta, monsta], special):
 				combo.append(monsta)
 			else:
-				eval_combo(combo)
+				eval_combo(combo, true, false)
 				combo = [monsta]
 
 			last_monsta = monsta
 			x -= 1
 			y += 1
 			
-		eval_combo(combo)
+		eval_combo(combo, true, false)
 
 	for start_y in range(1, 5):
 		var combo = []
@@ -112,14 +113,14 @@ func search_diagonal_down_left():
 			if are_equals([last_monsta, monsta], special):
 				combo.append(monsta)
 			else:
-				eval_combo(combo)
+				eval_combo(combo, true, false)
 				combo = [monsta]
 
 			last_monsta = monsta
 			x -= 1
 			y += 1
 
-		eval_combo(combo)
+		eval_combo(combo, true, false)
 	
 func bulk_points_turn(monstas, extra = false):
 	for m in monstas:
@@ -136,41 +137,45 @@ func search_columns():
 	var last_monsta = null
 	var combo = []
 	for x in range(5):
-		eval_combo(combo)
+		eval_combo(combo, false, true)
 		combo = []
 		for y in range(5):
 			var monsta = Global.board[x][y]
 			if are_equals([last_monsta, monsta], special):
 				combo.append(monsta)
 			else:
-				eval_combo(combo)
+				eval_combo(combo, false, true)
 				combo = []
 				combo.append(monsta)
 			last_monsta = monsta
 			
-	eval_combo(combo)
+	eval_combo(combo, false, true)
 	
 func search_rows():
 	var special = "*"
 	var last_monsta = null
 	var combo = []
 	for y in range(5):
-		eval_combo(combo)
+		eval_combo(combo, true, false)
 		combo = []
 		for x in range(5):
 			var monsta = Global.board[x][y]
 			if are_equals([last_monsta, monsta], special):
 				combo.append(monsta)
 			else:
-				eval_combo(combo)
+				eval_combo(combo, true, false)
 				combo = []
 				combo.append(monsta)
 			last_monsta = monsta
 	
-	eval_combo(combo)
+	eval_combo(combo,  true, false)
 		
-func eval_combo(combo):
+func eval_combo(combo, vertical, horizontal):
 	if combo.size() > 2:
+		for c in combo:
+			c.vertical = vertical
+			c.horizontal = horizontal
+		
 		TOTAL_COMBOS.append(combo)
 		
 func eval_params():
@@ -268,13 +273,23 @@ func _physics_process(delta: float) -> void:
 					var points = 0
 					var options = {"pitch_scale": Global.pick_random([1.0, 1.1, 1.2, 1.3])}
 					Global.play_sound(Global.ComboSFX, options)
+					var super_combo = ""
 					for combo in TOTAL_COMBOS:
 						sizes += combo.size()
 						var rainbow = search_rainbow(combo)
+						if rainbow:
+							super_combo = "SUPER "
 						bulk_points_turn(combo, rainbow)
 						
-					#if sizes >= 5:
-					Global.ADD_RAINBOW = true   
+					if sizes >= 5:
+						Global.ADD_RAINBOW = true
+					else:
+						shoots_no_rainbow += 1
+						
+					if shoots_no_rainbow >= 15:
+						if randi() % 5 == 0:
+							Global.ADD_RAINBOW = true
+							shoots_no_rainbow = 0
 						
 					%DeathPath.reset_bar(sizes)
 					
@@ -283,7 +298,7 @@ func _physics_process(delta: float) -> void:
 					eval_level()
 					eval_params()
 				
-					%UI.show_message("Combo x" + str(sizes), null, false, "(" + str(Global.THIS_TURN_SCORE) + " pts)")
+					%UI.show_message(super_combo + "Combo x" + str(sizes), null, false, "(" + str(Global.THIS_TURN_SCORE) + " pts)")
 					
 				count_index = 0
 				STATE = STATES.SHOWING_RESULTS
@@ -299,6 +314,7 @@ func _physics_process(delta: float) -> void:
 	elif STATE == STATES.SHOWING_RESULTS:
 		if Global.THIS_TURN_SCORE > 0:
 			$UI/objetive_anim.play("new_animation")
+			SHOOT_COUNT = 0
 			Global.SCORE += 10
 			Global.THIS_TURN_SCORE -= 10
 			Global.shaker_obj.shake(10.1, 0.2)
