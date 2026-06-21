@@ -1,7 +1,9 @@
 extends Node
 var ADD_SPIDER = false
+var ADD_RAINBOW = false
 var SpiderHaul = null
 var Chew = null
+var RainbowAdded = null
 var SpiderAddedSFX = null
 var GunMoveSFX = null
 var MonstaJumpSFX = null
@@ -105,8 +107,18 @@ var monsta_spider = {
 	"special": "*",
 }
 
+var monsta_rainbow = {
+	"id": "rainbow",
+	"name": "Rainbow",
+	"description": "AWWWWWWWW",
+	"points_special": 600,
+	"points_falling": -600,
+	"special": "*",
+}
+
 func init_vars():
 	randomize()
+	ADD_RAINBOW = false
 	ADD_SPIDER = false
 	PENALTY = 1
 	GAME_OVER = false
@@ -143,6 +155,7 @@ func init_music():
 	ComboSFX = load("res://sfx/cococombo.mp3")
 	SpiderHaul = load("res://sfx/SpiderHaul.wav")
 	Chew = load("res://sfx/chewing.wav")
+	RainbowAdded = load("res://sfx/wow.mp3")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN

@@ -13,10 +13,13 @@
 [ext_resource type="Script" uid="uid://b1seoeoolov14" path="res://scenes/monster_avatar.gd" id="7_uum37"]
 [ext_resource type="Texture2D" uid="uid://dlhvlaqaju3mc" path="res://sprites/monsters/vampire2.png" id="7_vsie3"]
 [ext_resource type="Texture2D" uid="uid://sbjcsn7v27nk" path="res://sprites/monsters/slime1.png" id="9_f50y5"]
+[ext_resource type="Texture2D" uid="uid://dl88pfkyes0g" path="res://sprites/monsters/rainbow1.png" id="9_po85x"]
 [ext_resource type="Texture2D" uid="uid://788cy6gbd5ir" path="res://sprites/monsters/spider1.png" id="9_vgsuj"]
 [ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="9_wk8o1"]
 [ext_resource type="Texture2D" uid="uid://brxeu64ma2xxf" path="res://sprites/monsters/slime2.png" id="10_2duer"]
 [ext_resource type="Texture2D" uid="uid://bq0ildmbxt84" path="res://sprites/monsters/spider2.png" id="10_l754j"]
+[ext_resource type="Texture2D" uid="uid://bbe7j0bswto6o" path="res://sprites/monsters/rainbow2.png" id="10_vgth6"]
+[ext_resource type="Texture2D" uid="uid://dy77f8w0ilg3w" path="res://sprites/monsters/rainbow3.png" id="11_hang1"]
 [ext_resource type="Texture2D" uid="uid://digb3vqr2jq1y" path="res://sprites/monsters/yeti1.png" id="11_l754j"]
 [ext_resource type="Texture2D" uid="uid://rvvwh0yxu22y" path="res://sprites/monsters/yeti2.png" id="12_o45dm"]
 
@@ -61,6 +64,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"poop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_po85x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hang1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vgth6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hang1")
+}],
+"loop": true,
+"name": &"rainbow",
 "speed": 5.0
 }, {
 "frames": [{
@@ -165,7 +185,7 @@ script = ExtResource("7_uum37")
 
 [node name="monster_avatar" type="AnimatedSprite2D" parent="." unique_id=1749985967]
 sprite_frames = SubResource("SpriteFrames_muem4")
-animation = &"yeti"
+animation = &"rainbow"
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=1327578716]
 root_node = NodePath("../monster_avatar")

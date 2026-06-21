@@ -6,6 +6,7 @@ var monstaeffect_obj = load("res://scenes/monta_effect.tscn")
 var minibullet_obj = load("res://scenes/minibullet.tscn") #bala para direccionar el salto
 var playing_jump_animation = false #indica si se está reproduciendo la animación de salto
 var boundary_obj = load("res://scenes/boundary.tscn")
+var rainbow_obj = load("res://scenes/rainbow.tscn")
 var point_turn = null
 
 func _ready() -> void:
@@ -29,7 +30,7 @@ func kill_spider():
 	get_parent().get_parent().add_child(monstaeffect)
 	set_monsta(null)
 	
-func set_points_turn(points):
+func set_points_turn(points, extra = false):
 	var follower_bullet = follower_bullet_obj.instantiate()
 	follower_bullet.global_position = global_position
 	get_parent().get_parent().add_child(follower_bullet)
@@ -48,6 +49,16 @@ func set_points_turn(points):
 	add_boundary(Vector2(-62, 0))
 	add_boundary(Vector2(0, 62))
 	add_boundary(Vector2(0, -62))
+	
+	if extra:
+		add_rainbow(1)
+		add_rainbow(-1)
+		
+func add_rainbow(dir):
+	var rainbow = rainbow_obj.instantiate()
+	rainbow.position = position
+	rainbow.direction = dir
+	add_child(rainbow)
 
 func add_boundary(pos):
 	var boundary = boundary_obj.instantiate()
@@ -102,3 +113,7 @@ func hit(_monsta):
 		Global.emit(global_position, 3)
 		set_monsta(_monsta)
 	
+func _on_clickeable_area_entered(area: Area2D) -> void:
+	if area and area.is_in_group("rainbow_killer"):
+		if monsta:
+			set_points_turn(monsta.points_special * 2, false)

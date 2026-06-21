@@ -10,9 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://788cy6gbd5ir" path="res://sprites/monsters/spider1.png" id="7_mms6f"]
 [ext_resource type="Texture2D" uid="uid://bq0ildmbxt84" path="res://sprites/monsters/spider2.png" id="8_d5jtt"]
 [ext_resource type="Texture2D" uid="uid://sbjcsn7v27nk" path="res://sprites/monsters/slime1.png" id="8_et83r"]
+[ext_resource type="Texture2D" uid="uid://dl88pfkyes0g" path="res://sprites/monsters/rainbow1.png" id="8_tbo86"]
+[ext_resource type="Texture2D" uid="uid://bbe7j0bswto6o" path="res://sprites/monsters/rainbow2.png" id="9_85fq5"]
 [ext_resource type="Texture2D" uid="uid://brxeu64ma2xxf" path="res://sprites/monsters/slime2.png" id="9_shsdm"]
 [ext_resource type="Texture2D" uid="uid://byux4dnutm6b4" path="res://sprites/monsters/vampire1.png" id="9_tbo86"]
 [ext_resource type="Texture2D" uid="uid://dlhvlaqaju3mc" path="res://sprites/monsters/vampire2.png" id="10_85fq5"]
+[ext_resource type="Texture2D" uid="uid://dy77f8w0ilg3w" path="res://sprites/monsters/rainbow3.png" id="10_lvwp8"]
 [ext_resource type="Texture2D" uid="uid://cdxf25qfjnq1g" path="res://sprites/monsters/zombie1.png" id="11_lvwp8"]
 [ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="12_83irb"]
 [ext_resource type="Texture2D" uid="uid://digb3vqr2jq1y" path="res://sprites/monsters/yeti1.png" id="14_04ya6"]
@@ -59,6 +62,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"poop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_tbo86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lvwp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_85fq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lvwp8")
+}],
+"loop": true,
+"name": &"rainbow",
 "speed": 5.0
 }, {
 "frames": [{
@@ -124,4 +144,5 @@ script = ExtResource("1_o5of4")
 z_index = 4000
 position = Vector2(3, -14)
 sprite_frames = SubResource("SpriteFrames_5s5ng")
-animation = &"empty"
+animation = &"rainbow"
+frame_progress = 0.5424708

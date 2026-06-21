@@ -43,10 +43,15 @@ func new_turn():
 	if Global.ADD_SPIDER:
 		Global.play_sound(Global.SpiderAddedSFX)
 		Global.MONSTA_NEXT.append(Global.monsta_spider)
+	elif Global.ADD_RAINBOW:
+		Global.play_sound(Global.RainbowAdded)
+		Global.MONSTA_NEXT.append(Global.monsta_rainbow)
 	else:
 		Global.MONSTA_NEXT.append(Global.pick_random(Global.ALL_MONSTAS))
+		
 	
 	Global.ADD_SPIDER = false
+	Global.ADD_RAINBOW = false
 	%monsta_next1.set_monsta(Global.MONSTA_NEXT[0])
 	%monsta_next2.set_monsta(Global.MONSTA_NEXT[1])
 	%monsta_next3.set_monsta(Global.MONSTA_NEXT[2])

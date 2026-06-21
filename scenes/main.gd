@@ -35,7 +35,7 @@ func are_equals(monstas, special):
 		if id == null:
 			id = m.monsta.id
 		else:
-			if id != m.monsta.id:
+			if id != m.monsta.id and m.monsta.id != "rainbow":
 				return false
 			
 	return true
@@ -121,9 +121,9 @@ func search_diagonal_down_left():
 
 		eval_combo(combo)
 	
-func bulk_points_turn(monstas):
+func bulk_points_turn(monstas, extra = false):
 	for m in monstas:
-		m.set_points_turn(m.monsta.points_special)
+		m.set_points_turn(m.monsta.points_special, extra)
 
 func _ready() -> void:
 	SHOOT_COUNT = 0
@@ -212,6 +212,12 @@ func eval_level():
 func add_monstas():
 	if Global.FULL_MONSTAS.size() > 0:
 		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
+		
+func search_rainbow(combo):
+	for c in combo:
+		if c.monsta.id != "rainbow":
+			return false
+	return true
 			
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -264,7 +270,11 @@ func _physics_process(delta: float) -> void:
 					Global.play_sound(Global.ComboSFX, options)
 					for combo in TOTAL_COMBOS:
 						sizes += combo.size()
-						bulk_points_turn(combo)
+						var rainbow = search_rainbow(combo)
+						bulk_points_turn(combo, rainbow)
+						
+					#if sizes >= 5:
+					Global.ADD_RAINBOW = true   
 						
 					%DeathPath.reset_bar(sizes)
 					
@@ -297,6 +307,6 @@ func _physics_process(delta: float) -> void:
 			$UI/objetive_anim.stop()
 			STATE = STATES.NEXT_TURN
 			SHOOT_COUNT += 1
-			if SHOOT_COUNT == 5:
+			if SHOOT_COUNT == 5 and !Global.ADD_RAINBOW:
 				Global.ADD_SPIDER = true
 				SHOOT_COUNT = 0
