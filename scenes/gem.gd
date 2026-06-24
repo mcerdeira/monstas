@@ -62,7 +62,7 @@ func set_points_turn(points, extra = false):
 		
 func add_rainbow(dir, rot):
 	var rainbow = rainbow_obj.instantiate()
-	rainbow.position = position
+	rainbow.position = Vector2(0, 0)
 	rainbow.direction = dir
 	rainbow.rotation_degrees = rot
 	add_child(rainbow)

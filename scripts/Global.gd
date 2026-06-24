@@ -133,7 +133,7 @@ func init_vars():
 	DEATH_SPEED = 10
 	MONSTA_NEXT = []
 	FULL_MONSTAS = [monsta_vampire, monsta_cyclops, monsta_yeti, monsta_slime]
-	ALL_MONSTAS = [monsta_poop, monsta_fish, monsta_zombie]
+	ALL_MONSTAS = [monsta_rainbow, monsta_poop] #[monsta_poop, monsta_fish, monsta_zombie]
 	for i in range(5):
 		MONSTA_NEXT.append(pick_random(ALL_MONSTAS))
 
@@ -184,74 +184,6 @@ func emit(_global_position, count, particle_obj = null, size = 1):
 		p.size = size
 		add_child(p)
 		
-func get_weighted_random_monster(board):
-	var weights = {}
-	var monsters = ALL_MONSTAS
-	# 1. pesos base
-	for m in monsters:
-		weights[m] = 1.0
-
-	# 2. analizar tablero y sumar pesos
-	for m in monsters:
-		var score = evaluate_monster_potential(board, m)
-		weights[m] += score
-
-	# 3. elegir weighted random
-	return weighted_pick(weights)
-		
-func evaluate_monster_potential(board, monster) -> float:
-	var score = 0.0
-	var lines = get_all_lines(board)
-
-	for line in lines:
-		var count = 0
-		var empty = 0
-
-		for cell in line:
-			if cell == null:
-				empty += 1
-			elif cell.id == monster.id:
-				count += 1
-			
-		# caso fuerte: 2 + 1 vacío → casi combo
-		if count == 2 and empty == 1:
-			score += 3.0
-
-		# caso leve: 1 + 2 vacíos → potencial
-		elif count == 1 and empty == 2:
-			score += 1.0
-
-	return score
-	
-func weighted_pick(weights: Dictionary):
-	var total = 0.0
-
-	for w in weights.values():
-		total += w
-
-	var r = randf() * total
-	var cumulative = 0.0
-
-	for key in weights.keys():
-		cumulative += weights[key]
-		if r <= cumulative:
-			return key
-
-	return weights.keys()[0] # fallback
-		
-func get_all_lines(board):
-	var lines = []
-
-	# filas
-	for y in range(5):
-		lines.append([board[y][0], board[y][1], board[y][2], board[y][3], board[y][4]])
-
-	# columnas
-	for x in range(5):
-		lines.append([board[0][x], board[1][x], board[2][x], board[3][x], board[4][x]])
-
-	return lines
-	
 func pick_random(container):
 	if typeof(container) == TYPE_DICTIONARY:
 		return container.values()[randi() % container.size() ]

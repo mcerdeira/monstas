@@ -27,6 +27,7 @@ shader_parameter/noise_scale = Vector2(5, 5)
 size = Vector2(15, 20)
 
 [node name="Rainbow" type="Node2D" unique_id=442509741]
+z_index = 10
 script = ExtResource("1_sps4v")
 
 [node name="RaySprite" type="Sprite2D" parent="." unique_id=1283634270]

@@ -30,13 +30,13 @@ var STATE : STATES = STATES.INIT
 func are_equals(monstas, special):
 	var id = null
 	for m in monstas:
-		if m == null or m.monsta == null or m.monsta.points_special == 0 or m.monsta.special != special:
+		if m == null or m.monsta == null or m.monsta.points_special == 0:
 			return false
 			
 		if id == null:
 			id = m.monsta.id
 		else:
-			if id != m.monsta.id and m.monsta.id != "rainbow":
+			if id != m.monsta.id and m.monsta.id != "rainbow" and id != "rainbow":
 				return false
 			
 	return true
@@ -219,10 +219,13 @@ func add_monstas():
 		Global.ALL_MONSTAS.append(Global.FULL_MONSTAS.pop_front())
 		
 func search_rainbow(combo):
+	var count = 0
 	for c in combo:
-		if c.monsta.id != "rainbow":
-			return false
-	return true
+		if c.monsta.id == "rainbow":
+			count += 1
+			if count >= 3:
+				return true
+	return false
 			
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -283,11 +286,12 @@ func _physics_process(delta: float) -> void:
 						
 					if sizes >= 5:
 						Global.ADD_RAINBOW = true
+						shoots_no_rainbow = 0
 					else:
 						shoots_no_rainbow += 1
 						
-					if shoots_no_rainbow >= 15:
-						if randi() % 5 == 0:
+					if shoots_no_rainbow >= 5:
+						if randi() % 4 == 0:
 							Global.ADD_RAINBOW = true
 							shoots_no_rainbow = 0
 						
