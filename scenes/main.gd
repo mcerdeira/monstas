@@ -284,9 +284,14 @@ func _physics_process(delta: float) -> void:
 							super_combo = "SUPER "
 						bulk_points_turn(combo, rainbow)
 						
-					if sizes >= 5:
-						Global.ADD_RAINBOW = true
-						shoots_no_rainbow = 0
+					if sizes >= 4:
+						if sizes >= 5:
+							Global.ADD_RAINBOW = true
+							shoots_no_rainbow = 0
+						else:
+							if randi() % 2 == 0:
+								Global.ADD_RAINBOW = true
+								shoots_no_rainbow = 0
 					else:
 						shoots_no_rainbow += 1
 						

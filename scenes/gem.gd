@@ -7,6 +7,7 @@ var minibullet_obj = load("res://scenes/minibullet.tscn") #bala para direccionar
 var playing_jump_animation = false #indica si se está reproduciendo la animación de salto
 var boundary_obj = load("res://scenes/boundary.tscn")
 var rainbow_obj = load("res://scenes/rainbow.tscn")
+var number_obj = load("res://scenes/numbergoup.tscn")
 var point_turn = null
 var vertical = false
 var horizontal = false
@@ -44,13 +45,20 @@ func set_points_turn(points, extra = false):
 	
 	$Points.play("new_animation")
 	Global.emit(global_position, 5)
-	Global.THIS_TURN_SCORE += points
-	point_turn = points
+	if points != null:
+		Global.THIS_TURN_SCORE += points
+		point_turn = points
+		
+		if points > 0:
+			var number = number_obj.instantiate()
+			number.global_position = global_position - Vector2(0, 32)
+			number.points = points
+			get_parent().get_parent().add_child(number)
 	
-	add_boundary(Vector2(62, 0))
-	add_boundary(Vector2(-62, 0))
-	add_boundary(Vector2(0, 62))
-	add_boundary(Vector2(0, -62))
+		add_boundary(Vector2(62, 0))
+		add_boundary(Vector2(-62, 0))
+		add_boundary(Vector2(0, 62))
+		add_boundary(Vector2(0, -62))
 	
 	if extra:
 		if horizontal:
@@ -123,4 +131,4 @@ func hit(_monsta):
 func _on_clickeable_area_entered(area: Area2D) -> void:
 	if area and area.is_in_group("rainbow_killer"):
 		if monsta:
-			set_points_turn(monsta.points_special * 2, false)
+			set_points_turn(null, false)

@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://d3ttvw5b7rlre"]
+
+[ext_resource type="Script" uid="uid://g53i6kfw6q2f" path="res://scenes/numbergoup.gd" id="1_wwg8q"]
+[ext_resource type="FontFile" uid="uid://cyy1mfwfjcwwk" path="res://fonts/PirataOne-Regular.ttf" id="2_4ntfk"]
+
+[sub_resource type="Animation" id="Animation_4ntfk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lbl_points:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-65, -32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7igdx"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.56666666, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_kill_me"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("lbl_points:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-65, -32), Vector2(-65, -200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4cy7"]
+_data = {
+&"RESET": SubResource("Animation_4ntfk"),
+&"new_animation": SubResource("Animation_7igdx")
+}
+
+[node name="Numbergoup" type="Node2D" unique_id=871770186]
+script = ExtResource("1_wwg8q")
+
+[node name="lbl_points" type="Label" parent="." unique_id=1184658858]
+offset_left = -65.0
+offset_top = -32.0
+offset_right = 70.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("2_4ntfk")
+theme_override_font_sizes/font_size = 38
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=780831526]
+libraries/ = SubResource("AnimationLibrary_q4cy7")
+autoplay = &"new_animation"
+speed_scale = 0.5

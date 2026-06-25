@@ -132,8 +132,8 @@ func init_vars():
 	LEVEL = 1
 	DEATH_SPEED = 10
 	MONSTA_NEXT = []
-	FULL_MONSTAS = [monsta_vampire, monsta_cyclops, monsta_yeti, monsta_slime]
-	ALL_MONSTAS = [monsta_rainbow, monsta_poop] #[monsta_poop, monsta_fish, monsta_zombie]
+	FULL_MONSTAS = [monsta_fish, monsta_vampire, monsta_cyclops, monsta_yeti, monsta_slime]
+	ALL_MONSTAS = [monsta_poop, monsta_zombie]
 	for i in range(5):
 		MONSTA_NEXT.append(pick_random(ALL_MONSTAS))
 

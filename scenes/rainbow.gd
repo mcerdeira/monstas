@@ -3,7 +3,6 @@ extends Node2D
 var speed = 50
 var ttl = 2.1
 
-
 func _physics_process(delta: float) -> void:
 	Global.shaker_obj.shake(15.1, 5.2)
 	if abs(scale.x) <= 100 :

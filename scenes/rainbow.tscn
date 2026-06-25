@@ -30,17 +30,24 @@ size = Vector2(15, 20)
 z_index = 10
 script = ExtResource("1_sps4v")
 
+[node name="RayParticles" parent="." unique_id=1511244883 instance=ExtResource("4_2nlbq")]
+position = Vector2(0, -11)
+
+[node name="RayParticles2" parent="." unique_id=1407227285 instance=ExtResource("4_2nlbq")]
+position = Vector2(-1, 1)
+
+[node name="RayParticles3" parent="." unique_id=714166884 instance=ExtResource("4_2nlbq")]
+position = Vector2(0, -20)
+
+[node name="RayParticles4" parent="." unique_id=1987739814 instance=ExtResource("4_2nlbq")]
+position = Vector2(0, 12)
+
 [node name="RaySprite" type="Sprite2D" parent="." unique_id=1283634270]
 material = SubResource("ShaderMaterial_awgy0")
+position = Vector2(-4, 0)
 scale = Vector2(15, 64)
 texture = ExtResource("2_bpphj")
 offset = Vector2(0.5007384, -0.00091695687)
-
-[node name="RayParticles" parent="." unique_id=1511244883 instance=ExtResource("4_2nlbq")]
-position = Vector2(-4, -6)
-
-[node name="RayParticles2" parent="." unique_id=1407227285 instance=ExtResource("4_2nlbq")]
-position = Vector2(0, 1)
 
 [node name="killer" type="Area2D" parent="." unique_id=786559322]
 script = ExtResource("5_dvl1o")
