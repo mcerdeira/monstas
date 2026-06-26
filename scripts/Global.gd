@@ -9,6 +9,7 @@ var GunMoveSFX = null
 var MonstaJumpSFX = null
 var ShootSFX = null
 var ComboSFX = null
+var SuperComboSFX = null
 var TitleTheme = null
 var MainTheme = null
 var player_obj = null
@@ -156,6 +157,7 @@ func init_music():
 	SpiderHaul = load("res://sfx/SpiderHaul.wav")
 	Chew = load("res://sfx/chewing.wav")
 	RainbowAdded = load("res://sfx/wow.mp3")
+	SuperComboSFX = load("res://sfx/ohmygad.mp3")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN

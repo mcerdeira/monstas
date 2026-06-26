@@ -274,8 +274,6 @@ func _physics_process(delta: float) -> void:
 					add_monstas()
 					var sizes = 0
 					var points = 0
-					var options = {"pitch_scale": Global.pick_random([1.0, 1.1, 1.2, 1.3])}
-					Global.play_sound(Global.ComboSFX, options)
 					var super_combo = ""
 					for combo in TOTAL_COMBOS:
 						sizes += combo.size()
@@ -306,6 +304,12 @@ func _physics_process(delta: float) -> void:
 					
 					eval_level()
 					eval_params()
+					
+					if super_combo == "":
+						var options = {"pitch_scale": Global.pick_random([1.0, 1.1, 1.2, 1.3])}
+						Global.play_sound(Global.ComboSFX, options)
+					else:
+						Global.play_sound(Global.SuperComboSFX)
 				
 					%UI.show_message(super_combo + "Combo x" + str(sizes), null, false, "(" + str(Global.THIS_TURN_SCORE) + " pts)")
 					

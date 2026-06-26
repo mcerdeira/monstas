@@ -421,7 +421,7 @@ metadata/_edit_lock_ = true
 
 [node name="UI" type="Control" parent="." unique_id=400045900]
 unique_name_in_owner = true
-z_index = 4000
+z_index = 4095
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -460,31 +460,6 @@ position = Vector2(719, 30)
 libraries/ = SubResource("AnimationLibrary_2f3dj")
 speed_scale = 5.0
 
-[node name="lbl_message" type="Label" parent="UI" unique_id=1741242101]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_top = 118.0
-offset_right = 1152.0
-offset_bottom = 357.0
-theme_override_colors/font_color = Color(0.89059, 0.89059, 0.8905901, 1)
-theme_override_fonts/font = ExtResource("4_0ld40")
-theme_override_font_sizes/font_size = 148
-text = "Player Turn"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="sub" type="Label" parent="UI/lbl_message" unique_id=988069195]
-layout_mode = 0
-offset_top = 179.0
-offset_right = 1153.0
-offset_bottom = 327.0
-theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
-theme_override_fonts/font = ExtResource("4_0ld40")
-theme_override_font_sizes/font_size = 96
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="lbl_next" type="Label" parent="UI" unique_id=770304714]
 layout_mode = 0
 offset_left = 155.0
@@ -520,6 +495,31 @@ imnext = true
 unique_name_in_owner = true
 position = Vector2(37, -15)
 imnext = true
+
+[node name="lbl_message" type="Label" parent="UI" unique_id=1741242101]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_top = 118.0
+offset_right = 1161.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(0.89059, 0.89059, 0.8905901, 1)
+theme_override_fonts/font = ExtResource("4_0ld40")
+theme_override_font_sizes/font_size = 148
+text = "Player Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sub" type="Label" parent="UI/lbl_message" unique_id=988069195]
+layout_mode = 0
+offset_top = 179.0
+offset_right = 1153.0
+offset_bottom = 327.0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("4_0ld40")
+theme_override_font_sizes/font_size = 96
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Artefact" type="Node2D" parent="." unique_id=1974696450]
 unique_name_in_owner = true
