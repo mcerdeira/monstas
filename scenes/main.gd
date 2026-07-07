@@ -4,6 +4,8 @@ var count_index = 0
 var SHOOT_COUNT = 0
 var TOTAL_COMBOS = []
 var shoots_no_rainbow = 0
+var gotoshop = false
+var delay_shop = 0
 
 var counting_functions = [
 	search_rows,
@@ -23,6 +25,7 @@ enum STATES
 	COUNTING,
 	SHOWING_RESULTS,
 	GAME_OVER,
+	SHOP,
 }
 
 var STATE : STATES = STATES.INIT
@@ -262,6 +265,8 @@ func _physics_process(delta: float) -> void:
 		if Global.board == []: 
 			%Artefact.init_board()
 		
+		var lvl = Global.LEVEL  
+		
 		if Global.delay_in_count <= 0:
 			if count_index < counting_functions.size():
 				Global.delay_in_count = 1.3
@@ -301,7 +306,6 @@ func _physics_process(delta: float) -> void:
 					%DeathPath.reset_bar(sizes)
 					
 					%UI.slow_motion()
-					
 					eval_level()
 					eval_params()
 					
@@ -312,6 +316,9 @@ func _physics_process(delta: float) -> void:
 						Global.play_sound(Global.SuperComboSFX)
 				
 					%UI.show_message(super_combo + "Combo x" + str(sizes), null, false, "(" + str(Global.THIS_TURN_SCORE) + " pts)")
+					
+				if lvl != Global.LEVEL:
+					gotoshop = true
 					
 				count_index = 0
 				STATE = STATES.SHOWING_RESULTS
@@ -334,8 +341,19 @@ func _physics_process(delta: float) -> void:
 		else:
 			$UI/objetive_anim.play("new_animation")
 			$UI/objetive_anim.stop()
-			STATE = STATES.NEXT_TURN
+			if gotoshop:
+				STATE = STATES.SHOP
+				delay_shop = 1.1
+			else:
+				STATE = STATES.NEXT_TURN
 			SHOOT_COUNT += 1
 			if SHOOT_COUNT == 5 and !Global.ADD_RAINBOW:
 				Global.ADD_SPIDER = true
 				SHOOT_COUNT = 0
+	elif STATE == STATES.SHOP:
+		if delay_shop <= 0:
+			if gotoshop:
+				gotoshop = false
+				%Shop.show_me()
+		else:
+			delay_shop -= 1 * delta

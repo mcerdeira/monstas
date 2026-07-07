@@ -28,7 +28,30 @@
 [ext_resource type="Shader" uid="uid://ht5415rkau8m" path="res://scenes/blood.gdshader" id="11_yq6so"]
 [ext_resource type="PackedScene" uid="uid://w45u4wattndj" path="res://scenes/monster_avatar.tscn" id="13_trceg"]
 [ext_resource type="PackedScene" uid="uid://cm8cmwah61asr" path="res://scenes/monsta_bullet.tscn" id="13_yc10j"]
+[ext_resource type="Shader" uid="uid://c6271lg4lenrn" path="res://scenes/glowbeam.gdshader" id="18_fv21b"]
+[ext_resource type="Script" uid="uid://cv5r2u6fbdthl" path="res://scenes/shop.gd" id="19_tel4y"]
+[ext_resource type="Texture2D" uid="uid://fxxegh6sbgxn" path="res://sprites/monsters/poop1.png" id="20_5poiv"]
+[ext_resource type="Texture2D" uid="uid://byux4dnutm6b4" path="res://sprites/monsters/vampire1.png" id="20_5q0nq"]
+[ext_resource type="Texture2D" uid="uid://ddlwvmwxinlt1" path="res://sprites/monsters/fish1.png" id="20_chjal"]
+[ext_resource type="Texture2D" uid="uid://sbjcsn7v27nk" path="res://sprites/monsters/slime1.png" id="20_j8jky"]
+[ext_resource type="Texture2D" uid="uid://cp40c1aqoxetm" path="res://sprites/monsters/cyclops1.png" id="20_vchkt"]
+[ext_resource type="Texture2D" uid="uid://dj0ux0timjc4q" path="res://sprites/monsters/poop2.png" id="21_2cjbq"]
+[ext_resource type="Texture2D" uid="uid://doddoaocrg31l" path="res://sprites/monsters/fish2.png" id="21_cjqg0"]
+[ext_resource type="Texture2D" uid="uid://dlhvlaqaju3mc" path="res://sprites/monsters/vampire2.png" id="21_dgi5k"]
+[ext_resource type="Texture2D" uid="uid://brxeu64ma2xxf" path="res://sprites/monsters/slime2.png" id="21_kmb1v"]
+[ext_resource type="Texture2D" uid="uid://dta4ka47giuex" path="res://sprites/monsters/cyclops2.png" id="21_txyw0"]
+[ext_resource type="Texture2D" uid="uid://digb3vqr2jq1y" path="res://sprites/monsters/yeti1.png" id="24_fuf3a"]
+[ext_resource type="Texture2D" uid="uid://rvvwh0yxu22y" path="res://sprites/monsters/yeti2.png" id="25_pibwh"]
+[ext_resource type="Texture2D" uid="uid://cdxf25qfjnq1g" path="res://sprites/monsters/zombie1.png" id="26_c6pm6"]
+[ext_resource type="Texture2D" uid="uid://dl88pfkyes0g" path="res://sprites/monsters/rainbow1.png" id="26_vc5cj"]
+[ext_resource type="Texture2D" uid="uid://b06q5kl4722es" path="res://sprites/monsters/zombie2.png" id="27_5he1u"]
+[ext_resource type="Texture2D" uid="uid://bbe7j0bswto6o" path="res://sprites/monsters/rainbow2.png" id="27_nvyfr"]
+[ext_resource type="Texture2D" uid="uid://dcqd1aksek33o" path="res://sprites/monsters/re-roll1.png" id="28_ty1g6"]
 [ext_resource type="Script" uid="uid://dnru1f7js7x73" path="res://scenes/shoot_line.gd" id="29_fv21b"]
+[ext_resource type="Texture2D" uid="uid://du70yxc82iibn" path="res://sprites/monsters/re-roll2.png" id="29_j2jfr"]
+[ext_resource type="Texture2D" uid="uid://cx4vi3mshgh14" path="res://sprites/cosito1.png" id="38_bu4jf"]
+[ext_resource type="Texture2D" uid="uid://ljoeju8saufq" path="res://sprites/cosito2.png" id="39_o7ddy"]
+[ext_resource type="Texture2D" uid="uid://cjwxpjbyiu7p" path="res://sprites/cosito3.png" id="40_0loja"]
 
 [sub_resource type="Curve2D" id="Curve2D_yc10j"]
 bake_interval = 16.0
@@ -211,6 +234,141 @@ _data = {
 &"RESET": SubResource("Animation_2wyq8"),
 &"new_animation": SubResource("Animation_vxglm")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tel4y"]
+shader = ExtResource("18_fv21b")
+shader_parameter/speed = 0.5
+shader_parameter/alpha_value = 0.9
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ids8r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_bu4jf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_o7ddy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_0loja")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tel4y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_vchkt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_txyw0")
+}],
+"loop": true,
+"name": &"cyclops_lolo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_chjal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_cjqg0")
+}],
+"loop": true,
+"name": &"fish_eat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_5poiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_2cjbq")
+}],
+"loop": true,
+"name": &"poop_common",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_vc5cj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_nvyfr")
+}],
+"loop": true,
+"name": &"rainbow_more",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_ty1g6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_j2jfr")
+}],
+"loop": true,
+"name": &"reroll",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_j8jky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_kmb1v")
+}],
+"loop": true,
+"name": &"slime_spread",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pm3ni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y6deb")
+}],
+"loop": true,
+"name": &"spider_combos",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_5q0nq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_dgi5k")
+}],
+"loop": true,
+"name": &"vampire_x2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_fuf3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_pibwh")
+}],
+"loop": true,
+"name": &"yeti_freeze",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_c6pm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_5he1u")
+}],
+"loop": true,
+"name": &"zombie_lolo",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yc10j"]
 animations = [{
@@ -520,6 +678,68 @@ theme_override_fonts/font = ExtResource("4_0ld40")
 theme_override_font_sizes/font_size = 96
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Shop" type="ColorRect" parent="UI" unique_id=2119910636]
+unique_name_in_owner = true
+process_mode = 3
+material = SubResource("ShaderMaterial_tel4y")
+layout_mode = 0
+offset_left = 30.0
+offset_top = 34.0
+offset_right = 1122.0
+offset_bottom = 597.0
+script = ExtResource("19_tel4y")
+
+[node name="lbl_title" type="Label" parent="UI/Shop" unique_id=213559382]
+layout_mode = 0
+offset_top = -52.0
+offset_right = 1092.0
+offset_bottom = 187.0
+theme_override_colors/font_color = Color(0.89059, 0.89059, 0.8905901, 1)
+theme_override_fonts/font = ExtResource("4_0ld40")
+theme_override_font_sizes/font_size = 140
+text = "Choose upgrade!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sub" type="Label" parent="UI/Shop" unique_id=621557281]
+layout_mode = 0
+offset_top = 358.0
+offset_right = 1092.0
+offset_bottom = 546.0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_fonts/font = ExtResource("4_0ld40")
+theme_override_font_sizes/font_size = 76
+text = "Yeti combos freezes the spider."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="cosito" type="AnimatedSprite2D" parent="UI/Shop" unique_id=1475935259]
+position = Vector2(179, 159)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ids8r")
+autoplay = "default"
+frame_progress = 0.48543134
+
+[node name="upgrade1" type="AnimatedSprite2D" parent="UI/Shop" unique_id=1574541040]
+position = Vector2(179, 292)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tel4y")
+animation = &"spider_combos"
+
+[node name="upgrade2" type="AnimatedSprite2D" parent="UI/Shop" unique_id=1430736613]
+position = Vector2(546, 292)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tel4y")
+animation = &"spider_combos"
+
+[node name="upgrade3" type="AnimatedSprite2D" parent="UI/Shop" unique_id=1530971459]
+position = Vector2(930, 292)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tel4y")
+animation = &"spider_combos"
 
 [node name="Artefact" type="Node2D" parent="." unique_id=1974696450]
 unique_name_in_owner = true

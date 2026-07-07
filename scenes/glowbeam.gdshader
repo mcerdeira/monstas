@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform float speed = 2.5;
+uniform float alpha_value = 0.15;
 
 void fragment()
 {
@@ -17,7 +18,7 @@ void fragment()
 			)
 		);
 
-	float alpha = 0.15;
+	float alpha = alpha_value;
 
 	COLOR = vec4(rainbow, alpha);
 }

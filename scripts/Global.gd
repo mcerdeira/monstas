@@ -28,6 +28,7 @@ var SCORE = 0
 var MONSTA_NEXT = []
 var THIS_TURN_SCORE = 0
 var LEVEL = 0
+var UPGRADES = []
 var FULL_MONSTAS = []
 var ALL_MONSTAS = []
 var SPIDERS = 0
@@ -35,6 +36,81 @@ var delay_in_count = 0.0
 var board = []
 var death_bar = 80.0
 var spider_follower = null
+
+var cyclops_lolo = {
+	"id": "cyclops_lolo",
+	"name": "Cyclops Lolo",
+	"description": "",
+	"effect": null,
+}
+
+var fish_eat = {
+	"id": "fish_eat",
+	"name": "Eating Fish",
+	"description": "Eats Spiders.",
+	"effect": null,
+}
+
+var poop_common = {
+	"id": "poop_common",
+	"name": "Common Poop",
+	"description": "Poop is more common",
+	"effect": null,
+}
+
+var rainbow_more = {
+	"id": "rainbow_more",
+	"name": "Rainmore",
+	"description": "More Rainbows!",
+	"effect": null,
+}
+
+var reroll = {
+	"id": "reroll",
+	"name": "Unsatisfied",
+	"description": "Re-roll every item.",
+	"effect": null,
+}
+
+var slime_spread = {
+	"id": "slime_spread",
+	"name": "Slime Spread",
+	"description": "Now slimes spread",
+	"effect": null,
+}
+
+var spider_combos = {
+	"id": "spider_combos",
+	"name": "Spider Combos",
+	"description": "Spiders can do combos too",
+	"effect": null,
+}
+
+var vampire_x2 = {
+	"id": "vampire_x2",
+	"name": "Vampire x2",
+	"description": "Vampire duplicates points.",
+	"effect": null,
+}
+
+var yeti_freeze = {
+	"id": "yeti_freeze",
+	"name": "Freeze",
+	"description": "Yeti combos freezes the spider.",
+	"effect": null,
+}
+
+var zombie_lolo = {
+	"id": "zombie_lolo",
+	"name": "Zombie Lolo",
+	"description": "",
+	"effect": null,
+}
+
+###########################################################
+####################    MONSTAS    ########################
+###########################################################
+
 
 var monsta_poop = {
 	"id": "poop",
@@ -133,6 +209,7 @@ func init_vars():
 	LEVEL = 1
 	DEATH_SPEED = 10
 	MONSTA_NEXT = []
+	UPGRADES = [cyclops_lolo, fish_eat, poop_common, rainbow_more, reroll, slime_spread, spider_combos, vampire_x2, yeti_freeze, zombie_lolo]
 	FULL_MONSTAS = [monsta_fish, monsta_vampire, monsta_cyclops, monsta_yeti, monsta_slime]
 	ALL_MONSTAS = [monsta_poop, monsta_zombie]
 	for i in range(5):
