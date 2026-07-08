@@ -2,17 +2,20 @@ extends ColorRect
 var local_upgrades = []
 var upgrades_pos = []
 var idx = 0
+var confeti_obj = preload("res://scenes/Confeti.tscn")
 
 func _ready() -> void:
 	visible = false
 	upgrades_pos = [$upgrade1, $upgrade2, $upgrade3]
 	
 func hide_me():
+	$Timer.stop()
 	Global.Main.STATE = Global.Main.STATES.NEXT_TURN
 	get_tree().paused = false
 	visible = false
 
 func show_me():
+	$Timer.start()
 	idx = 0
 	get_tree().paused = true
 	visible = true
@@ -48,3 +51,10 @@ func _physics_process(delta: float) -> void:
 func select_me():
 	$cosito.global_position.x = upgrades_pos[idx].global_position.x
 	$sub.text = local_upgrades[idx].description
+
+func _on_timer_timeout() -> void:
+	var r = 5
+	for i in range(r):
+		var conf = confeti_obj.instantiate()
+		conf.global_position = Vector2(randf_range(0, 1152), randf_range(0, 640))
+		get_parent().add_child(conf)

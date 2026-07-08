@@ -741,6 +741,9 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tel4y")
 animation = &"spider_combos"
 
+[node name="Timer" type="Timer" parent="UI/Shop" unique_id=585085487]
+wait_time = 0.3
+
 [node name="Artefact" type="Node2D" parent="." unique_id=1974696450]
 unique_name_in_owner = true
 position = Vector2(576, 240)
@@ -880,3 +883,5 @@ speed_scale = 1.1
 [node name="Arrow" type="Sprite2D" parent="Gun/shoot_line" unique_id=332200608]
 position = Vector2(-926, -6)
 texture = ExtResource("5_dp3eg")
+
+[connection signal="timeout" from="UI/Shop/Timer" to="UI/Shop" method="_on_timer_timeout"]
